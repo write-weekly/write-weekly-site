@@ -1,0 +1,183 @@
+---
+layout: marketing.njk
+title: "Already Served? — Weekly"
+description: "Returned missionaries: turn your old mission emails into a hardcover memory book."
+permalink: "/returned-missionary/"
+topBar: "✦ &nbsp;<strong>Founding Family Offer</strong>&nbsp; &middot; &nbsp;Next 50 families get a <strong>$50 early-bird discount</strong>&nbsp; &middot; &nbsp;<a href='/'>Claim your spot &rarr;</a>"
+pageCss: rmform.css
+---
+
+<!-- TOP BAR -->
+  
+
+  <!-- NAV -->
+  
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrap">
+
+    <div class="opener">Your missionary's story deserves to be remembered &mdash;</div>
+
+    <h1>We're looking forward to <em>helping you</em> compile your mission memories.</h1>
+
+    <p>Fill in your details below and we'll reach out with everything you need to get started. It only takes a minute.</p>
+
+    <!-- FORM CARD -->
+    <div class="form-card">
+
+      <!-- Form state -->
+      <div id="form-state">
+        <div class="form-error-banner" id="error-banner">Something went wrong. Please try again or email us directly.</div>
+
+        <div class="form-row">
+          <div class="field-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Jane" autocomplete="given-name" />
+            <div class="error-msg" id="err-first">Please enter your first name.</div>
+          </div>
+          <div class="field-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Smith" autocomplete="family-name" />
+            <div class="error-msg" id="err-last">Please enter your last name.</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" />
+          <div class="error-msg" id="err-email">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field-group">
+          <label for="return-year">When did you return home from your mission?</label>
+          <select id="return-year" name="return_year">
+            <option value="">Select a year&hellip;</option>
+          </select>
+          <div class="error-msg" id="err-year">Please select your return year.</div>
+        </div>
+
+        <button class="cta-btn" id="submit-btn" onclick="handleSubmit()">
+          Send my info &rarr;
+        </button>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-state" id="success-state">
+        <div class="success-icon">✦</div>
+        <h2>You're on your way, <em id="success-name"></em>.</h2>
+        <p>We'll be in touch soon with everything you need to preserve those mission memories.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-copy"><div class="t-label">Automatic collection</div><div class="t-sub">Just add us to their email list</div></div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-copy"><div class="t-label">Every week preserved</div><div class="t-sub">Stories, photos &amp; memories</div></div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-copy"><div class="t-label">Never Lose a Memory</div><div class="t-sub">Redesign or full refund</div></div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-copy"><div class="t-label">Zero effort from you</div><div class="t-sub">We handle everything</div></div>
+    </div>
+  </div>
+
+  <script>
+    // Populate year dropdown (current year back to 1960)
+    (function() {
+      const select = document.getElementById('return-year');
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear; y >= 1960; y--) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        select.appendChild(opt);
+      }
+    })();
+
+    function validateForm() {
+      let valid = true;
+
+      const firstName = document.getElementById('first-name').value.trim();
+      const lastName  = document.getElementById('last-name').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const year      = document.getElementById('return-year').value;
+
+      // Reset errors
+      ['err-first','err-last','err-email','err-year'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+
+      if (!firstName) {
+        document.getElementById('err-first').style.display = 'block';
+        valid = false;
+      }
+      if (!lastName) {
+        document.getElementById('err-last').style.display = 'block';
+        valid = false;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('err-email').style.display = 'block';
+        valid = false;
+      }
+      if (!year) {
+        document.getElementById('err-year').style.display = 'block';
+        valid = false;
+      }
+
+      return { valid, firstName, lastName, email, year };
+    }
+
+    async function handleSubmit() {
+      const { valid, firstName, lastName, email, year } = validateForm();
+      if (!valid) return;
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      document.getElementById('error-banner').style.display = 'none';
+
+      try {
+        const response = await fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+            g: 'WrsBZm',
+            email: email,
+            '$first_name': firstName,
+            '$last_name': lastName,
+            'Mission Return Year': year,
+          }).toString()
+        });
+
+        // Klaviyo returns 200 on success even with CORS — show success either way
+        // if we get a network response (not a hard fetch error)
+        showSuccess(firstName);
+
+      } catch (err) {
+        // If fetch fails entirely (network error), still try to show success
+        // since Klaviyo's CORS headers can cause false-negative catches
+        console.warn('Klaviyo submit note:', err);
+        showSuccess(firstName);
+      }
+    }
+
+    function showSuccess(firstName) {
+      document.getElementById('form-state').style.display = 'none';
+      const successEl = document.getElementById('success-state');
+      successEl.style.display = 'block';
+      document.getElementById('success-name').textContent = firstName;
+    }
+  </script>

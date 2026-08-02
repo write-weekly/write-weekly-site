@@ -1,0 +1,13 @@
+{
+  "name": "write-weekly-site",
+  "version": "1.0.0",
+  "description": "write-weekly.com — static marketing site",
+  "private": true,
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "name": "Weekly",
+  "tagline": "missionary memory books",
+  "url": "https://write-weekly.com",
+  "defaultDescription": "We turn your missionary's weekly emails and photos into a professionally designed hardcover book — automatically, with zero effort from you.",
+  "footerAbout": "We turn your missionary&rsquo;s weekly emails and photos into a professionally designed hardcover book &mdash; automatically, with zero effort from you.",
+  "ogImage": "/img/og-default.jpg",
+  "metaPixelId": "350034257722142",
+  "_comment_nav": "EDIT HERE to change the nav on every page at once. 'label' is the visible text, 'url' is where it goes.",
+  "nav": [
+    {
+      "label": "How It Works",
+      "url": "/#how"
+    },
+    {
+      "label": "Reviews",
+      "url": "/#reviews"
+    },
+    {
+      "label": "Books",
+      "url": "/checkout/"
+    },
+    {
+      "label": "FAQ",
+      "url": "/faq/"
+    }
+  ],
+  "navCta": {
+    "label": "Get Started",
+    "url": "/checkout/"
+  },
+  "_comment_footer": "EDIT HERE to change the footer on every page at once.",
+  "footerColumns": [
+    {
+      "id": "wkfc-nav",
+      "title": "Navigate",
+      "links": [
+        {
+          "label": "How It Works",
+          "url": "/#how"
+        },
+        {
+          "label": "Reviews",
+          "url": "/#reviews"
+        },
+        {
+          "label": "FAQ",
+          "url": "/faq/"
+        },
+        {
+          "label": "View Sample Book",
+          "url": "/sample/"
+        }
+      ]
+    },
+    {
+      "id": "wkfc-co",
+      "title": "Company",
+      "links": [
+        {
+          "label": "About Us",
+          "url": "/about/"
+        },
+        {
+          "label": "Contact",
+          "url": "/about/"
+        },
+        {
+          "label": "Already Served?",
+          "url": "/returned-missionary/"
+        }
+      ]
+    }
+  ],
+  "copyright": "&copy; 2026 Weekly. All rights reserved.",
+  "footerNote": "Made with care for missionary families.",
+  "_comment_promo": "The founding-offer bar. Edit once, changes on every page that sets usePromoBar: true",
+  "promoBar": "✦ &nbsp;<strong>Founding Family Offer</strong>&nbsp; &middot; &nbsp;Next 50 families get a <strong>$50 early-bird discount</strong>",
+  "_TODO_privacy": "No privacy policy page exists yet. Meta ad policy requires one. Write it, add src/privacy.html, then add a link back into footerColumns."
+}

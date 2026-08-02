@@ -1,0 +1,309 @@
+.faq-hero {position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 72px 24px 56px;
+    max-width: 680px;
+    margin: 0 auto;}
+.eyebrow {font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 18px;
+    display: block;}
+.faq-hero h1 {font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--heading);
+    line-height: 1.15;
+    margin-bottom: 20px;}
+.faq-hero h1 em {font-style: italic; color: var(--copper);}
+.faq-hero p {font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--body-text);
+    max-width: 500px;
+    margin: 0 auto;}
+.faq-tabs {position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 24px 48px;
+    flex-wrap: wrap;}
+.faq-tab {font-family: 'Lora', Georgia, serif;
+    font-size: 13px;
+    padding: 9px 22px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(176,112,64,0.25);
+    background: transparent;
+    color: var(--body-text);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;}
+.faq-tab:hover {background: rgba(176,112,64,0.07); border-color: rgba(176,112,64,0.5); color: var(--copper);}
+.faq-tab.active {background: var(--copper); border-color: var(--copper); color: #FAF3EA;}
+.faq-body {position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;}
+.faq-section {margin-bottom: 64px;}
+.faq-section:last-child {margin-bottom: 0;}
+.section-header {display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 32px;}
+.section-icon {width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid rgba(176,112,64,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(176,112,64,0.08);}
+.section-icon svg {width: 22px; height: 22px; stroke: var(--copper); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;}
+.section-title-wrap {}
+.section-label {font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
+    display: block;}
+.section-title {font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--heading);
+    line-height: 1.2;}
+.section-title em {font-style: italic; color: var(--copper);}
+.faq-list {display: flex; flex-direction: column; gap: 2px;}
+.faq-item {background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid rgba(176,112,64,0.1);
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;}
+.faq-item:hover {border-color: rgba(176,112,64,0.22);}
+.faq-item.open {border-color: rgba(176,112,64,0.28);
+    box-shadow: 0 4px 24px rgba(176,112,64,0.08);}
+.faq-q {width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;}
+.faq-q:hover {background: rgba(176,112,64,0.04);}
+.faq-q-text {font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 16.5px;
+    color: var(--heading);
+    line-height: 1.4;}
+.faq-item.open .faq-q-text {color: #3a1a00;}
+.faq-chevron {flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(176,112,64,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.3s;}
+.faq-item.open .faq-chevron {background: rgba(176,112,64,0.18); transform: rotate(180deg);}
+.faq-chevron svg {width: 14px; height: 14px; stroke: var(--copper); fill: none; stroke-width: 2; stroke-linecap: round;}
+.faq-a {max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1);}
+.faq-item.open .faq-a {max-height: 600px;}
+.faq-a-inner {padding: 0 24px 22px 24px;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--body-text);
+    border-top: 1px solid rgba(176,112,64,0.1);
+    padding-top: 16px;
+    margin-top: 0;}
+.faq-a-inner a {color: var(--copper); text-decoration: underline; text-decoration-color: rgba(176,112,64,0.4); transition: color 0.2s;}
+.faq-a-inner a:hover {color: var(--copper-hover);}
+.faq-a-inner strong {color: rgba(42,24,0,0.85); font-weight: 400; font-family: 'Playfair Display', Georgia, serif; font-size: 15px;}
+.section-divider {display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 48px;}
+.section-divider::before, .section-divider::after {content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(176,112,64,0.2), transparent);}
+.section-divider span {font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(176,112,64,0.55);
+    white-space: nowrap;}
+.faq-cta {position: relative;
+    z-index: 1;
+    background: var(--surface);
+    border-top: 1px solid rgba(176,112,64,0.12);
+    text-align: center;
+    padding: 64px 24px;
+    scroll-margin-top: 80px;}
+.faq-cta .eyebrow {margin-bottom: 14px;}
+.faq-cta h2 {font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(26px, 4vw, 36px);
+    color: var(--heading);
+    line-height: 1.25;
+    margin-bottom: 14px;}
+.faq-cta h2 em {font-style: italic; color: var(--copper);}
+.faq-cta p {font-family: 'Lora', Georgia, serif;
+    font-size: 15px;
+    color: var(--body-text);
+    margin-bottom: 32px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;}
+.contact-form-wrap {max-width: 520px;
+    margin: 0 auto;
+    text-align: left;}
+.contact-row {display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;}
+.contact-field {display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;}
+.contact-field.half {margin-bottom: 0;}
+.contact-label {font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(176,112,64,0.75);}
+.contact-input, .contact-select, .contact-textarea {font-family: 'Lora', Georgia, serif;
+    font-size: 14px;
+    color: var(--dark);
+    background: rgba(255,248,239,0.85);
+    border: 1px solid rgba(176,112,64,0.22);
+    border-radius: 10px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    -webkit-appearance: none;}
+.contact-input::placeholder, .contact-textarea::placeholder {color: rgba(42,24,0,0.3); font-style: italic;}
+.contact-input:focus, .contact-select:focus, .contact-textarea:focus {border-color: rgba(176,112,64,0.55);
+    box-shadow: 0 0 0 3px rgba(176,112,64,0.1);}
+.contact-select {background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpolyline points='1,1 6,7 11,1' fill='none' stroke='%23B07040' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+    color: rgba(42,24,0,0.55);}
+.contact-select.has-value {color: var(--dark);}
+.contact-textarea {resize: vertical; min-height: 110px; line-height: 1.7;}
+.contact-submit {width: 100%;
+    background: var(--copper);
+    color: #FAF3EA;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 14px;
+    padding: 15px 36px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(176,112,64,0.3);
+    letter-spacing: 0.04em;
+    margin-top: 6px;}
+.contact-submit:hover {background: var(--copper-hover); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(176,112,64,0.38);}
+.contact-submit:active {transform: translateY(0);}
+.contact-success {display: none;
+    text-align: center;
+    padding: 32px 24px;
+    background: rgba(255,248,239,0.7);
+    border: 1px solid rgba(176,112,64,0.2);
+    border-radius: 20px;
+    max-width: 520px;
+    margin: 0 auto;}
+.contact-success-icon {width: 48px; height: 48px;
+    background: rgba(176,112,64,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;}
+.contact-success-icon svg {width: 22px; height: 22px; stroke: var(--copper); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
+.contact-success h3 {font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--heading);
+    margin-bottom: 8px;}
+.contact-success h3 em {font-style: italic; color: var(--copper);}
+.contact-success p {font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--body-text);
+    margin-bottom: 0;
+    line-height: 1.7;}
+@media (max-width: 560px) {
+  .contact-row {grid-template-columns: 1fr;}
+}
+.help-bubble-wrap {position:fixed; bottom:28px; right:28px; z-index:500; display:flex; flex-direction:column; align-items:flex-end; gap:10px;}
+.help-card {background:#1E1000; color:#FAF3EA; border-radius:16px; padding:18px 20px; width:240px; box-shadow:0 12px 40px rgba(42,24,0,0.25); opacity:0; pointer-events:none; transform:translateY(10px) scale(0.97); transition:opacity 0.25s ease, transform 0.25s ease;}
+.help-card.open {opacity:1; pointer-events:auto; transform:translateY(0) scale(1);}
+.help-card-label {font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(250,243,234,0.45); margin-bottom:6px;}
+.help-card-text {font-family:"Lora",Georgia,serif; font-style:italic; font-size:13px; color:rgba(250,243,234,0.75); line-height:1.6; margin-bottom:12px;}
+.help-card-email {display:inline-block; color:#D4A06A; font-size:13px; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(212,160,106,0.35); transition:color 0.2s; word-break:break-all;}
+.help-card-email:hover {color:#FAF3EA;}
+.help-btn {width:48px; height:48px; border-radius:50%; background:#B07040; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(176,112,64,0.4); transition:background 0.2s, transform 0.2s; flex-shrink:0; position:relative;}
+.help-btn:hover {background:#965E30; transform:scale(1.06);}
+.help-btn-icon {font-family:"Playfair Display",Georgia,serif; font-size:20px; color:#FAF3EA; line-height:1; transition:opacity 0.15s; position:absolute;}
+.help-btn-icon.close-icon {opacity:0; font-size:18px; font-family:inherit;}
+.help-btn.open .help-btn-icon.q-icon {opacity:0;}
+.help-btn.open .help-btn-icon.close-icon {opacity:1;}
+.mobile-bar {display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--dark);
+    z-index: 400;
+    padding: 12px 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid rgba(176,112,64,0.2);}
+.mobile-bar-text {font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(250,243,234,0.65);
+    line-height: 1.4;}
+.mobile-bar-btn {background: var(--copper);
+    color: #FAF3EA;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 12px;
+    padding: 10px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;}
+@media (max-width: 768px) {
+  .faq-hero {padding: 48px 20px 40px;}
+  .faq-tabs {padding: 0 20px 36px;}
+  .faq-body {padding: 0 16px 100px;}
+  .section-title {font-size: 22px;}
+  .faq-q-text {font-size: 15px;}
+  .help-bubble-wrap {bottom:76px; right:16px;}
+  .help-card {width:210px;}
+  .mobile-bar {display: flex;}
+}
+@media (max-width: 420px) {
+  .faq-hero h1 {font-size: 30px;}
+  .faq-q {padding: 16px 18px;}
+  .faq-a-inner {padding: 14px 18px 18px;}
+}

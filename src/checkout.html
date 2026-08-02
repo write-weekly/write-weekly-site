@@ -1,0 +1,524 @@
+---
+layout: funnel.njk
+title: "Secure Your Spot — Weekly"
+description: "Reserve your missionary memory book."
+permalink: "/checkout/"
+funnelCta:
+  label: "FAQ"
+  url: "/faq/"
+showFooter: true
+pageCss: checkout.css
+---
+
+<div class="page-wrap">
+
+    <!-- INTRO -->
+    <div class="checkout-intro">
+      <h1>How would you like to<br/><em>secure your missionary&rsquo;s book?</em></h1>
+    </div>
+
+    <!-- STEP 1: PATH SELECTOR -->
+    <div class="path-selector" id="path-selector">
+      <div class="path-selector-label">Who is this book for?</div>
+      <div class="path-cards">
+
+        <button class="path-card path-card-departing grain-dark" onclick="selectPath('departing')">
+          <div class="path-card-inner">
+            <div class="path-card-top">
+              <div class="path-card-name">Departing Missionary</div>
+              <div class="path-card-desc">They haven&rsquo;t left yet &mdash; we&rsquo;ll capture every week from day one.</div>
+            </div>
+            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </button>
+
+        <button class="path-card path-card-serving grain-dark" onclick="selectPath('serving')">
+          <div class="path-card-inner">
+            <div class="path-card-top">
+              <div class="path-card-name">Currently Serving</div>
+              <div class="path-card-desc">They&rsquo;re mid-mission &mdash; we&rsquo;ll build the book from what&rsquo;s already been sent.</div>
+            </div>
+            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </button>
+
+        <button class="path-card path-card-rm grain-light" onclick="selectPath('rm')">
+          <div class="path-card-inner">
+            <div class="path-card-top">
+              <div class="path-card-name">Returned Missionary</div>
+              <div class="path-card-desc">They&rsquo;re already home &mdash; we&rsquo;ll build the book from the emails and photos you have.</div>
+            </div>
+            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- DEPARTING PATH -->
+    <div id="path-departing" style="display:none;">
+
+      <div class="path-back">
+        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
+      </div>
+
+      <!-- TWO-TIER PRICING -->
+      <div class="tier-grid">
+
+        <!-- TIER A: MONTHLY -->
+        <div class="tier-monthly grain-light">
+          <div class="tier-monthly-label">Option A</div>
+          <div class="tier-monthly-name">Pay Monthly</div>
+          <div class="tier-no-guarantee">No guarantee included</div>
+          <div class="tier-monthly-price">
+            <span class="price-main"><sup>$</sup>15<span style="font-size:16px;font-family:-apple-system,sans-serif;">/mo</span></span>
+            <span class="price-note">billing begins at departure</span>
+            <span class="price-note" style="color:rgba(42,24,0,0.38);font-style:italic;">18 months for Sisters &middot; 24 months for Elders</span>
+          </div>
+          <div class="monthly-choice">
+            <div class="monthly-choice-label">Who is your missionary?</div>
+            <div class="monthly-choice-btns">
+              <button class="monthly-choice-btn" onclick="window.location.href='https://buy.stripe.com/fZuaEX0jo71V0ZD8tX2go09'">Sister</button>
+              <button class="monthly-choice-btn" onclick="window.location.href='https://buy.stripe.com/4gMeVd2rw71VdMp39D2go0a'">Elder</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TIER B: PAY IN FULL -->
+        <div class="tier-prepaid grain-dark">
+          <div class="tier-badge">&#128737;&nbsp; Best Value</div>
+          <div class="tier-prepaid-label">Option B</div>
+          <div class="tier-prepaid-name">Pay in Full</div>
+          <div class="tier-yes-guarantee">Guarantee included</div>
+          <div class="tier-prepaid-price">
+            <span class="price-main"><sup>$</sup>399</span>
+            <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
+            <span class="price-note" style="color:rgba(250,243,234,0.45);font-style:italic;">For Sisters &amp; Elders</span>
+          </div>
+          <div style="height:16px;"></div>
+          <button class="tier-prepaid-btn" id="prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+        </div>
+
+      </div>
+
+      <!-- WHATS INCLUDED (Departing) -->
+      <div class="included-wrap" style="margin-bottom:16px;">
+        <div class="included-header">What&rsquo;s included with your book</div>
+        <div class="incl-list">
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">Professionally printed book<span>Every week of their mission, beautifully designed</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">Parent foreword page<span>A personal message from you, printed inside the cover</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">PDF Transfer Recaps<span>Delivered every 6 weeks &mdash; each area, companion &amp; stories</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">1-Year Mission Countdown Calendar<span>A custom wall calendar marking their return date</span></div></div>
+        </div>
+      </div>
+
+      <!-- ADD-ON (Departing) -->
+      <div class="addon-wrap">
+        <div class="addon-header">Optional Add-on</div>
+        <label class="addon-row">
+          <input type="checkbox" id="departing-mag-check" onchange="toggleDepartingAddon()">
+          <img class="addon-img" src="https://res.cloudinary.com/dchehgltv/image/upload/w_120,c_fill,g_auto,f_auto,q_auto/v1779672475/pamphletePicture_fanxd0.jpg" alt="Holiday Mini-Magazines" />
+          <div class="addon-copy">
+            <div class="addon-name">Holiday Mini-Magazines <span id="dep-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$59 added</span></div>
+            <div class="addon-desc">Twice a year, your missionary writes a personal note for the occasion &mdash; we pair it with that season&rsquo;s emails and photos to create a beautifully printed keepsake edition &mdash; delivered straight to your door.</div>
+          </div>
+          <div class="addon-price">+$59</div>
+        </label>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn" id="dep-bottom-cta" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+        <div class="sticky-cta-sub">Secure checkout &mdash; payments processed by Stripe</div>
+      </div>
+
+      <!-- TIMELINE (Departing) -->
+      <div class="timeline-wrap" id="tl-departing">
+        <div class="timeline-heading">Here&rsquo;s how it works</div>
+        <div class="timeline-steps">
+
+          <div class="timeline-step tl-active" data-tl="0">
+            <div class="timeline-left">
+              <div class="timeline-dot">💳</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">You secure your spot today</div>
+              <div class="timeline-step-desc">Your deposit locks in your founding family rate. Monthly billing doesn&rsquo;t start until they walk out the door.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step tl-dim" data-tl="1">
+            <div class="timeline-left">
+              <div class="timeline-dot">✈️</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">They depart &mdash; and add us to their emails</div>
+              <div class="timeline-step-desc">On P-Day, your missionary adds our dedicated address to their email list. That&rsquo;s the only step they&rsquo;ll ever need to take.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step tl-dim" data-tl="2">
+            <div class="timeline-left">
+              <div class="timeline-dot">📬</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">We collect &amp; send things home throughout their mission</div>
+              <div class="timeline-step-desc">Every week we capture their emails and photos. Along the way we deliver:</div>
+              <div class="timeline-step-tags">
+                <span class="timeline-tag">Transfer recaps every 6 weeks</span>
+                <span class="timeline-tag">1-year countdown calendar</span>
+                <span class="timeline-tag">Mother&rsquo;s Day &amp; Christmas magazines</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-step tl-dim" data-tl="3">
+            <div class="timeline-left">
+              <div class="timeline-dot">📖</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">They come home &mdash; the book arrives</div>
+              <div class="timeline-step-desc">We format and print the complete book from every week of their mission. You review it, we refine it, and it ships to your door.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STRIPE NOTE -->
+      <div class="tier-stripe-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Secure checkout &mdash; payments processed by Stripe.
+      </div>
+
+      <!-- GUARANTEE (Departing) -->
+      <div class="guarantee" style="margin-top:20px;">
+        <div class="guarantee-icon">&#128737;</div>
+        <div class="guarantee-copy">
+          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
+          <div style="display:inline-block;margin-bottom:10px;font-family:-apple-system,sans-serif;font-style:normal;font-size:11px;font-weight:600;color:rgba(42,24,0,0.5);background:rgba(42,24,0,0.06);padding:4px 10px;border-radius:100px;">Only unlocked when you pay in full</div>
+          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, use your Unlimited Revisions Pass for adjustments. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
+        </div>
+      </div>
+
+      <!-- FAQ (Departing) -->
+      <div class="faq-intro">Frequently asked questions</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if my missionary doesn&rsquo;t depart for a while, or their start date changes?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Your subscription doesn&rsquo;t start today! Your deposit simply locks in your spot and pricing. Your $20/month won&rsquo;t begin until the week they depart for the MTC. We will even reach out a week before their service starts to confirm their date is still accurate. If anything changes, just let us know and we&rsquo;ll adjust it so you&rsquo;re never charged early.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do I add Weekly to my missionary&rsquo;s email list?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">It requires zero effort from you. We&rsquo;ll give you a dedicated Weekly email address. Your missionary simply adds it to their regular P-Day email list, and our automated system handles 100% of the collecting and formatting from there!</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if my missionary forgets to send an email or doesn&rsquo;t include photos?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Our system acts as your safety net! If we don&rsquo;t receive an email, we automatically send a gentle reminder to your missionary. Plus, we send them &ldquo;Story-Puller&rdquo; Prompts to give them fun ideas and remind them to attach photos.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What happens if my missionary comes home early?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We recognize every situation is different. If they return early, we immediately cancel future payments and send you a fully formatted digital PDF of what we&rsquo;ve collected. From there, we can determine together if printing a physical copy is the right step for your family.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CURRENTLY SERVING PATH -->
+    <div id="path-serving" style="display:none;">
+
+      <div class="path-back">
+        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
+      </div>
+
+      <!-- PAY IN FULL ONLY -->
+      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
+        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
+        <div class="tier-prepaid-label">One-Time Payment</div>
+        <div class="tier-prepaid-name">Pay in Full</div>
+        <div class="tier-yes-guarantee">For Sisters &amp; Elders</div>
+        <div class="tier-prepaid-price">
+          <span class="price-main"><sup>$</sup>399</span>
+          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
+        </div>
+        <div style="height:16px;"></div>
+        <button class="tier-prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+      </div>
+
+      <!-- WHATS INCLUDED (Currently Serving) -->
+      <div class="included-wrap" style="margin-bottom:16px;">
+        <div class="included-header">What&rsquo;s included with your book</div>
+        <div class="incl-list">
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">Professionally printed book<span>Every week from now until they return, beautifully designed</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">Parent foreword page<span>A personal message from you, printed inside the cover</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">PDF Transfer Recaps<span>Delivered every 6 weeks for the remainder of their mission</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">1-Year Mission Countdown Calendar<span>If 12+ months remain in their mission</span></div></div>
+        </div>
+      </div>
+
+      <!-- ADD-ON (Serving) -->
+      <div class="addon-wrap">
+        <div class="addon-header">Optional Add-on</div>
+        <label class="addon-row">
+          <input type="checkbox" id="serving-mag-check" onchange="toggleServingAddon()">
+          <img class="addon-img" src="https://res.cloudinary.com/dchehgltv/image/upload/w_120,c_fill,g_auto,f_auto,q_auto/v1779672475/pamphletePicture_fanxd0.jpg" alt="Holiday Mini-Magazines" />
+          <div class="addon-copy">
+            <div class="addon-name">Holiday Mini-Magazines <span id="srv-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$59 added</span></div>
+            <div class="addon-desc">Twice a year, your missionary writes a personal note for the occasion &mdash; we pair it with that season&rsquo;s emails and photos to create a beautifully printed keepsake edition &mdash; delivered straight to your door.</div>
+          </div>
+          <div class="addon-price">+$59</div>
+        </label>
+      </div>
+
+      <!-- TIMELINE (Currently Serving) -->
+      <div class="timeline-wrap">
+        <div class="timeline-heading">Here&rsquo;s how it works</div>
+        <div class="timeline-steps">
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">💳</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">You pay &mdash; one flat rate, done</div>
+              <div class="timeline-step-desc">No subscription, no monthly billing. One payment and we get to work.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">📧</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">Add us to their email list going forward</div>
+              <div class="timeline-step-desc">Your missionary adds our dedicated address to their P-Day emails so we capture everything from here on out.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">🗂️</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">Upload past emails through our portal</div>
+              <div class="timeline-step-desc">We give you access to our simple upload portal where you can add all the emails and photos sent before you joined. Nothing is lost.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">📖</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">Mission ends &mdash; the book arrives</div>
+              <div class="timeline-step-desc">We format the complete book from every week &mdash; past and present. You review it, we refine it, and it ships to your door.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn" id="srv-bottom-cta" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+        <div class="sticky-cta-sub">Secure checkout &mdash; payments processed by Stripe</div>
+      </div>
+      <!-- STRIPE NOTE (Serving) -->
+      <div class="tier-stripe-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Secure checkout &mdash; payments processed by Stripe.
+      </div>
+
+      <!-- GUARANTEE (Serving) -->
+      <div class="guarantee" style="margin-top:20px;">
+        <div class="guarantee-icon">&#128737;</div>
+        <div class="guarantee-copy">
+          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
+          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, we&rsquo;ll work with you on revisions until it&rsquo;s right. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
+        </div>
+      </div>
+
+      <!-- FAQ (Serving) -->
+      <div class="faq-intro">Frequently asked questions</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do I add Weekly to my missionary&rsquo;s email list?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">It requires zero effort from you. We&rsquo;ll give you a dedicated Weekly email address. Your missionary simply adds it to their regular P-Day email list, and our automated system handles 100% of the collecting and formatting from there!</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if my missionary comes home before their mission is complete?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No problem. We&rsquo;ll build the book from whatever has been sent so far and refund any difference. Every situation is handled personally &mdash; just reach out and we&rsquo;ll take care of you.</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RM PATH -->
+    <div id="path-rm" style="display:none;">
+
+      <div class="path-back">
+        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
+      </div>
+
+      <!-- PAY IN FULL ONLY -->
+      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
+        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
+        <div class="tier-prepaid-label">One-Time Payment</div>
+        <div class="tier-prepaid-name">Pay in Full</div>
+        <div class="tier-yes-guarantee">For Sisters &amp; Elders</div>
+        <div class="tier-prepaid-price">
+          <span class="price-main"><sup>$</sup>399</span>
+          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
+        </div>
+        <div style="height:16px;"></div>
+        <button class="tier-prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+      </div>
+
+      <!-- WHATS INCLUDED (RM) -->
+      <div class="included-wrap" style="margin-bottom:16px;">
+        <div class="included-header">What&rsquo;s included with your book</div>
+        <div class="incl-list">
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">Professionally printed book<span>Built from every email and photo you upload through our portal</span></div></div>
+          <div class="incl-item"><div class="incl-check">&#10003;</div><div class="incl-text">Parent foreword page<span>A personal message from you, printed inside the cover</span></div></div>
+        </div>
+      </div>
+
+      <!-- TIMELINE (RM) -->
+      <div class="timeline-wrap">
+        <div class="timeline-heading">Here&rsquo;s how it works</div>
+        <div class="timeline-steps">
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">💳</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">You pay &mdash; one flat rate, done</div>
+              <div class="timeline-step-desc">No subscription, no monthly billing. One payment and we get to work immediately.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">🗂️</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">Upload everything through our portal</div>
+              <div class="timeline-step-desc">We give you access to our simple upload portal. Add all the emails, photos, and memories from their mission &mdash; at your own pace.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">✏️</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">We format &amp; send you a proof</div>
+              <div class="timeline-step-desc">Once your uploads are complete, we design and lay out the book. You get a digital proof to review and request any changes.</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-dot">📖</div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-right">
+              <div class="timeline-step-title">It ships to your door</div>
+              <div class="timeline-step-desc">When you&rsquo;re happy with the proof, we print and ship the finished book directly to you.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STRIPE NOTE (RM) -->
+      <div class="tier-stripe-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Secure checkout &mdash; payments processed by Stripe.
+      </div>
+
+      <!-- GUARANTEE (RM) -->
+      <div class="guarantee" style="margin-top:20px;">
+        <div class="guarantee-icon">&#128737;</div>
+        <div class="guarantee-copy">
+          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
+          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, we&rsquo;ll work with you on revisions until it&rsquo;s right. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
+        </div>
+      </div>
+
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+        <div class="sticky-cta-sub">Secure checkout &mdash; payments processed by Stripe</div>
+      </div>
+      <!-- FAQ (RM) -->
+      <div class="faq-intro">Frequently asked questions</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I (or my son/daughter) already served a mission but still wants a book?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No problem! Just <a href="/returned-missionary/">fill out our returned missionary form</a> and we&rsquo;ll reach out with everything you need to get your book started.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>

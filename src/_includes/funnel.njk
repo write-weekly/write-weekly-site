@@ -1,0 +1,13 @@
+{#- Layout for conversion pages: minimal nav, no exits mid-flow.
+    Set `showFooter: true` in a page's front matter to include the full footer
+    (used on /checkout/ where the trust and policy links matter). -#}
+{% extends "base.njk" %}
+{% block body %}
+  {% include "partials/nav-funnel.njk" %}
+  <main id="main">
+{{ content | safe }}
+  </main>
+  {%- if showFooter %}
+  {% include "partials/footer.njk" %}
+  {%- endif %}
+{% endblock %}

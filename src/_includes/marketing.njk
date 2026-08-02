@@ -1,0 +1,9 @@
+{#- Layout for public marketing pages: full nav + full footer. -#}
+{% extends "base.njk" %}
+{% block body %}
+  {% include "partials/nav.njk" %}
+  <main id="main">
+{{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}

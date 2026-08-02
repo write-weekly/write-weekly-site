@@ -1,0 +1,538 @@
+---
+layout: funnel.njk
+title: "Set Up Your Account — Weekly"
+description: "Finish setting up your Weekly account."
+permalink: "/onboarding/"
+noindex: true
+topBar: "✦ &nbsp;<strong>Payment confirmed</strong>&nbsp; &middot; &nbsp;One last step to complete your setup"
+navTag: "Step 2 of 2"
+pageCss: onboarding.css
+---
+
+<div class="page-wrap">
+
+    <!-- PROGRESS -->
+    <div class="steps">
+      <div class="step done" id="step-1">
+        <div class="step-circle">&#10003;</div>
+        <div class="step-label">Deposit Paid</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step active" id="step-2">
+        <div class="step-circle">2</div>
+        <div class="step-label">Your Details</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step-3">
+        <div class="step-circle">3</div>
+        <div class="step-label">We&rsquo;re Set!</div>
+      </div>
+    </div>
+
+    <!-- SUCCESS (hidden) -->
+    <div class="success-card" id="success-card">
+      <span class="success-icon">&#127881;</span>
+      <h2>You&rsquo;re all set!</h2>
+      <p>Check your inbox &mdash; you&rsquo;ll receive a welcome email from us shortly with everything you need to get started.</p>
+    </div>
+
+    <!-- INTRO -->
+    <div class="onboarding-intro" id="onboarding-intro">
+      <span class="eyebrow">Almost there</span>
+      <h1>Tell us about your<br/><em>missionary.</em></h1>
+      <p>This takes about two minutes &mdash; and it&rsquo;s the last thing<br/>you&rsquo;ll need to do before we take it from here.</p>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="card" id="form-card">
+
+      <!-- YOUR INFO -->
+      <div class="card-section-title">
+        <div class="card-section-icon">&#128100;</div>
+        <div class="card-section-label">Your Information</div>
+      </div>
+      <div class="card-section-sub">The person setting up this account &mdash; could be a parent, family member, or the missionary themselves</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name <span class="req">*</span></label>
+          <input class="form-input" type="text" id="parent-first" placeholder="Sarah" />
+          <div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+          <label>Last Name <span class="req">*</span></label>
+          <input class="form-input" type="text" id="parent-last" placeholder="Johnson" />
+          <div class="error-msg"></div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Email Address <span class="req">*</span></label>
+        <input class="form-input" type="email" id="parent-email" placeholder="sarah@email.com" />
+        <div class="error-msg"></div>
+        <div class="form-hint">Where we&rsquo;ll send your Transfer Recaps, updates, and book previews</div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label>Your Relationship <span class="req">*</span></label>
+        <select class="form-select" id="relationship">
+          <option value="">Select your relationship</option>
+          <option>Mom</option>
+          <option>Dad</option>
+          <option>Grandparent</option>
+          <option>The missionary themselves</option>
+          <option>Other</option>
+        </select>
+        <div class="error-msg"></div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- MISSIONARY INFO -->
+      <div class="card-section-title">
+        <div class="card-section-icon">&#128214;</div>
+        <div class="card-section-label">Your Missionary</div>
+      </div>
+      <div class="card-section-sub">This is how we identify and personalize their book</div>
+
+      <!-- STATUS TILES -->
+      <div class="form-group" style="margin-bottom:20px;">
+        <label>Missionary Status <span class="req">*</span></label>
+        <div class="status-tiles" id="status-tiles">
+          <div class="status-tile" data-value="departing" onclick="selectStatus(this)">
+            <div class="tile-dot"><div class="tile-dot-inner"></div></div>
+            <div>
+              <div class="tile-label">My missionary hasn&rsquo;t left yet</div>
+              <div class="tile-sub">Departing soon</div>
+            </div>
+          </div>
+          <div class="status-tile" data-value="serving" onclick="selectStatus(this)">
+            <div class="tile-dot"><div class="tile-dot-inner"></div></div>
+            <div>
+              <div class="tile-label">My missionary is currently serving</div>
+              <div class="tile-sub">In the field now</div>
+            </div>
+          </div>
+          <div class="status-tile" data-value="returned" onclick="selectStatus(this)">
+            <div class="tile-dot"><div class="tile-dot-inner"></div></div>
+            <div>
+              <div class="tile-label">My missionary has already returned home</div>
+              <div class="tile-sub">Mission complete</div>
+            </div>
+          </div>
+        </div>
+        <div class="error-msg" id="status-error"></div>
+      </div>
+
+      <!-- TITLE + NAME -->
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Title <span class="req">*</span></label>
+        <select class="form-select" id="missionary-title">
+          <option value="">Select title</option>
+          <option>Elder</option>
+          <option>Sister</option>
+        </select>
+        <div class="error-msg"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name <span class="req">*</span></label>
+          <input class="form-input" type="text" id="miss-first" placeholder="Samantha" />
+          <div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+          <label>Last Name <span class="req">*</span></label>
+          <input class="form-input" type="text" id="miss-last" placeholder="Johnson" />
+          <div class="error-msg"></div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Date of Birth <span class="req">*</span></label>
+        <div class="date-row">
+          <div class="form-group">
+            <select class="form-select" id="dob-month">
+              <option value="">Month</option>
+              <option>January</option><option>February</option><option>March</option>
+              <option>April</option><option>May</option><option>June</option>
+              <option>July</option><option>August</option><option>September</option>
+              <option>October</option><option>November</option><option>December</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-group">
+            <select class="form-select" id="dob-day">
+              <option value="">Day</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-group">
+            <select class="form-select" id="dob-year">
+              <option value="">Year</option>
+              <option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option><option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option><option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option><option>1995</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+        </div>
+        <div class="form-hint">Used to uniquely identify your missionary&rsquo;s account</div>
+      </div>
+
+      <!-- CONDITIONAL: DEPARTURE DATE (departing + serving) -->
+      <div class="field-group" id="group-departure" style="margin-bottom:16px;">
+        <div class="form-group">
+          <label id="dep-label">Expected Departure Date <span class="req">*</span></label>
+          <div class="date-row">
+            <div class="form-group">
+              <select class="form-select" id="dep-month">
+                <option value="">Month</option>
+                <option>January</option><option>February</option><option>March</option>
+                <option>April</option><option>May</option><option>June</option>
+                <option>July</option><option>August</option><option>September</option>
+                <option>October</option><option>November</option><option>December</option>
+              </select>
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-group">
+              <select class="form-select" id="dep-day">
+                <option value="">Day</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+              </select>
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-group">
+              <select class="form-select" id="dep-year">
+                <option value="">Year</option>
+                <option>2024</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option>
+              </select>
+              <div class="error-msg"></div>
+            </div>
+          </div>
+          <div class="form-hint" id="dep-hint">Don&rsquo;t worry if this changes &mdash; we&rsquo;ll confirm with you a week before</div>
+        </div>
+      </div>
+
+      <!-- CONDITIONAL: RETURN DATE (serving + returned) -->
+      <div class="field-group" id="group-return" style="margin-bottom:16px;">
+        <div class="form-group">
+          <label>Return Date <span class="req">*</span></label>
+          <div class="date-row">
+            <div class="form-group">
+              <select class="form-select" id="ret-month">
+                <option value="">Month</option>
+                <option>January</option><option>February</option><option>March</option>
+                <option>April</option><option>May</option><option>June</option>
+                <option>July</option><option>August</option><option>September</option>
+                <option>October</option><option>November</option><option>December</option>
+              </select>
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-group">
+              <select class="form-select" id="ret-day">
+                <option value="">Day</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+              </select>
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-group">
+              <select class="form-select" id="ret-year">
+                <option value="">Year</option>
+                <option>2024</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option>
+              </select>
+              <div class="error-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION ASSIGNMENT (all statuses) -->
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Mission Assignment <span class="req">*</span></label>
+        <input class="form-input" type="text" id="mission" placeholder="e.g. South Africa Johannesburg" />
+        <div class="error-msg"></div>
+      </div>
+
+      <!-- CONDITIONAL: MISSIONARY EMAIL (departing + serving) -->
+      <div class="field-group" id="group-miss-email">
+        <div class="form-group">
+          <label>Missionary&rsquo;s Email Address <span class="opt">(optional)</span></label>
+          <input class="form-input" type="email" id="miss-email" placeholder="elder.johnson@missionary.org" />
+          <div class="form-hint">Leave blank if not known yet &mdash; we&rsquo;ll collect this closer to departure</div>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- HOW DID YOU HEAR -->
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>How did you hear about us? <span class="req">*</span></label>
+        <select class="form-select" id="how-heard">
+          <option value="">Select an option</option>
+          <option>Facebook or Instagram Ad</option>
+          <option>Facebook or Instagram Post</option>
+          <option>Word of mouth / a friend</option>
+          <option>Google search</option>
+          <option>A church leader or bishop</option>
+          <option>A missionary parent group</option>
+          <option>Other</option>
+        </select>
+        <div class="error-msg"></div>
+      </div>
+
+      <button class="submit-btn" id="submit-btn" onclick="submitOnboarding()">
+        Complete my setup &rarr;
+      </button>
+      <div class="submit-fine-print">
+        Your information is kept private and never shared.<br/>
+        We&rsquo;ll be in touch soon to confirm everything is ready.
+      </div>
+
+    </div>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <div class="next-steps" id="next-steps">
+      <span class="next-steps-label">What happens next</span>
+      <div class="next-step">
+        <div class="next-step-num">1</div>
+        <div class="next-step-text"><strong>We confirm your setup</strong> &mdash; You&rsquo;ll receive a welcome email with your dedicated Weeklys email address to add to your missionary&rsquo;s P-Day list.</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step-num">2</div>
+        <div class="next-step-text"><strong>We check in before departure</strong> &mdash; One week before their MTC date we&rsquo;ll reach out to confirm everything is ready.</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step-num">3</div>
+        <div class="next-step-text"><strong>Collection begins automatically</strong> &mdash; The moment their emails start coming in, we start building their book. You&rsquo;ll receive a Transfer Recap every 6 weeks.</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step-num">4</div>
+        <div class="next-step-text"><strong>Your book is delivered when they return</strong> &mdash; A professionally printed hardcover heirloom, ready to hand them the moment they walk through the door.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    var selectedStatus = '';
+
+    // --- STATUS TILES ---
+    function selectStatus(tile) {
+      document.querySelectorAll('.status-tile').forEach(function(t) {
+        t.classList.remove('selected', 'error-tile');
+      });
+      tile.classList.add('selected');
+      selectedStatus = tile.getAttribute('data-value');
+      document.getElementById('status-error').classList.remove('show-error');
+      updateVisibleFields();
+    }
+
+    function updateVisibleFields() {
+      var dep    = document.getElementById('group-departure');
+      var ret    = document.getElementById('group-return');
+      var email  = document.getElementById('group-miss-email');
+      var depLbl = document.getElementById('dep-label');
+      var depHint= document.getElementById('dep-hint');
+
+      // Hide all conditional groups first
+      dep.classList.remove('visible');
+      ret.classList.remove('visible');
+      email.classList.remove('visible');
+
+      if (selectedStatus === 'departing') {
+        dep.classList.add('visible');
+        email.classList.add('visible');
+        depLbl.innerHTML = 'Expected Departure Date <span class="req">*</span>';
+        if (depHint) depHint.textContent = "Don\u2019t worry if this changes \u2014 we\u2019ll confirm with you a week before";
+      } else if (selectedStatus === 'serving') {
+        dep.classList.add('visible');
+        ret.classList.add('visible');
+        email.classList.add('visible');
+        depLbl.innerHTML = 'Actual Departure Date <span class="req">*</span>';
+        if (depHint) depHint.textContent = "The date they entered the MTC";
+      } else if (selectedStatus === 'returned') {
+        ret.classList.add('visible');
+      }
+    }
+
+    // --- ERROR HELPERS ---
+    function clearError(el) {
+      el.classList.remove('error');
+      var msg = el.parentNode.querySelector('.error-msg');
+      if (msg) msg.classList.remove('show-error');
+    }
+
+    function setError(el, msg) {
+      el.classList.remove('error');
+      void el.offsetWidth;
+      el.classList.add('error');
+      var msgEl = el.parentNode.querySelector('.error-msg');
+      if (msgEl) { msgEl.textContent = msg; msgEl.classList.add('show-error'); }
+    }
+
+    // --- LIVE CLEAR ON INPUT ---
+    var alwaysRequired = [
+      { id: 'parent-first',     msg: 'Please enter your first name' },
+      { id: 'parent-last',      msg: 'Please enter your last name' },
+      { id: 'parent-email',     msg: 'Please enter your email address' },
+      { id: 'relationship',     msg: 'Please select your relationship' },
+      { id: 'missionary-title', msg: 'Please select Elder or Sister' },
+      { id: 'miss-first',       msg: "Please enter your missionary's first name" },
+      { id: 'miss-last',        msg: "Please enter your missionary's last name" },
+      { id: 'dob-month',        msg: 'Please select a month' },
+      { id: 'dob-day',          msg: 'Please select a day' },
+      { id: 'dob-year',         msg: 'Please select a year' },
+      { id: 'mission',          msg: 'Please enter the mission assignment' },
+      { id: 'how-heard',        msg: 'Please let us know how you heard about us' },
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      alwaysRequired.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        if (!el) return;
+        el.addEventListener('input', function() { clearError(el); });
+        el.addEventListener('change', function() { clearError(el); });
+      });
+      ['dep-month','dep-day','dep-year','ret-month','ret-day','ret-year'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('change', function() { clearError(el); });
+        }
+      });
+    });
+
+    // --- SUBMIT ---
+    function submitOnboarding() {
+      var valid = true;
+      var firstBad = null;
+
+      function check(el, msg) {
+        if (!el || !el.value.trim()) {
+          setError(el, msg);
+          if (!firstBad) firstBad = el;
+          valid = false;
+        } else {
+          clearError(el);
+        }
+      }
+
+      // Always-required fields
+      alwaysRequired.forEach(function(f) {
+        check(document.getElementById(f.id), f.msg);
+      });
+
+      // Status tile check
+      if (!selectedStatus) {
+        document.querySelectorAll('.status-tile').forEach(function(t) { t.classList.add('error-tile'); });
+        var statusErr = document.getElementById('status-error');
+        statusErr.textContent = 'Please select your missionary\u2019s status';
+        statusErr.classList.add('show-error');
+        if (!firstBad) firstBad = document.querySelector('.status-tile');
+        valid = false;
+      }
+
+      // Conditional: departure date
+      if (selectedStatus === 'departing' || selectedStatus === 'serving') {
+        check(document.getElementById('dep-month'), 'Please select a month');
+        check(document.getElementById('dep-day'),   'Please select a day');
+        check(document.getElementById('dep-year'),  'Please select a year');
+      }
+
+      // Conditional: return date
+      if (selectedStatus === 'serving' || selectedStatus === 'returned') {
+        check(document.getElementById('ret-month'), 'Please select a month');
+        check(document.getElementById('ret-day'),   'Please select a day');
+        check(document.getElementById('ret-year'),  'Please select a year');
+      }
+
+      if (!valid) {
+        if (firstBad && firstBad.scrollIntoView) {
+          firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (firstBad.focus) firstBad.focus();
+        }
+        return;
+      }
+
+      var btn = document.getElementById('submit-btn');
+      btn.textContent = 'Submitting\u2026';
+      btn.disabled = true;
+
+      // Build date helpers
+      var months = {
+        'January':'01','February':'02','March':'03','April':'04',
+        'May':'05','June':'06','July':'07','August':'08','September':'09',
+        'October':'10','November':'11','December':'12'
+      };
+
+      function buildISO(monthId, dayId, yearId) {
+        var m = months[document.getElementById(monthId).value] || '01';
+        var d = String(document.getElementById(dayId).value).padStart(2,'0');
+        var y = document.getElementById(yearId).value;
+        return y && d && m ? y + '-' + m + '-' + d + 'T00:00:00+00:00' : '';
+      }
+
+      var dobStr = document.getElementById('dob-month').value + ' ' +
+                   document.getElementById('dob-day').value + ', ' +
+                   document.getElementById('dob-year').value;
+
+      var depISO = (selectedStatus === 'departing' || selectedStatus === 'serving')
+                   ? buildISO('dep-month','dep-day','dep-year') : '';
+      var retISO = (selectedStatus === 'serving' || selectedStatus === 'returned')
+                   ? buildISO('ret-month','ret-day','ret-year') : '';
+
+      fetch('https://a.klaviyo.com/client/subscriptions/?company_id=TpeF92', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/vnd.api+json', 'revision': '2026-01-15' },
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: {
+              profile: {
+                data: {
+                  type: 'profile',
+                  attributes: {
+                    email: document.getElementById('parent-email').value,
+                    first_name: document.getElementById('parent-first').value,
+                    last_name: document.getElementById('parent-last').value,
+                    properties: {
+                      relationship: document.getElementById('relationship').value,
+                      missionary_title: document.getElementById('missionary-title').value,
+                      missionary_first_name: document.getElementById('miss-first').value,
+                      missionary_last_name: document.getElementById('miss-last').value,
+                      missionary_dob: dobStr,
+                      missionary_status: selectedStatus,
+                      missionary_departure: depISO,
+                      missionary_return: retISO,
+                      mission_assignment: document.getElementById('mission').value,
+                      missionary_email: document.getElementById('miss-email') ? document.getElementById('miss-email').value : '',
+                      account_type: 'founding_family',
+                      how_did_you_hear: document.getElementById('how-heard').value
+                    }
+                  }
+                }
+              }
+            },
+            relationships: {
+              list: { data: { type: 'list', id: 'TSSFmX' } }
+            }
+          }
+        })
+      })
+      .then(function() { showSuccess(); })
+      .catch(function() { showSuccess(); });
+    }
+
+    function showSuccess() {
+      var step2 = document.getElementById('step-2');
+      var step3 = document.getElementById('step-3');
+      step2.classList.remove('active');
+      step2.classList.add('done');
+      step2.querySelector('.step-circle').textContent = '\u2713';
+      step3.classList.add('active');
+      document.getElementById('form-card').style.display = 'none';
+      document.getElementById('success-card').style.display = 'block';
+      document.getElementById('onboarding-intro').style.display = 'none';
+      document.getElementById('next-steps').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>

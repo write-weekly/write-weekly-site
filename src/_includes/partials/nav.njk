@@ -1,0 +1,24 @@
+{#- Site navigation. Links come from src/_data/site.json -#}
+<nav class="wk-nav">
+  <a class="wk-logo-block" href="/">
+    <span class="wk-logo">{{ site.name }}</span>
+    <span class="wk-logo-sub">{{ site.tagline }}</span>
+  </a>
+  <div class="wk-nav-links">
+    {%- for item in site.nav %}
+    <a class="wk-nav-link" href="{{ item.url }}">{{ item.label }}</a>
+    {%- endfor %}
+    <a class="wk-nav-cta" href="{{ site.navCta.url }}">{{ site.navCta.label }}</a>
+  </div>
+  <button class="wk-hamburger" onclick="wkToggleMenu()" aria-label="Open menu" aria-controls="wk-mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wk-mobile-menu" id="wk-mobile-menu">
+  <button class="wk-mobile-close" onclick="wkToggleMenu()" aria-label="Close menu">&#10005;</button>
+  {%- for item in site.nav %}
+  <a href="{{ item.url }}" onclick="wkToggleMenu()">{{ item.label }}</a>
+  {%- endfor %}
+  <a class="wk-nav-cta" href="{{ site.navCta.url }}" onclick="wkToggleMenu()">{{ site.navCta.label }}</a>
+</div>

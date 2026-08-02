@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /onboarding/
+Disallow: /setup/
+
+Sitemap: https://write-weekly.com/sitemap.xml

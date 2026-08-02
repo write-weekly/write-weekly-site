@@ -1,0 +1,88 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ── Redirects from the old .html URLs so existing links and ads keep working ──
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about/"
+  status = 301
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq/"
+  status = 301
+
+[[redirects]]
+  from = "/checkout.html"
+  to = "/checkout/"
+  status = 301
+
+[[redirects]]
+  from = "/sample.html"
+  to = "/sample/"
+  status = 301
+
+[[redirects]]
+  from = "/interactivesample.html"
+  to = "/interactive-sample/"
+  status = 301
+
+[[redirects]]
+  from = "/interactivesample"
+  to = "/interactive-sample/"
+  status = 301
+
+[[redirects]]
+  from = "/freetrial.html"
+  to = "/free-trial/"
+  status = 301
+
+[[redirects]]
+  from = "/freetrial"
+  to = "/free-trial/"
+  status = 301
+
+[[redirects]]
+  from = "/rmform.html"
+  to = "/returned-missionary/"
+  status = 301
+
+[[redirects]]
+  from = "/rmform"
+  to = "/returned-missionary/"
+  status = 301
+
+[[redirects]]
+  from = "/onboarding.html"
+  to = "/onboarding/"
+  status = 301
+
+[[redirects]]
+  from = "/setup.html"
+  to = "/setup/"
+  status = 301
+
+# ── Caching ──
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

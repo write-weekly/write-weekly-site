@@ -1,0 +1,13 @@
+{#- Minimal nav for conversion pages: logo only, no exits. -#}
+<nav class="wk-nav">
+  <a class="wk-logo-block" href="/">
+    <span class="wk-logo">{{ site.name }}</span>
+    <span class="wk-logo-sub">{{ site.tagline }}</span>
+  </a>
+  {%- if navTag %}
+  <div class="wk-nav-tag">{{ navTag }}</div>
+  {%- endif %}
+  {%- if funnelCta %}
+  <a class="wk-nav-cta" href="{{ funnelCta.url }}">{{ funnelCta.label }}</a>
+  {%- endif %}
+</nav>

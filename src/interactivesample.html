@@ -1,0 +1,280 @@
+---
+layout: marketing.njk
+title: "See a Real Mission Book Sample — Weekly"
+description: "Flip through an interactive sample of a Weekly missionary memory book."
+permalink: "/interactive-sample/"
+usePromoBar: true
+pageCss: interactivesample.css
+---
+
+<!-- GATE OVERLAY -->
+  <div id="gate-overlay">
+    <div class="gate-modal">
+      <h1 class="gate-headline">See a Real<br/><em>Mission Book Sample</em></h1>
+      <p class="gate-subhead">You clicked to preview it — enter your email to instantly open the pages and see what your missionary's book could look like.</p>
+      <div class="gate-form">
+        <input class="gate-email" id="gate-email" type="email" placeholder="Your email address" autocomplete="email" />
+        <span class="gate-error-msg" id="gate-error">Please enter a valid email address.</span>
+        <button class="gate-submit" id="gate-submit" onclick="handleGateSubmit()">View the Interactive Sample Now</button>
+        <p class="gate-microcopy">No download. Instant access.</p>
+        <p class="gate-discount-line">Includes a $50 early access discount for your own book.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLURRED CONTENT -->
+  <div class="gate-wrap blurred" id="gate-wrap">
+
+    
+
+    
+
+    
+
+    <!-- ① HERO -->
+    <div class="hero">
+      <div class="eyebrow">Free Interactive Sample</div>
+      <h1>Your missionary's story,<br/><em>beautifully preserved.</em></h1>
+      <p class="hero-sub">Flip through a real Weekly book below — built from actual weekly emails, photos, and memories. Then see everything else that comes with your subscription.</p>
+      <div class="hero-cta-row">
+        <a class="btn-primary" href="/checkout/">Sign Up Now &rarr;</a>
+        <a class="btn-secondary" href="#book">Browse the sample first</a>
+      </div>
+      <p class="hero-trust">&#128737; Never Lose a Memory guarantee &mdash; redesign or full refund</p>
+    </div>
+
+    <!-- ② BOOK FLIPPER -->
+    <div class="flipper-section" id="book">
+      <div class="flipper-wrap">
+        <div class="cover-stage" id="cover-stage">
+          <div class="cover-eyebrow">Sample Memory Book</div>
+          <div class="cover-book-wrap" id="cover-book-wrap" onclick="openBook()">
+            <img class="cover-book-img" src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_600/v1777001604/Page_00001_pf5ykr.png" alt="Weekly missionary memory book cover" />
+          </div>
+          <div class="cover-open-hint" onclick="openBook()">Open the book &rarr;</div>
+        </div>
+        <div class="spread-stage" id="spread-stage">
+          <div class="flipper-header">
+            <div class="page-counter" id="page-counter">Spread 1 of 15</div>
+            <div class="page-label" id="page-label">Page 1</div>
+          </div>
+          <div class="spread-single">
+            <img id="spread-img" src="" alt="Book spread" decoding="async" />
+            <div class="spread-seam"></div>
+          </div>
+          <div class="flipper-nav">
+            <button class="flip-btn" id="btn-prev" onclick="prevSpread()" disabled>&#8249;</button>
+            <div class="spread-dots" id="spread-dots"></div>
+            <button class="flip-btn" id="btn-next" onclick="nextSpread()">&#8250;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ HOW IT WORKS + BONUSES -->
+    <div class="timeline-section">
+      <div class="timeline-intro">
+        <div class="eyebrow">How It Works</div>
+        <h2>Three steps.<br/><em>Zero effort from you.</em></h2>
+        <p>You forward one email address. We handle everything else for the entire mission.</p>
+      </div>
+
+      <!-- 3-column step row -->
+      <div class="tl-steps-row">
+
+        <div class="tl-step-card">
+          <div class="tl-step-num tl-step-num-1">1</div>
+          <div class="tl-step-body">
+            <div class="tl-step-when">Before They Leave</div>
+            <div class="tl-step-title">Sign up and forward their mission email address to us.</div>
+            <div class="tl-step-desc">We give you a forwarding address. Add it to their email list once — that&rsquo;s the only thing you ever do.</div>
+          </div>
+        </div>
+
+        <div class="tl-step-card">
+          <div class="tl-step-num tl-step-num-2">2</div>
+          <div class="tl-step-body">
+            <div class="tl-step-when">Every Week — Whole Mission</div>
+            <div class="tl-step-title">Their weekly email arrives. We read it and add it to the book.</div>
+            <div class="tl-step-desc">Every Monday we receive their email, pull the photos, lay it out, and add it to their growing record. Automatically.</div>
+          </div>
+        </div>
+
+        <div class="tl-step-card tl-step-card-dark">
+          <div class="tl-step-num tl-step-num-3">3</div>
+          <div class="tl-step-body">
+            <div class="tl-step-when tl-step-when-light">When They Come Home</div>
+            <div class="tl-step-title tl-step-title-light">We ship them a hardcover book of their entire mission.</div>
+            <div class="tl-step-desc tl-step-desc-light">Every week, every area, every companion — printed, bound, and ready the day they walk through the door.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bonus drawer tab -->
+      <div class="bonus-drawer-tab" id="bonus-tab" onclick="toggleBonusDrawer()">
+        <div class="bonus-tab-left">
+          <div class="bonus-tab-icon">🎁</div>
+          <div class="bonus-tab-text">
+            <div class="bonus-tab-title">Plus 3 physical keepsakes delivered throughout the mission</div>
+            <div class="bonus-tab-sub">Exclusive to families who sign up before their missionary&rsquo;s departure — cannot be added later</div>
+          </div>
+        </div>
+        <div class="bonus-tab-arrow">&#8964;</div>
+      </div>
+
+      <!-- Collapsible bonus drawer -->
+      <div class="bonus-drawer" id="bonus-drawer">
+        <div class="bonus-drawer-inner">
+
+          <div class="tl-bonus-card">
+            <div class="tl-bonus-body">
+              <div class="tl-when-badge">Sent every 6 weeks</div>
+              <div class="tl-tag">PDF Transfer Recap</div>
+              <div class="tl-title">A full recap of each transfer — emailed to you.</div>
+              <div class="tl-desc">Every time they move to a new area: area name, companion, stories, photos, scriptures. Formatted and delivered automatically.</div>
+            </div>
+            <div class="tl-bonus-img">
+              <img src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_600,h_400,c_fill,g_auto/v1776827715/AI_Transfer_Report_Document_siqqrk.png" alt="PDF Transfer Recap" />
+            </div>
+          </div>
+
+          <div class="tl-bonus-card">
+            <div class="tl-bonus-body">
+              <div class="tl-when-badge">Sent at the one-year mark</div>
+              <div class="tl-tag">Countdown Calendar</div>
+              <div class="tl-title">A physical calendar built around their return date. Mailed to you.</div>
+              <div class="tl-desc">Custom-built with mission photos and their exact return date marked. Something to hang on the fridge and cross off every week.</div>
+            </div>
+            <div class="tl-bonus-img">
+              <img src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_600,h_400,c_fill,g_auto/v1776827842/Calendar_on_Fridge_iqsbkl.png" alt="Mission Countdown Calendar" />
+            </div>
+          </div>
+
+          <div class="tl-bonus-card">
+            <div class="tl-bonus-body">
+              <div class="tl-when-badge">Mother's Day &amp; Christmas</div>
+              <div class="tl-tag">Holiday Mini-Magazine</div>
+              <div class="tl-title">A printed mini-magazine from that season. Ships to your door.</div>
+              <div class="tl-desc">Built from their emails and photos from that season. Something to give grandma. Something to read at the Christmas table.</div>
+            </div>
+            <div class="tl-bonus-img">
+              <img src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_600,h_400,c_fill,g_auto/v1779672475/pamphletePicture_fanxd0.jpg" alt="Holiday Mini-Magazine" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ⑤ REVIEWS -->
+    <div class="wkr-wrap">
+      <div class="wkr-inner">
+        <div class="wkr-label">What families are saying</div>
+        <h2 class="wkr-heading">Real families. <em>Real books.</em></h2>
+        <div class="wkr-carousel">
+          <div class="wkr-track" id="wkr-track">
+
+            <div class="wkr-slide">
+              <div class="wkr-photo" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1779169000/Final_-_Ian_Customer_Reviw_myt1xx.png');"></div>
+              <div class="wkr-card">
+                <div class="wkr-stars">★★★★★</div>
+                <div class="wkr-title">&ldquo;Way more professional than I expected.&rdquo;</div>
+                <div class="wkr-quote">I wasn&rsquo;t sure what to expect but when I opened it I was genuinely impressed. It looks and feels like a real published book. I&rsquo;ve had it on my shelf since I got home.</div>
+                <div><div class="wkr-author-name">Elder Little</div><div class="wkr-author-role">Lehi, UT</div></div>
+              </div>
+            </div>
+
+            <div class="wkr-slide">
+              <div class="wkr-photo" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1779169000/Final_-_Jace_Customer_Pic_-_Edited_hdqkpt.jpg');background-position:center center;"></div>
+              <div class="wkr-card">
+                <div class="wkr-stars">★★★★★</div>
+                <div class="wkr-title">&ldquo;Everyone I show this to is blown away.&rdquo;</div>
+                <div class="wkr-quote">I&rsquo;ve shown it to my family, my friends, my bishop &mdash; everyone. Nobody can believe it&rsquo;s just from my weekly emails. It looks that good.</div>
+                <div><div class="wkr-author-name">Elder Shank</div><div class="wkr-author-role">Yorba Linda, CA</div></div>
+              </div>
+            </div>
+
+            <div class="wkr-slide">
+              <div class="wkr-photo" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1779558777/Final_-_Miranda_dne8l8.png');background-position:center 20%;"></div>
+              <div class="wkr-card">
+                <div class="wkr-stars">★★★★★</div>
+                <div class="wkr-title">&ldquo;So grateful I have this to look back on.&rdquo;</div>
+                <div class="wkr-quote">My mission went by so fast. Having this book means I can actually go back and relive it. I didn&rsquo;t realize how much I&rsquo;d want that until I had it.</div>
+                <div><div class="wkr-author-name">Sister Keller</div><div class="wkr-author-role">Salt Lake, UT</div></div>
+              </div>
+            </div>
+
+            <div class="wkr-slide-text-only">
+              <div class="wkr-card wkr-card-full">
+                <div class="wkr-stars">★★★★★</div>
+                <div class="wkr-title">&ldquo;Easiest thing I&rsquo;ve done for my missionary.&rdquo;</div>
+                <div class="wkr-quote">We signed up before he left and honestly forgot about it &mdash; it just ran in the background the whole time. The transfer recaps that came every six weeks were such a bonus, we loved getting those. When the book showed up it was better than anything I could have put together myself.</div>
+                <div><div class="wkr-author-name">Phil Stooksbury</div><div class="wkr-author-role">Parent &mdash; Herriman, UT</div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="wkr-nav">
+          <button class="wkr-arr" onclick="wkrGo(-1)">&#8249;</button>
+          <div class="wkr-dots">
+            <button class="wkr-dot on" onclick="wkrGoTo(0)"></button>
+            <button class="wkr-dot" onclick="wkrGoTo(1)"></button>
+            <button class="wkr-dot" onclick="wkrGoTo(2)"></button>
+            <button class="wkr-dot" onclick="wkrGoTo(3)"></button>
+          </div>
+          <button class="wkr-arr" onclick="wkrGo(1)">&#8250;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ BONUS CHECKLIST -->
+    <div class="bonuses-section">
+      <div class="bonuses-title">And a few more things&hellip;</div>
+      <div class="bonuses-grid">
+        <div class="bonus-item"><div class="bonus-check">&#10003;</div><div class="bonus-copy"><div class="bonus-name">Unlimited Revisions</div><div class="bonus-desc">We&rsquo;ll fix it until you love every page.</div></div></div>
+        <div class="bonus-item"><div class="bonus-check">&#10003;</div><div class="bonus-copy"><div class="bonus-name">Weekly Story Prompts</div><div class="bonus-desc">Fun prompts so they never run out of things to write.</div></div></div>
+        <div class="bonus-item"><div class="bonus-check">&#10003;</div><div class="bonus-copy"><div class="bonus-name">Missed Email Reminders</div><div class="bonus-desc">We gently remind your missionary automatically.</div></div></div>
+        <div class="bonus-item"><div class="bonus-check">&#10003;</div><div class="bonus-copy"><div class="bonus-name">Never Lose a Memory Guarantee</div><div class="bonus-desc">Redesign or full refund &mdash; no questions asked.</div></div></div>
+      </div>
+    </div>
+
+    <!-- ⑦ BUY NOW CTA (bottom) -->
+    <div class="buynow-section">
+      <div class="buynow-inner">
+        <h2>Ready to get started?<br/><em>We&rsquo;ll handle the rest.</em></h2>
+        <p>Sign up today and we&rsquo;ll take care of everything from the moment they leave &mdash; automatically, beautifully, and with zero effort from you.</p>
+        <a class="btn-primary" href="/checkout/">Sign Up Now &rarr;</a>
+        <div class="guarantee-line">&#128737; Never Lose a Memory guarantee &mdash; redesign or full refund, no questions asked</div>
+      </div>
+    </div>
+
+    <!-- STICKY MOBILE BAR -->
+    <div class="sticky-bar">
+      <div class="sticky-text"><strong>$50 early-bird discount</strong></div>
+      <a class="sticky-btn" href="/checkout/">Sign up &rarr;</a>
+    </div>
+
+    <!-- FOOTER -->
+    
+
+  </div>
+  <!-- END BLURRED CONTENT -->
+
+  <!-- HELP BUBBLE -->
+  <div class="help-bubble-wrap" id="help-bubble-wrap">
+    <div class="help-card" id="help-card">
+      <div class="help-card-label">Need help?</div>
+      <p class="help-card-text">We're happy to answer any questions about your missionary's book.</p>
+      <a class="help-card-email" href="mailto:admin@write-weekly.com">admin@write-weekly.com</a>
+    </div>
+    <button class="help-btn" id="help-btn" onclick="toggleHelp()" aria-label="Questions? Contact us">
+      <span class="help-btn-icon q-icon">?</span>
+      <span class="help-btn-icon close-icon">✕</span>
+    </button>
+  </div>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confetti-canvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;"></canvas>

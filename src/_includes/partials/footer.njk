@@ -1,0 +1,26 @@
+{#- Site footer. Columns and links come from src/_data/site.json -#}
+<footer class="wk-footer">
+  <div class="wk-footer-inner">
+    <div class="wk-footer-brand">
+      <div class="wk-footer-logo">{{ site.name }}</div>
+      <div class="wk-footer-tagline">{{ site.tagline }}</div>
+      <p class="wk-footer-about">{{ site.footerAbout | safe }}</p>
+    </div>
+    {%- for col in site.footerColumns %}
+    <div class="wk-footer-col" id="{{ col.id }}">
+      <div class="wk-footer-col-title" onclick="wkToggleFooterCol('{{ col.id }}')">
+        {{ col.title }} <span class="wk-fc-arrow">+</span>
+      </div>
+      <div class="wk-footer-col-links">
+        {%- for link in col.links %}
+        <a href="{{ link.url }}">{{ link.label }}</a>
+        {%- endfor %}
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+  <div class="wk-footer-bottom">
+    <span>{{ site.copyright | safe }}</span>
+    <span>{{ site.footerNote }}</span>
+  </div>
+</footer>
