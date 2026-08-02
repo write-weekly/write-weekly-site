@@ -287,3 +287,98 @@ pageCss: index.css
       </table></div>
     </div>
   </section>
+
+<!-- RECOVERED PAGE SCRIPT -->
+<script>
+/* ── Path selector ── */
+    function selectPath(path) {
+      document.querySelectorAll('.path-card').forEach(function(c) { c.classList.remove('selected'); });
+      document.querySelectorAll('.steps-panel').forEach(function(p) { p.classList.remove('active'); });
+      document.getElementById('card-' + path).classList.add('selected');
+      var panel = document.getElementById('steps-' + path);
+      panel.classList.add('active');
+      setTimeout(function() { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+    }
+
+    /* ── Review Carousel ── */
+    (function() {
+      var track = document.getElementById('rv-track');
+      var allDots = document.querySelectorAll('.rv-dot');
+      var total = 4;
+      var cur = 0;
+      var timer;
+
+      function rvUpdate() {
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        allDots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(function() { cur = (cur + 1) % total; rvUpdate(); }, 4500);
+      }
+
+      window.rvGoTo = function(i) { cur = i; rvUpdate(); resetTimer(); };
+
+      rvUpdate();
+      resetTimer();
+    })();
+
+    /* ── Book Cycler ── */
+    (function() {
+      var frames = document.querySelectorAll('#book-cycler .book-frame');
+      var cta = document.getElementById('book-cta');
+      var dots = document.querySelectorAll('#book-dots .bc-dot');
+      if (!frames.length) return;
+      var cur = 0;
+      var total = frames.length;
+
+      function activate(el) { if (el) el.classList.add('active'); }
+      function deactivate(el) { if (el) el.classList.remove('active'); }
+
+      function goFrame(i) {
+        deactivate(frames[cur]); if (dots[cur]) dots[cur].classList.remove('on');
+        deactivate(cta);
+        cur = i;
+        activate(frames[cur]); if (dots[cur]) dots[cur].classList.add('on');
+      }
+
+      function showCTA() {
+        deactivate(frames[cur]); if (dots[cur]) dots[cur].classList.remove('on');
+        activate(cta);
+        setTimeout(function() {
+          deactivate(cta);
+          cur = 0; activate(frames[0]); if (dots[0]) dots[0].classList.add('on');
+          setTimeout(runCycle, 1400);
+        }, 4000);
+      }
+
+      function runCycle() {
+        var step = 0;
+        var iv = setInterval(function() {
+          step++;
+          if (step < total) { goFrame(step); }
+          else { clearInterval(iv); setTimeout(showCTA, 800); }
+        }, 1400);
+      }
+
+      activate(frames[0]);
+      if (dots[0]) dots[0].classList.add('on');
+      setTimeout(runCycle, 1400);
+    })();
+
+    /* ── FAQ ── */
+    function toggleFaq(el) {
+      var isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) el.classList.add('open');
+    }
+
+    /* ── Mobile Menu ── */
+    
+
+    /* ── bfcache: force reload when navigating back so nav is always fresh ── */
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted) { window.location.reload(); }
+    });
+</script>

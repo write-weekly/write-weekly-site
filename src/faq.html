@@ -311,3 +311,124 @@ pageCss: faq.css
 </div>
 
 <!-- FOOTER -->
+
+<!-- RECOVERED PAGE SCRIPT -->
+<script>
+function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+    // Open this one if it wasn't open
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function toggleHelp() {
+    var btn=document.getElementById('help-btn'), card=document.getElementById('help-card');
+    var isOpen=card.classList.contains('open');
+    card.classList.toggle('open',!isOpen); btn.classList.toggle('open',!isOpen);
+  }
+  document.addEventListener('click',function(e){
+    var wrap=document.getElementById('help-bubble-wrap');
+    if(wrap&&!wrap.contains(e.target)){
+      document.getElementById('help-card').classList.remove('open');
+      document.getElementById('help-btn').classList.remove('open');
+    }
+  });
+
+  function encodeFormData(formData) {
+    return new URLSearchParams(formData).toString();
+  }
+
+  var faqContactForm = document.getElementById('faq-contact-form');
+  if (faqContactForm) {
+    faqContactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      ['cf-name','cf-email','cf-message'].forEach(function(id) {
+        var el = document.getElementById(id);
+        el.style.borderColor = '';
+        el.style.boxShadow = '';
+      });
+
+      if (!faqContactForm.checkValidity()) {
+        ['cf-name','cf-email','cf-message'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (!el.value.trim()) {
+            el.style.borderColor = 'rgba(176,80,40,0.6)';
+            el.style.boxShadow = '0 0 0 3px rgba(176,80,40,0.1)';
+            el.addEventListener('input', function() {
+              el.style.borderColor = '';
+              el.style.boxShadow = '';
+            }, { once: true });
+          }
+        });
+        faqContactForm.reportValidity();
+        return;
+      }
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(new FormData(faqContactForm))
+      })
+      .then(function() {
+        document.getElementById('contact-form-wrap').style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+        faqContactForm.reset();
+      })
+      .catch(function(error) {
+        alert('Sorry, something went wrong. Please email us directly at admin@write-weekly.com.');
+        console.error(error);
+      });
+    });
+  }
+
+  // Tab highlight on scroll
+  var sections = ['departing','serving','returned'];
+  var tabs = document.querySelectorAll('.faq-tab');
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY + 140;
+    var current = 'departing';
+    sections.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    });
+    tabs.forEach(function(tab) {
+      tab.classList.toggle('active', tab.getAttribute('href') === '#' + current);
+    });
+  });
+
+  /* Shared nav & footer scripts */
+  
+  
+  (function() {
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.wk-nav-link').forEach(function(a) {
+      var href = a.getAttribute('href').split('#')[0];
+      if (href === path) a.classList.add('active');
+    });
+  })();
+
+  /* Ensure homepage reloads fresh when navigating back (bfcache) */
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) { window.location.reload(); }
+  });
+
+  /* Reliably land on a hash target after cross-page navigation.
+     The page grows as fonts/FAQ content settle, so re-align once
+     everything has loaded (instant jump respects scroll-margin-top). */
+  window.addEventListener('load', function() {
+    if (!window.location.hash) return;
+    var target;
+    try { target = document.querySelector(window.location.hash); }
+    catch (err) { return; }
+    if (!target) return;
+    var align = function() { target.scrollIntoView({ behavior: 'auto', block: 'start' }); };
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() { setTimeout(align, 50); });
+    } else {
+      setTimeout(align, 100);
+    }
+  });
+</script>

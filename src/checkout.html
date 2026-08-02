@@ -522,3 +522,194 @@ pageCss: checkout.css
     </div>
 
   </div>
+
+<!-- RECOVERED PAGE SCRIPT -->
+<script>
+/* ── Nav mobile menu ── */
+    
+
+    /* ── Footer accordion (mobile only) ── */
+    
+
+    /* ── Highlight active nav link ── */
+    (function() {
+      var path = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.wk-nav-link').forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === path) a.classList.add('active');
+      });
+    })();
+
+    /* ── Path selection ── */
+    function selectPath(path) {
+      document.getElementById('path-selector').style.display = 'none';
+      document.getElementById('path-departing').style.display = path === 'departing' ? 'block' : 'none';
+      document.getElementById('path-serving').style.display   = path === 'serving'   ? 'block' : 'none';
+      document.getElementById('path-rm').style.display        = path === 'rm'        ? 'block' : 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetPath() {
+      document.getElementById('path-selector').style.display  = 'block';
+      document.getElementById('path-departing').style.display = 'none';
+      document.getElementById('path-serving').style.display   = 'none';
+      document.getElementById('path-rm').style.display        = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── Mission type toggle (Departing) ── */
+    var pricing = {
+      18: { link: 'https://buy.stripe.com/fZu5kD2rwgCv5fTaC52go02' },
+      24: { link: 'https://buy.stripe.com/00w28r2rw1HB9w95hL2go04' }
+    };
+
+    function setMission(months) {
+      document.getElementById('btn18').classList.toggle('active', months === 18);
+      document.getElementById('btn24').classList.toggle('active', months === 24);
+      document.getElementById('prepaid-btn').onclick = function() {
+        window.location.href = pricing[months].link;
+      };
+    }
+
+    /* ── Mission type toggle (Serving) ── */
+    var servingLinks = {
+      18: 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06',
+      24: 'https://buy.stripe.com/aFa3cv1ns1HB4bPcKd2go05'
+    };
+
+    function setServingMission(months) {
+      document.getElementById('serving-btn18').classList.toggle('active', months === 18);
+      document.getElementById('serving-btn24').classList.toggle('active', months === 24);
+      document.getElementById('serving-pif-btn').onclick = function() {
+        window.location.href = servingLinks[months];
+      };
+      document.getElementById('serving-monthly-btn').onclick = function() {
+        window.location.href = servingLinks[months];
+      };
+    }
+
+    /* ── Add-on toggles — checkbox silently swaps CTA button destinations ── */
+
+    // Departing: swaps PIF btn + sister/elder deposit btns + bottom CTA
+    function toggleDepartingAddon() {
+      var checked = document.getElementById('departing-mag-check').checked;
+      document.getElementById('dep-mag-price-label').style.display = checked ? 'inline' : 'none';
+      var pifLabel = checked ? 'Pay in Full &mdash; $458' : 'Pay in Full &mdash; $399';
+      var pifLink  = checked ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+      // Top PIF button
+      document.getElementById('prepaid-btn').onclick = function() { window.location.href = pifLink; };
+      document.getElementById('prepaid-btn').innerHTML = pifLabel;
+      // Bottom CTA button
+      var bottomBtn = document.getElementById('dep-bottom-cta');
+      bottomBtn.onclick = function() { window.location.href = pifLink; };
+      bottomBtn.innerHTML = pifLabel;
+      // Sister deposit button
+      document.querySelectorAll('.monthly-choice-btn')[0].onclick = function() {
+        window.location.href = checked
+          ? 'https://buy.stripe.com/3cI7sL7LQdqj37L9y12go0c'
+          : 'https://buy.stripe.com/fZuaEX0jo71V0ZD8tX2go09';
+      };
+      // Elder deposit button
+      document.querySelectorAll('.monthly-choice-btn')[1].onclick = function() {
+        window.location.href = checked
+          ? 'https://buy.stripe.com/aFadR95DIfyrbEhfWp2go0b'
+          : 'https://buy.stripe.com/4gMeVd2rw71VdMp39D2go0a';
+      };
+    }
+
+    // Serving: swaps PIF button + bottom CTA
+    function toggleServingAddon() {
+      var checked = document.getElementById('serving-mag-check').checked;
+      document.getElementById('srv-mag-price-label').style.display = checked ? 'inline' : 'none';
+      var pifLabel = checked ? 'Pay in Full &mdash; $458' : 'Pay in Full &mdash; $399';
+      var pifLink  = checked ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+      document.getElementById('serving-pif-btn').onclick = function() { window.location.href = pifLink; };
+      document.getElementById('serving-pif-btn').innerHTML = pifLabel;
+      var bottomBtn = document.getElementById('srv-bottom-cta');
+      bottomBtn.onclick = function() { window.location.href = pifLink; };
+      bottomBtn.innerHTML = pifLabel;
+    }
+
+    // RM: swaps single PIF button
+    function toggleRmAddon() {
+      var checked = document.getElementById('rm-mag-check').checked;
+      document.getElementById('rm-mag-price-label').style.display = checked ? 'inline' : 'none';
+      // RM PIF button (no id, find by context — use data attribute)
+      var rmBtn = document.querySelector('#path-rm .tier-prepaid-btn');
+      if (rmBtn) {
+        rmBtn.onclick = function() {
+          window.location.href = checked
+            ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d'
+            : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+        };
+      }
+    }
+
+    /* ── Timeline animation (Departing) ── */
+    function initTimeline(wrapperId) {
+      var wrap  = document.getElementById(wrapperId);
+      if (!wrap) return;
+      var steps = wrap.querySelectorAll('.timeline-step');
+      var current = 0;
+      var total   = steps.length;
+      var interval;
+
+      function activate(idx) {
+        steps.forEach(function(s, i) {
+          s.classList.remove('tl-active', 'tl-dim');
+          s.classList.add(i === idx ? 'tl-active' : 'tl-dim');
+        });
+        current = idx;
+      }
+
+      function next() {
+        activate((current + 1) % total);
+      }
+
+      function start() {
+        interval = setInterval(next, 3000);
+      }
+
+      function stop() {
+        clearInterval(interval);
+      }
+
+      /* Pause on hover so users can read */
+      wrap.addEventListener('mouseenter', stop);
+      wrap.addEventListener('mouseleave', start);
+
+      /* Tap to advance on mobile */
+      wrap.addEventListener('click', function() {
+        stop();
+        next();
+        start();
+      });
+
+      /* Only animate when visible */
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          entry.isIntersecting ? start() : stop();
+        });
+      }, { threshold: 0.3 });
+      observer.observe(wrap);
+    }
+
+    /* Init when departing path is shown */
+    var _origSelectPath = selectPath;
+    selectPath = function(path) {
+      _origSelectPath(path);
+      if (path === 'departing') {
+        setTimeout(function() { initTimeline('tl-departing'); }, 100);
+      }
+    };
+
+    /* ── FAQ accordion ── */
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el) {
+        el.classList.remove('open');
+      });
+      if (!isOpen) item.classList.add('open');
+    }
+</script>
