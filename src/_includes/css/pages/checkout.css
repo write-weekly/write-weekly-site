@@ -141,6 +141,9 @@
       font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
       text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
       white-space: nowrap; align-self: flex-start;}
+.tier-product-name {font-family: "Lora", Georgia, serif; font-style: italic;
+      font-size: 13px; color: rgba(250,243,234,0.6);
+      margin-bottom: 6px;}
 .tier-prepaid-price {margin-bottom: 16px;}
 .tier-prepaid-price .price-main {font-family: "Playfair Display", Georgia, serif;
       font-size: 38px; font-weight: 400; color: #FAF3EA; line-height: 1;}
@@ -169,8 +172,12 @@
 .book-showcase-photo {flex: 0 0 34%; background-size: cover; background-position: center;}
 .book-showcase-card {flex: 1; margin-bottom: 0;
       background: #FFF8EF;}
+.book-showcase-card .tier-product-name {color: rgba(42,24,0,0.5);}
 .book-showcase-card .price-main {color: #1E1000;}
-.book-showcase-card .tier-rating {font-size: 13px; color: #B07040; letter-spacing: 1px; margin: 6px 0 0;}
+.book-showcase-card .tier-prepaid-price {margin-bottom: 4px;}
+.book-showcase-card .tier-rating {font-size: 13px; color: #B07040; letter-spacing: 1px;
+      margin: 0 0 20px; padding-bottom: 16px;
+      border-bottom: 1px solid rgba(42,24,0,0.08);}
 .book-showcase-card .tier-rating span {font-size: 12px; color: rgba(42,24,0,0.55); letter-spacing: normal; margin-left: 4px; font-weight: 600;}
 .book-showcase-card .incl-simple-header {color: rgba(42,24,0,0.4);}
 .book-showcase-card .incl-simple-item {color: rgba(42,24,0,0.75);}
