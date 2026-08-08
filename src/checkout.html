@@ -62,43 +62,24 @@ pageCss: checkout.css
         <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
       </div>
 
-      <!-- TWO-TIER PRICING -->
-      <div class="tier-grid">
-
-        <!-- TIER A: MONTHLY -->
-        <div class="tier-monthly grain-light">
-          <div class="tier-monthly-label">Option A</div>
-          <div class="tier-monthly-name">Pay Monthly</div>
-          <div class="tier-no-guarantee">No guarantee included</div>
-          <div class="tier-monthly-price">
-            <span class="price-main"><sup>$</sup>15<span style="font-size:16px;font-family:-apple-system,sans-serif;">/mo</span></span>
-            <span class="price-note">billing begins at departure</span>
-            <span class="price-note" style="color:rgba(42,24,0,0.38);font-style:italic;">18 months for Sisters &middot; 24 months for Elders</span>
-          </div>
-          <div class="monthly-choice">
-            <div class="monthly-choice-label">Who is your missionary?</div>
-            <div class="monthly-choice-btns">
-              <button class="monthly-choice-btn" onclick="window.location.href='https://buy.stripe.com/fZuaEX0jo71V0ZD8tX2go09'">Sister</button>
-              <button class="monthly-choice-btn" onclick="window.location.href='https://buy.stripe.com/4gMeVd2rw71VdMp39D2go0a'">Elder</button>
-            </div>
-          </div>
+      <!-- SINGLE TIER: PAY IN FULL -->
+      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
+        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
+        <div class="tier-prepaid-label">One-Time Payment</div>
+        <div class="tier-prepaid-name">Pay in Full</div>
+        <div class="tier-yes-guarantee">For Sisters &amp; Elders</div>
+        <div class="tier-prepaid-price">
+          <span class="price-main"><sup>$</sup>399</span>
+          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
         </div>
-
-        <!-- TIER B: PAY IN FULL -->
-        <div class="tier-prepaid grain-dark">
-          <div class="tier-badge">&#128737;&nbsp; Best Value</div>
-          <div class="tier-prepaid-label">Option B</div>
-          <div class="tier-prepaid-name">Pay in Full</div>
-          <div class="tier-yes-guarantee">Guarantee included</div>
-          <div class="tier-prepaid-price">
-            <span class="price-main"><sup>$</sup>399</span>
-            <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
-            <span class="price-note" style="color:rgba(250,243,234,0.45);font-style:italic;">For Sisters &amp; Elders</span>
-          </div>
-          <div style="height:16px;"></div>
-          <button class="tier-prepaid-btn" id="prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
+        <div class="tier-specs">
+          <div class="tier-specs-item">Unlimited Pages</div>
+          <div class="tier-specs-item">80lb Gloss Paper Stock</div>
+          <div class="tier-specs-item">Fully Printed Color Book</div>
+          <div class="tier-specs-item">Portrait 8x10in Hard Cover</div>
+          <div class="tier-specs-item">Matte Cover Finish</div>
         </div>
-
+        <button class="tier-prepaid-btn" id="prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Pay in Full &mdash; $399</button>
       </div>
 
       <!-- WHATS INCLUDED (Departing) -->
@@ -141,8 +122,8 @@ pageCss: checkout.css
               <div class="timeline-line"></div>
             </div>
             <div class="timeline-right">
-              <div class="timeline-step-title">You secure your spot today</div>
-              <div class="timeline-step-desc">Your deposit locks in your founding family rate. Monthly billing doesn&rsquo;t start until they walk out the door.</div>
+              <div class="timeline-step-title">You pay &mdash; one flat rate, done</div>
+              <div class="timeline-step-desc">No subscription, no monthly billing. One payment locks in your founding family rate and we get to work.</div>
             </div>
           </div>
 
@@ -201,7 +182,6 @@ pageCss: checkout.css
         <div class="guarantee-icon">&#128737;</div>
         <div class="guarantee-copy">
           <div class="guarantee-title">Never Lose a Memory Guarantee</div>
-          <div style="display:inline-block;margin-bottom:10px;font-family:-apple-system,sans-serif;font-style:normal;font-size:11px;font-weight:600;color:rgba(42,24,0,0.5);background:rgba(42,24,0,0.06);padding:4px 10px;border-radius:100px;">Only unlocked when you pay in full</div>
           <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, use your Unlimited Revisions Pass for adjustments. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
         </div>
       </div>
@@ -214,7 +194,7 @@ pageCss: checkout.css
             <span class="faq-q-text">What if my missionary doesn&rsquo;t depart for a while, or their start date changes?</span>
             <span class="faq-chevron">&#8964;</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner">Your subscription doesn&rsquo;t start today! Your deposit simply locks in your spot and pricing. Your $20/month won&rsquo;t begin until the week they depart for the MTC. We will even reach out a week before their service starts to confirm their date is still accurate. If anything changes, just let us know and we&rsquo;ll adjust it so you&rsquo;re never charged early.</div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">No problem! Your payment today locks in your founding family rate and reserves your spot &mdash; regardless of when they actually depart. We won&rsquo;t start collecting emails until they leave for the MTC, and we&rsquo;ll reach out beforehand to confirm their departure date is still accurate.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
@@ -235,7 +215,7 @@ pageCss: checkout.css
             <span class="faq-q-text">What happens if my missionary comes home early?</span>
             <span class="faq-chevron">&#8964;</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner">We recognize every situation is different. If they return early, we immediately cancel future payments and send you a fully formatted digital PDF of what we&rsquo;ve collected. From there, we can determine together if printing a physical copy is the right step for your family.</div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">We recognize every situation is different. If they return early, we&rsquo;ll format and print the book from everything we&rsquo;ve collected up to that point and ship it to your door &mdash; no additional cost, no questions asked.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
@@ -590,7 +570,7 @@ pageCss: checkout.css
 
     /* ── Add-on toggles — checkbox silently swaps CTA button destinations ── */
 
-    // Departing: swaps PIF btn + sister/elder deposit btns + bottom CTA
+    // Departing: swaps PIF btn + bottom CTA
     function toggleDepartingAddon() {
       var checked = document.getElementById('departing-mag-check').checked;
       document.getElementById('dep-mag-price-label').style.display = checked ? 'inline' : 'none';
@@ -603,18 +583,6 @@ pageCss: checkout.css
       var bottomBtn = document.getElementById('dep-bottom-cta');
       bottomBtn.onclick = function() { window.location.href = pifLink; };
       bottomBtn.innerHTML = pifLabel;
-      // Sister deposit button
-      document.querySelectorAll('.monthly-choice-btn')[0].onclick = function() {
-        window.location.href = checked
-          ? 'https://buy.stripe.com/3cI7sL7LQdqj37L9y12go0c'
-          : 'https://buy.stripe.com/fZuaEX0jo71V0ZD8tX2go09';
-      };
-      // Elder deposit button
-      document.querySelectorAll('.monthly-choice-btn')[1].onclick = function() {
-        window.location.href = checked
-          ? 'https://buy.stripe.com/aFadR95DIfyrbEhfWp2go0b'
-          : 'https://buy.stripe.com/4gMeVd2rw71VdMp39D2go0a';
-      };
     }
 
     // Serving: swaps PIF button + bottom CTA

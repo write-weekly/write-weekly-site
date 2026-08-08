@@ -132,44 +132,6 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.12'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 1;}
 .grain-dark > * {position: relative; z-index: 2;}
-.tier-grid {display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-bottom: 20px;
-      align-items: stretch;
-      background: #FFF8EF;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(42,24,0,0.1);}
-.tier-monthly {background: #FFF8EF;
-      padding: 32px 24px 28px;
-      border-right: 1px solid rgba(42,24,0,0.08);
-      position: relative;
-      display: flex; flex-direction: column;}
-.tier-monthly-label {font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 600; color: rgba(42,24,0,0.35);
-      margin-bottom: 8px;}
-.tier-monthly-name {font-family: "Playfair Display", Georgia, serif;
-      font-size: 18px; font-weight: 400; color: #1E1000;
-      margin-bottom: 4px; line-height: 1.25;}
-.tier-no-guarantee {font-family: "Lora", Georgia, serif; font-style: italic;
-      font-size: 12px; color: rgba(42,24,0,0.38);
-      margin-bottom: 20px;}
-.tier-monthly-price {margin-bottom: 4px;}
-.tier-monthly-price .price-main {font-family: "Playfair Display", Georgia, serif;
-      font-size: 38px; font-weight: 400; color: #1E1000; line-height: 1;}
-.tier-monthly-price .price-main sup {font-size: 15px; vertical-align: super;}
-.tier-monthly-price .price-strike {font-size: 13px; color: rgba(42,24,0,0.28);
-      text-decoration: line-through; margin-left: 4px;}
-.tier-monthly-price .price-note {display: block; font-size: 11px; color: rgba(42,24,0,0.4); margin-top: 4px;}
-.tier-monthly-then {font-size: 12px; color: rgba(42,24,0,0.48);
-      margin-bottom: 0; line-height: 1.5;}
-.tier-monthly-btn {width: 100%; padding: 13px 16px; border-radius: 100px;
-      background: transparent; border: 1.5px solid rgba(42,24,0,0.18);
-      color: rgba(42,24,0,0.55); font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: border-color 0.2s, color 0.2s;
-      letter-spacing: 0.01em; margin-top: auto;}
-.tier-monthly-btn:hover {border-color: rgba(42,24,0,0.4); color: #1E1000;}
 .tier-prepaid {background: #1E1000;
       padding: 32px 24px 28px;
       position: relative;
@@ -193,6 +155,13 @@
       font-size: 38px; font-weight: 400; color: #FAF3EA; line-height: 1;}
 .tier-prepaid-price .price-main sup {font-size: 15px; vertical-align: super;}
 .tier-prepaid-price .price-note {display: block; font-size: 11px; margin-top: 4px;}
+.tier-specs {display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 16px 0 20px;}
+.tier-specs-item {font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+      color: rgba(250,243,234,0.75);
+      background: rgba(250,243,234,0.08);
+      border: 1px solid rgba(250,243,234,0.14);
+      padding: 6px 12px; border-radius: 100px;}
 .tier-prepaid-btn {width: 100%; padding: 14px 16px; border-radius: 100px;
       background: #B07040; border: none; color: #FFF8EF;
       font-size: 13px; font-weight: 700; cursor: pointer;
@@ -442,16 +411,6 @@
       margin-bottom: 10px; line-height: 1.5;}
 .addon-btns .tier-monthly-btn {width: 100%;}
 .addon-btns .tier-prepaid-btn {width: 100%;}
-.monthly-choice {margin-top: 16px;}
-.monthly-choice-label {font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 600; color: rgba(42,24,0,0.4); margin-bottom: 8px;}
-.monthly-choice-btns {display: flex; gap: 8px;}
-.monthly-choice-btn {flex: 1; padding: 11px 8px; border-radius: 100px;
-      background: transparent; border: 1.5px solid rgba(42,24,0,0.18);
-      color: rgba(42,24,0,0.6); font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;}
-.monthly-choice-btn:hover {border-color: #B07040; color: #B07040;
-      background: rgba(176,112,64,0.05);}
 .sticky-cta {margin-top: 8px; margin-bottom: 20px;}
 .sticky-cta-btn {width: 100%; padding: 18px 24px; border-radius: 100px;
       background: #B07040; border: none; color: #FFF8EF;
@@ -478,11 +437,8 @@
   .mission-toggle-wrap {margin-bottom: 20px;}
   .mission-toggle-btn {padding: 9px 14px; font-size: 13px;}
   .path-cards {grid-template-columns: 1fr; gap: 12px;}
-  .tier-grid {grid-template-columns: 1fr;}
-  .tier-prepaid {order: -1;}
-  .tier-monthly {border-right: none; border-top: 1px solid rgba(42,24,0,0.08);}
-  .tier-monthly, .tier-prepaid {padding: 24px 18px 20px;}
-  .tier-monthly-price .price-main, .tier-prepaid-price .price-main {font-size: 34px;}
+  .tier-prepaid {padding: 24px 18px 20px;}
+  .tier-prepaid-price .price-main {font-size: 34px;}
   .compare-header {padding: 12px 14px;}
   .compare-row {padding: 11px 14px; gap: 6px;}
   .compare-feature {font-size: 12px;}
@@ -510,7 +466,7 @@
   .path-card-arrow {font-size: 16px;}
   .mission-toggle {flex-direction: column; border-radius: 14px;}
   .mission-toggle-btn {border-radius: 10px; text-align: center;}
-  .tier-monthly-price .price-main, .tier-prepaid-price .price-main {font-size: 30px;}
+  .tier-prepaid-price .price-main {font-size: 30px;}
   .compare-header-label {font-size: 9px;}
   .compare-header-monthly, .compare-header-prepaid {font-size: 10px;}
 }
