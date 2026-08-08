@@ -163,15 +163,11 @@
       letter-spacing: 0.01em; margin-top: auto;}
 .tier-prepaid-btn:hover {background: #965E30;}
 .tier-prepaid-btn:active {transform: scale(0.98);}
-.book-preview-wrap {margin-bottom: 20px; text-align: center;}
-.book-preview-photos {display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-      margin-bottom: 14px;}
-.book-preview-photo {aspect-ratio: 4/3; border-radius: 14px;
-      background-size: cover; background-position: center;
-      box-shadow: 0 8px 24px rgba(42,24,0,0.15);}
-.book-preview-caption {font-family: "Lora", Georgia, serif; font-style: italic;
-      font-size: 13px; color: rgba(42,24,0,0.55);
-      margin-bottom: 8px; line-height: 1.6;}
+.book-showcase {display: flex; align-items: stretch; margin-bottom: 10px;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(42,24,0,0.2);}
+.book-showcase-photo {flex: 0 0 34%; background-size: cover; background-position: center;}
+.book-showcase-card {flex: 1; margin-bottom: 0;}
 .book-preview-link {font-family: "Lora", Georgia, serif; font-style: italic;
       font-size: 13px; color: #B07040; text-decoration: none;
       border-bottom: 1px solid rgba(176,112,64,0.3); padding-bottom: 1px;
@@ -375,6 +371,8 @@
   .path-cards {grid-template-columns: 1fr; gap: 12px;}
   .tier-prepaid {padding: 24px 18px 20px;}
   .tier-prepaid-price .price-main {font-size: 34px;}
+  .book-showcase-card {padding: 20px 16px 18px;}
+  .incl-simple-item {font-size: 12px;}
   .compare-header {padding: 12px 14px;}
   .compare-row {padding: 11px 14px; gap: 6px;}
   .compare-feature {font-size: 12px;}
@@ -403,4 +401,10 @@
   .tier-prepaid-price .price-main {font-size: 30px;}
   .compare-header-label {font-size: 9px;}
   .compare-header-monthly, .compare-header-prepaid {font-size: 10px;}
+  .book-showcase-photo {flex-basis: 30%;}
+  .book-showcase-card {padding: 16px 12px 16px;}
+  .tier-badge {font-size: 8px; padding: 3px 9px;}
+  .incl-simple-header {font-size: 9px;}
+  .incl-simple-item {font-size: 11px; gap: 6px;}
+  .tier-prepaid-btn {font-size: 11px; padding: 12px 8px;}
 }

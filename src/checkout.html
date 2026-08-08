@@ -62,34 +62,30 @@ pageCss: checkout.css
         <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
       </div>
 
-      <!-- BOOK PREVIEW (Departing) -->
-      <div class="book-preview-wrap">
-        <div class="book-preview-photos">
-          <div class="book-preview-photo" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/2_dop6xj.jpg');"></div>
-          <div class="book-preview-photo" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/1_odhdb1.jpg');"></div>
+      <!-- BOOK SHOWCASE + PRICING (Departing) -->
+      <div class="book-showcase">
+        <div class="book-showcase-photo" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/2_dop6xj.jpg');"></div>
+        <div class="tier-prepaid grain-dark book-showcase-card">
+          <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
+          <div class="tier-prepaid-price">
+            <span class="price-main"><sup>$</sup>399</span>
+            <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
+          </div>
+          <div class="incl-simple-header">What&rsquo;s Included</div>
+          <div class="incl-simple-list">
+            <div class="incl-simple-item">Unlimited pages</div>
+            <div class="incl-simple-item">80lb gloss paper stock</div>
+            <div class="incl-simple-item">Full-color, portrait 8x10in hardcover, matte finish</div>
+            <div class="incl-simple-item">Free downloadable PDF copy</div>
+            <div class="incl-simple-item">Free shipping in the U.S.</div>
+            <div class="incl-simple-item">PDF Transfer Recaps</div>
+            <div class="incl-simple-item">One-Year Mission Countdown Calendar</div>
+          </div>
+          <button class="tier-prepaid-btn" id="prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
         </div>
-        <div class="book-preview-caption">This is the actual book &mdash; hardcover, professionally printed, built to last generations.</div>
-        <a class="book-preview-link" href="/sample/" target="_blank">View a full sample book &rarr;</a>
       </div>
-
-      <!-- SINGLE TIER: PAY IN FULL -->
-      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
-        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
-        <div class="tier-prepaid-price">
-          <span class="price-main"><sup>$</sup>399</span>
-          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
-        </div>
-        <div class="incl-simple-header">What&rsquo;s Included</div>
-        <div class="incl-simple-list">
-          <div class="incl-simple-item">Unlimited pages</div>
-          <div class="incl-simple-item">80lb gloss paper stock</div>
-          <div class="incl-simple-item">Full-color, portrait 8x10in hardcover, matte finish</div>
-          <div class="incl-simple-item">Free downloadable PDF copy</div>
-          <div class="incl-simple-item">Free shipping in the U.S.</div>
-          <div class="incl-simple-item">PDF Transfer Recaps</div>
-          <div class="incl-simple-item">One-Year Mission Countdown Calendar</div>
-        </div>
-        <button class="tier-prepaid-btn" id="prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
+      <div style="text-align:center;margin-bottom:20px;">
+        <a class="book-preview-link" href="/sample/" target="_blank">View a full sample book &rarr;</a>
       </div>
 
       <!-- TESTIMONIAL (Departing) -->
