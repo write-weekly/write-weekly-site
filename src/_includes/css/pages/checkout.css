@@ -141,6 +141,14 @@
       font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
       text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
       white-space: nowrap; align-self: flex-start;}
+.tier-badges {display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;}
+.tier-badges .tier-badge {margin-bottom: 0;}
+.tier-badge-premium {display: inline-block;
+      background: transparent; color: #B07040;
+      border: 1.5px solid #B07040;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; padding: 2.5px 11px; border-radius: 100px;
+      white-space: nowrap; align-self: flex-start;}
 .tier-product-name {font-family: "Playfair Display", Georgia, serif;
       font-size: 24px; font-weight: 400; line-height: 1.25; color: #FAF3EA;
       margin-bottom: 10px;}
