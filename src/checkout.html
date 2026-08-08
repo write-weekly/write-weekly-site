@@ -100,12 +100,11 @@ pageCss: checkout.css
         <div class="addon-header">Optional Add-on</div>
         <label class="addon-row">
           <input type="checkbox" id="departing-mag-check" onchange="toggleDepartingAddon()">
-          <img class="addon-img" src="https://res.cloudinary.com/dchehgltv/image/upload/w_120,c_fill,g_auto,f_auto,q_auto/v1779672475/pamphletePicture_fanxd0.jpg" alt="Holiday Mini-Magazines" />
           <div class="addon-copy">
-            <div class="addon-name">Holiday Mini-Magazines <span id="dep-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$59 added</span></div>
-            <div class="addon-desc">A printed keepsake edition for Mother&rsquo;s Day &amp; Christmas, twice a year.</div>
+            <div class="addon-name">Google Photos Extraction <span id="dep-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$100 added</span></div>
+            <div class="addon-desc">Our standard premium book includes every photo attached directly to your missionary&rsquo;s weekly emails. If their photos are stored in Google Photos instead and need to be extracted, that&rsquo;s available as an add-on.</div>
           </div>
-          <div class="addon-price">+$59</div>
+          <div class="addon-price">+$100</div>
         </label>
       </div>
 
@@ -201,12 +200,11 @@ pageCss: checkout.css
         <div class="addon-header">Optional Add-on</div>
         <label class="addon-row">
           <input type="checkbox" id="serving-mag-check" onchange="toggleServingAddon()">
-          <img class="addon-img" src="https://res.cloudinary.com/dchehgltv/image/upload/w_120,c_fill,g_auto,f_auto,q_auto/v1779672475/pamphletePicture_fanxd0.jpg" alt="Holiday Mini-Magazines" />
           <div class="addon-copy">
-            <div class="addon-name">Holiday Mini-Magazines <span id="srv-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$59 added</span></div>
-            <div class="addon-desc">A printed keepsake edition for Mother&rsquo;s Day &amp; Christmas, twice a year.</div>
+            <div class="addon-name">Google Photos Extraction <span id="srv-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$100 added</span></div>
+            <div class="addon-desc">Our standard premium book includes every photo attached directly to your missionary&rsquo;s weekly emails. If their photos are stored in Google Photos instead and need to be extracted, that&rsquo;s available as an add-on.</div>
           </div>
-          <div class="addon-price">+$59</div>
+          <div class="addon-price">+$100</div>
         </label>
       </div>
 
@@ -362,8 +360,9 @@ pageCss: checkout.css
     function toggleDepartingAddon() {
       var checked = document.getElementById('departing-mag-check').checked;
       document.getElementById('dep-mag-price-label').style.display = checked ? 'inline' : 'none';
-      var label = checked ? 'Reserve Your Book &mdash; $458' : 'Reserve Your Book &mdash; $399';
-      var link  = checked ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+      var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
+      // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
+      var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
       var btn = document.getElementById('prepaid-btn');
       btn.onclick = function() { window.location.href = link; };
       btn.innerHTML = label;
@@ -373,8 +372,9 @@ pageCss: checkout.css
     function toggleServingAddon() {
       var checked = document.getElementById('serving-mag-check').checked;
       document.getElementById('srv-mag-price-label').style.display = checked ? 'inline' : 'none';
-      var label = checked ? 'Reserve Your Book &mdash; $458' : 'Reserve Your Book &mdash; $399';
-      var link  = checked ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+      var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
+      // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
+      var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
       var btn = document.getElementById('serving-pif-btn');
       btn.onclick = function() { window.location.href = link; };
       btn.innerHTML = label;

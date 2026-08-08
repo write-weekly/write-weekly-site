@@ -328,9 +328,6 @@
       margin-bottom: 0;}
 .addon-row input[type="checkbox"] {width: 20px; height: 20px; accent-color: #B07040;
       cursor: pointer; flex-shrink: 0;}
-.addon-img {width: 56px; height: 56px; border-radius: 8px;
-      object-fit: cover; flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(42,24,0,0.12);}
 .addon-copy {flex: 1;}
 .addon-name {font-family: "Playfair Display", Georgia, serif;
       font-size: 15px; font-weight: 400; color: #1E1000; margin-bottom: 2px;}
