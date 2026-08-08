@@ -155,8 +155,11 @@
       font-size: 38px; font-weight: 400; color: #FAF3EA; line-height: 1;}
 .tier-prepaid-price .price-main sup {font-size: 15px; vertical-align: super;}
 .tier-prepaid-price .price-note {display: block; font-size: 11px; margin-top: 4px;}
+.tier-specs-eyebrow {font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 600; color: #B07040;
+      margin: 16px 0 10px;}
 .tier-specs {display: flex; flex-wrap: wrap; gap: 8px;
-      margin: 16px 0 20px;}
+      margin: 0 0 20px;}
 .tier-specs-item {font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
       color: rgba(250,243,234,0.75);
       background: rgba(250,243,234,0.08);
@@ -170,6 +173,27 @@
       letter-spacing: 0.01em; margin-top: auto;}
 .tier-prepaid-btn:hover {background: #965E30;}
 .tier-prepaid-btn:active {transform: scale(0.98);}
+.book-preview-wrap {margin-bottom: 20px; text-align: center;}
+.book-preview-photos {display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-bottom: 14px;}
+.book-preview-photo {aspect-ratio: 4/3; border-radius: 14px;
+      background-size: cover; background-position: center;
+      box-shadow: 0 8px 24px rgba(42,24,0,0.15);}
+.book-preview-caption {font-family: "Lora", Georgia, serif; font-style: italic;
+      font-size: 13px; color: rgba(42,24,0,0.55);
+      margin-bottom: 8px; line-height: 1.6;}
+.book-preview-link {font-family: "Lora", Georgia, serif; font-style: italic;
+      font-size: 13px; color: #B07040; text-decoration: none;
+      border-bottom: 1px solid rgba(176,112,64,0.3); padding-bottom: 1px;
+      transition: color 0.2s;}
+.book-preview-link:hover {color: #965E30;}
+.checkout-testimonial {background: #FFF8EF; border-radius: 16px;
+      padding: 20px 24px; margin-bottom: 20px; text-align: center;
+      box-shadow: 0 4px 16px rgba(42,24,0,0.06);}
+.ct-stars {color: #B07040; font-size: 14px; margin-bottom: 8px; letter-spacing: 2px;}
+.ct-quote {font-family: "Playfair Display", Georgia, serif; font-style: italic;
+      font-size: 15px; color: #1E1000; line-height: 1.5; margin-bottom: 8px;}
+.ct-author {font-size: 12px; color: rgba(42,24,0,0.5); font-weight: 600;}
 .compare-wrap {background: #FFF8EF;
       border-radius: 20px;
       overflow: hidden;
