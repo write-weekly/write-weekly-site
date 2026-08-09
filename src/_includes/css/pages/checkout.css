@@ -142,14 +142,11 @@
       text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
       white-space: nowrap; align-self: flex-start;}
 .tier-badge-premium {position: absolute; top: 18px; right: 18px;
-      background: transparent; color: rgba(250,243,234,0.4);
-      border: 1px solid rgba(250,243,234,0.3);
+      background: transparent; color: rgba(42,24,0,0.4);
+      border: 1px solid rgba(42,24,0,0.18);
       font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
       text-transform: uppercase; padding: 3px 10px; border-radius: 6px;
       white-space: nowrap;}
-.tier-product-name {font-family: "Playfair Display", Georgia, serif;
-      font-size: 24px; font-weight: 400; line-height: 1.25; color: #FAF3EA;
-      margin-bottom: 10px;}
 .tier-prepaid-price {margin-bottom: 16px;}
 .tier-prepaid-price .price-main {font-family: "Playfair Display", Georgia, serif;
       font-size: 38px; font-weight: 400; color: #FAF3EA; line-height: 1;}
@@ -172,24 +169,6 @@
       letter-spacing: 0.01em; margin-top: auto;}
 .tier-prepaid-btn:hover {background: #965E30;}
 .tier-prepaid-btn:active {transform: scale(0.98);}
-.book-showcase {display: flex; align-items: stretch; margin-bottom: 10px;
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 12px 40px rgba(42,24,0,0.2);}
-.book-showcase-photo {flex: 0 0 34%; background-size: contain; background-repeat: no-repeat;
-      background-position: center; background-color: #ABA9AA;}
-.book-showcase-card {flex: 1; margin-bottom: 0;
-      background: #FFF8EF;}
-.book-showcase-card .tier-badge-premium {color: rgba(42,24,0,0.4); border-color: rgba(42,24,0,0.18);}
-.book-showcase-card .tier-product-name {color: #1E1000; font-weight: 500;}
-.book-showcase-card .price-main {color: rgba(42,24,0,0.65); font-size: 32px;}
-.book-showcase-card .price-main sup {font-size: 14px;}
-.book-showcase-card .tier-prepaid-price {margin-bottom: 4px;}
-.book-showcase-card .tier-rating {font-size: 13px; color: #B07040; letter-spacing: 1px;
-      margin: 0 0 20px; padding-bottom: 16px;
-      border-bottom: 1px solid rgba(42,24,0,0.08);}
-.book-showcase-card .tier-rating span {font-size: 12px; color: rgba(42,24,0,0.55); letter-spacing: normal; margin-left: 4px; font-weight: 600;}
-.book-showcase-card .incl-simple-header {color: rgba(42,24,0,0.4);}
-.book-showcase-card .incl-simple-item {color: rgba(42,24,0,0.75);}
 .book-preview-link {font-family: "Lora", Georgia, serif; font-style: italic;
       font-size: 13px; color: #B07040; text-decoration: none;
       border-bottom: 1px solid rgba(176,112,64,0.3); padding-bottom: 1px;
@@ -390,7 +369,6 @@
   .path-cards {grid-template-columns: 1fr; gap: 12px;}
   .tier-prepaid {padding: 24px 18px 20px;}
   .tier-prepaid-price .price-main {font-size: 34px;}
-  .book-showcase-card {padding: 20px 16px 18px;}
   .incl-simple-item {font-size: 12px;}
   .compare-header {padding: 12px 14px;}
   .compare-row {padding: 11px 14px; gap: 6px;}
@@ -420,10 +398,73 @@
   .tier-prepaid-price .price-main {font-size: 30px;}
   .compare-header-label {font-size: 9px;}
   .compare-header-monthly, .compare-header-prepaid {font-size: 10px;}
-  .book-showcase-photo {flex-basis: 30%;}
-  .book-showcase-card {padding: 16px 12px 16px;}
   .tier-badge {font-size: 8px; padding: 3px 9px;}
   .incl-simple-header {font-size: 9px;}
   .incl-simple-item {font-size: 11px; gap: 6px;}
   .tier-prepaid-btn {font-size: 11px; padding: 12px 8px;}
+}
+
+/* ── Product-page style layout (Departing) ── */
+.pdp-breakout {width: 100vw; position: relative; left: 50%; transform: translateX(-50%);}
+.pdp-container {max-width: 1040px; margin: 0 auto; padding: 0 24px;}
+.pdp-grid {display: grid; grid-template-columns: 42% 1fr; gap: 44px; margin-bottom: 40px; align-items: start;}
+.pdp-gallery-main {width: 100%; aspect-ratio: 4/5; border-radius: 16px;
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      background-color: #ABA9AA;
+      box-shadow: 0 12px 40px rgba(42,24,0,0.15); margin-bottom: 12px;}
+.pdp-gallery-thumbs {display: flex; gap: 10px;}
+.pdp-thumb {width: 64px; height: 64px; border-radius: 10px; border: 2px solid transparent;
+      background-size: cover; background-position: center; background-color: #ABA9AA;
+      cursor: pointer; padding: 0; opacity: 0.55; transition: opacity 0.2s, border-color 0.2s;}
+.pdp-thumb:hover {opacity: 0.85;}
+.pdp-thumb.active {opacity: 1; border-color: #B07040;}
+.pdp-purchase {display: flex; flex-direction: column;}
+.pdp-badges {display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;}
+.pdp-title {font-family: "Playfair Display", Georgia, serif;
+      font-size: 30px; font-weight: 400; line-height: 1.25; color: #1E1000;
+      margin-bottom: 12px;}
+.pdp-price {margin-bottom: 4px;}
+.pdp-price .price-main {font-family: "Playfair Display", Georgia, serif;
+      font-size: 34px; font-weight: 400; color: #1E1000; line-height: 1;}
+.pdp-price .price-main sup {font-size: 14px; vertical-align: super;}
+.pdp-price .price-note {display: block; font-size: 12px; margin-top: 4px;}
+.pdp-rating {font-size: 14px; color: #B07040; letter-spacing: 1px;
+      margin: 0 0 24px; padding-bottom: 18px;
+      border-bottom: 1px solid rgba(42,24,0,0.08);}
+.pdp-rating span {font-size: 13px; color: rgba(42,24,0,0.55); letter-spacing: normal; margin-left: 4px; font-weight: 600;}
+.pdp-section {margin-bottom: 22px;}
+.pdp-section-label {font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 600; color: rgba(42,24,0,0.4);
+      margin-bottom: 12px;}
+.pdp-check-list {display: flex; flex-direction: column; gap: 10px;}
+.pdp-check-item {display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; font-weight: 500; color: rgba(42,24,0,0.8);
+      line-height: 1.4;}
+.pdp-check-item::before {content: '\2713'; color: #B07040; font-weight: 700; flex-shrink: 0;}
+.pdp-upgrade-row {display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+      background: #FFF8EF; border-radius: 14px; padding: 16px 18px;
+      box-shadow: 0 4px 16px rgba(42,24,0,0.05);}
+.pdp-upgrade-row input[type="checkbox"] {width: 18px; height: 18px; accent-color: #B07040;
+      cursor: pointer; flex-shrink: 0; margin-top: 2px;}
+.pdp-upgrade-icon {font-size: 15px; color: #B07040; flex-shrink: 0; margin-top: 1px;}
+.pdp-upgrade-copy {flex: 1;}
+.pdp-upgrade-name {font-family: "Playfair Display", Georgia, serif;
+      font-size: 15px; font-weight: 400; color: #1E1000; margin-bottom: 3px;}
+.pdp-upgrade-desc {font-size: 12px; color: rgba(42,24,0,0.5); line-height: 1.55;}
+.pdp-upgrade-price {font-family: "Playfair Display", Georgia, serif;
+      font-size: 16px; font-weight: 400; color: #B07040; flex-shrink: 0;}
+.pdp-cta {margin-top: 4px; margin-bottom: 20px;}
+.pdp-trust-row {display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px;}
+.pdp-trust-item {font-size: 12px; color: rgba(42,24,0,0.55); line-height: 1.4;}
+.pdp-trust-item a {color: #B07040; text-decoration: underline;}
+.pdp-trust-icon {margin-right: 4px;}
+@media (max-width: 860px) {
+  .pdp-grid {grid-template-columns: 1fr; gap: 28px;}
+  .pdp-gallery-main {aspect-ratio: 5/4;}
+  .pdp-title {font-size: 24px;}
+  .pdp-trust-row {grid-template-columns: 1fr;}
+}
+@media (max-width: 480px) {
+  .pdp-container {padding: 0 16px;}
+  .pdp-gallery-main {aspect-ratio: 4/5;}
 }
