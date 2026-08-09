@@ -141,14 +141,12 @@
       font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
       text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
       white-space: nowrap; align-self: flex-start;}
-.tier-badges {display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;}
-.tier-badges .tier-badge {margin-bottom: 0;}
-.tier-badge-premium {display: inline-block;
-      background: transparent; color: #B07040;
-      border: 1.5px solid #B07040;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; padding: 2.5px 11px; border-radius: 100px;
-      white-space: nowrap; align-self: flex-start;}
+.tier-badge-premium {position: absolute; top: 18px; right: 18px;
+      background: transparent; color: rgba(250,243,234,0.4);
+      border: 1px solid rgba(250,243,234,0.3);
+      font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 6px;
+      white-space: nowrap;}
 .tier-product-name {font-family: "Playfair Display", Georgia, serif;
       font-size: 24px; font-weight: 400; line-height: 1.25; color: #FAF3EA;
       margin-bottom: 10px;}
@@ -180,6 +178,7 @@
 .book-showcase-photo {flex: 0 0 34%; background-size: cover; background-position: center;}
 .book-showcase-card {flex: 1; margin-bottom: 0;
       background: #FFF8EF;}
+.book-showcase-card .tier-badge-premium {color: rgba(42,24,0,0.4); border-color: rgba(42,24,0,0.18);}
 .book-showcase-card .tier-product-name {color: #1E1000; font-weight: 500;}
 .book-showcase-card .price-main {color: rgba(42,24,0,0.65); font-size: 32px;}
 .book-showcase-card .price-main sup {font-size: 14px;}
