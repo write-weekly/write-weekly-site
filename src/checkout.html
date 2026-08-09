@@ -85,6 +85,24 @@ pageCss: checkout.css
           <div style="text-align:center;margin-top:14px;">
             <a class="book-preview-link" href="/sample/" target="_blank">View a full sample book &rarr;</a>
           </div>
+
+          <!-- INFO TABS (Departing) -->
+          <div class="pdp-tabs">
+            <div class="pdp-tabs-nav">
+              <button class="pdp-tab-btn active" onclick="pdpSetTab(this,0)">Mission Book Details</button>
+              <button class="pdp-tab-btn" onclick="pdpSetTab(this,1)">Placeholder</button>
+              <button class="pdp-tab-btn" onclick="pdpSetTab(this,2)">Printing and Shipping</button>
+            </div>
+            <div class="pdp-tab-panel active" data-tab-index="0">
+              <em>Details coming soon.</em>
+            </div>
+            <div class="pdp-tab-panel" data-tab-index="1">
+              <em>Coming soon.</em>
+            </div>
+            <div class="pdp-tab-panel" data-tab-index="2">
+              Once you approve your book layout, printing typically takes 5&ndash;7 business days and shipping is an additional 3&ndash;5 days depending on your location.
+            </div>
+          </div>
         </div>
 
         <!-- PURCHASE PANEL -->
@@ -152,25 +170,6 @@ pageCss: checkout.css
         <div class="guarantee-copy">
           <div class="guarantee-title">Never Lose a Memory Guarantee</div>
           <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, use your Unlimited Revisions Pass for adjustments. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
-        </div>
-      </div>
-
-      <!-- DETAILS & SHIPPING (Departing) -->
-      <div class="faq-intro">Book details &amp; shipping</div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">What exactly is the book like?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">A portrait 8x10in hardcover with a matte finish, printed in full color on 80lb gloss paper stock, with unlimited pages and a binding built to last for generations.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">How long does printing and shipping take?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">Once you approve your book layout, printing typically takes 5&ndash;7 business days and shipping is an additional 3&ndash;5 days depending on your location.</div></div>
         </div>
       </div>
 
@@ -463,6 +462,17 @@ pageCss: checkout.css
       if (main) main.style.backgroundImage = "url('" + url + "')";
       document.querySelectorAll('.pdp-thumb').forEach(function(t) { t.classList.remove('active'); });
       btn.classList.add('active');
+    }
+
+    /* ── PDP info tabs ── */
+    function pdpSetTab(btn, index) {
+      var wrap = btn.closest('.pdp-tabs');
+      if (!wrap) return;
+      wrap.querySelectorAll('.pdp-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      wrap.querySelectorAll('.pdp-tab-panel').forEach(function(p) {
+        p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
+      });
     }
 
     /* ── FAQ accordion ── */

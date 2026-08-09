@@ -459,6 +459,18 @@
 .pdp-trust-item {font-size: 12px; color: rgba(42,24,0,0.55); line-height: 1.4;}
 .pdp-trust-item a {color: #B07040; text-decoration: underline;}
 .pdp-trust-icon {margin-right: 4px;}
+.pdp-tabs {margin-top: 28px;}
+.pdp-tabs-nav {display: flex; border-bottom: 1px solid rgba(42,24,0,0.1); margin-bottom: 16px;}
+.pdp-tab-btn {flex: 1; background: none; border: none; cursor: pointer;
+      padding: 10px 6px 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; color: rgba(42,24,0,0.4);
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;}
+.pdp-tab-btn:hover {color: rgba(42,24,0,0.7);}
+.pdp-tab-btn.active {color: #1E1000; border-bottom-color: #B07040;}
+.pdp-tab-panel {display: none; font-size: 13px; color: rgba(42,24,0,0.65); line-height: 1.7;}
+.pdp-tab-panel.active {display: block;}
 @media (max-width: 860px) {
   .pdp-grid {grid-template-columns: 1fr; gap: 28px;}
   .pdp-gallery {flex-direction: column;}
