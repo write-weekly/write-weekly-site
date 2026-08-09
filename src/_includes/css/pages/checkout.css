@@ -175,7 +175,8 @@
 .book-showcase {display: flex; align-items: stretch; margin-bottom: 10px;
       border-radius: 20px; overflow: hidden;
       box-shadow: 0 12px 40px rgba(42,24,0,0.2);}
-.book-showcase-photo {flex: 0 0 34%; background-size: cover; background-position: center;}
+.book-showcase-photo {flex: 0 0 34%; background-size: contain; background-repeat: no-repeat;
+      background-position: center; background-color: #ABA9AA;}
 .book-showcase-card {flex: 1; margin-bottom: 0;
       background: #FFF8EF;}
 .book-showcase-card .tier-badge-premium {color: rgba(42,24,0,0.4); border-color: rgba(42,24,0,0.18);}
