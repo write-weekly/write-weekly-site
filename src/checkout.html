@@ -73,12 +73,14 @@ pageCss: checkout.css
       <div class="pdp-grid">
 
         <!-- GALLERY -->
-        <div class="pdp-gallery">
-          <div class="pdp-gallery-main" id="pdp-main-img" style="background-image:url('/img/sample-book-cover.jpg');"></div>
-          <div class="pdp-gallery-thumbs">
-            <button class="pdp-thumb active" onclick="pdpSetImage(this,'/img/sample-book-cover.jpg')" style="background-image:url('/img/sample-book-cover.jpg');" aria-label="Book cover"></button>
-            <button class="pdp-thumb" onclick="pdpSetImage(this,'https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/2_dop6xj.jpg')" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/2_dop6xj.jpg');" aria-label="Book photo 2"></button>
-            <button class="pdp-thumb" onclick="pdpSetImage(this,'https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/1_odhdb1.jpg')" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/1_odhdb1.jpg');" aria-label="Book photo 3"></button>
+        <div class="pdp-gallery-col">
+          <div class="pdp-gallery">
+            <div class="pdp-gallery-thumbs">
+              <button class="pdp-thumb active" onclick="pdpSetImage(this,'/img/sample-book-cover.jpg')" style="background-image:url('/img/sample-book-cover.jpg');" aria-label="Book cover"></button>
+              <button class="pdp-thumb" onclick="pdpSetImage(this,'https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/2_dop6xj.jpg')" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/2_dop6xj.jpg');" aria-label="Book photo 2"></button>
+              <button class="pdp-thumb" onclick="pdpSetImage(this,'https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/1_odhdb1.jpg')" style="background-image:url('https://res.cloudinary.com/dchehgltv/image/upload/q_auto/f_auto/v1776811537/1_odhdb1.jpg');" aria-label="Book photo 3"></button>
+            </div>
+            <div class="pdp-gallery-main" id="pdp-main-img" style="background-image:url('/img/sample-book-cover.jpg');"></div>
           </div>
           <div style="text-align:center;margin-top:14px;">
             <a class="book-preview-link" href="/sample/" target="_blank">View a full sample book &rarr;</a>
