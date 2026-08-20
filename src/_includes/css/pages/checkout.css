@@ -483,3 +483,34 @@
   .pdp-container {padding: 0 16px;}
   .pdp-gallery-main {aspect-ratio: 4/5;}
 }
+
+/* ── What's Included feature gallery ── */
+.feat {margin-top: 44px; margin-bottom: 8px;}
+.feat-eyebrow {text-align: center; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(42,24,0,0.45); font-weight: 600; margin-bottom: 10px;}
+.feat-title {text-align: center; font-family: "Playfair Display", Georgia, serif; font-size: 34px;
+      font-weight: 500; color: #1E1000; margin: 0 0 34px;}
+.feat-stage {display: grid; grid-template-columns: 1fr 1.05fr 1fr; gap: 30px; align-items: center;}
+.feat-col {display: flex; flex-direction: column; gap: 28px;}
+.feat-item {text-align: left; background: none; border: none; border-left: 2px solid transparent;
+      padding: 2px 0 2px 16px; margin: 0; cursor: pointer; font-family: inherit;
+      transition: border-color 0.2s;}
+.feat-item-name {font-family: "Playfair Display", Georgia, serif; font-size: 20px;
+      color: rgba(42,24,0,0.35); margin-bottom: 8px; transition: color 0.2s;}
+.feat-item-desc {font-size: 13px; line-height: 1.6; color: rgba(42,24,0,0.3); transition: color 0.2s;}
+.feat-item:hover .feat-item-name {color: rgba(42,24,0,0.6);}
+.feat-item.active {border-left-color: #B07040;}
+.feat-item.active .feat-item-name {color: #1E1000;}
+.feat-item.active .feat-item-desc {color: rgba(42,24,0,0.65);}
+.feat-media {display: flex; flex-direction: column; align-items: center; gap: 16px;}
+.feat-img {width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px;
+      background: #efe7d8; display: block;}
+.feat-dots {display: flex; gap: 8px;}
+.feat-dot {width: 9px; height: 9px; border-radius: 50%; border: none; padding: 0;
+      background: rgba(42,24,0,0.15); cursor: pointer; transition: background 0.2s;}
+.feat-dot.active {background: #B07040;}
+@media (max-width: 860px) {
+  .feat-stage {grid-template-columns: 1fr; gap: 24px;}
+  .feat-media {order: -1;}
+  .feat-title {font-size: 26px;}
+}
