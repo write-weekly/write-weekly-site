@@ -326,18 +326,20 @@
 .pdp-trust-item:nth-child(even) {padding-left: 12px;}
 .pdp-trust-item a {color: #B07040; text-decoration: underline;}
 .pdp-trust-icon {margin-right: 4px;}
-.pdp-tabs {margin-top: 28px;}
-.pdp-tabs-nav {display: flex; border-bottom: 1px solid rgba(42,24,0,0.1); margin-bottom: 16px;}
-.pdp-tab-btn {flex: 1; background: none; border: none; cursor: pointer;
-      padding: 10px 6px 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
-      text-transform: uppercase; color: rgba(42,24,0,0.4);
-      border-bottom: 2px solid transparent; margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
+.pdp-acc {margin-top: 28px; border-top: 1px solid rgba(42,24,0,0.1);}
+.pdp-acc-item {border-bottom: 1px solid rgba(42,24,0,0.1);}
+.pdp-acc-q {width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px 2px; text-align: left;}
+.pdp-acc-title {font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: #1E1000;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;}
-.pdp-tab-btn:hover {color: rgba(42,24,0,0.7);}
-.pdp-tab-btn.active {color: #1E1000; border-bottom-color: #B07040;}
-.pdp-tab-panel {display: none; font-size: 13px; color: rgba(42,24,0,0.65); line-height: 1.7;}
-.pdp-tab-panel.active {display: block;}
+.pdp-acc-chevron {color: #B07040; font-size: 16px; line-height: 1; flex-shrink: 0;
+      transition: transform 0.25s ease;}
+.pdp-acc-item.open .pdp-acc-chevron {transform: rotate(180deg);}
+.pdp-acc-body {max-height: 0; overflow: hidden; transition: max-height 0.3s ease;}
+.pdp-acc-item.open .pdp-acc-body {max-height: 300px;}
+.pdp-acc-body-inner {padding: 0 2px 16px; font-size: 13px; color: rgba(42,24,0,0.65); line-height: 1.7;}
 @media (max-width: 860px) {
   .pdp-grid {grid-template-columns: 1fr; gap: 28px;}
   .pdp-gallery {flex-direction: column;}

@@ -35,20 +35,20 @@ pageCss: checkout.css
           </div>
 
           <!-- INFO TABS (Departing) -->
-          <div class="pdp-tabs">
-            <div class="pdp-tabs-nav">
-              <button class="pdp-tab-btn active" onclick="pdpSetTab(this,0)">Mission Book Details</button>
-              <button class="pdp-tab-btn" onclick="pdpSetTab(this,1)">Placeholder</button>
-              <button class="pdp-tab-btn" onclick="pdpSetTab(this,2)">Printing and Shipping</button>
+          <div class="pdp-acc">
+            <div class="pdp-acc-item">
+              <button class="pdp-acc-q" onclick="toggleAcc(this)">
+                <span class="pdp-acc-title">Mission Book Details</span>
+                <span class="pdp-acc-chevron">&#8964;</span>
+              </button>
+              <div class="pdp-acc-body"><div class="pdp-acc-body-inner"><em>Details coming soon.</em></div></div>
             </div>
-            <div class="pdp-tab-panel active" data-tab-index="0">
-              <em>Details coming soon.</em>
-            </div>
-            <div class="pdp-tab-panel" data-tab-index="1">
-              <em>Coming soon.</em>
-            </div>
-            <div class="pdp-tab-panel" data-tab-index="2">
-              Once you approve your book layout, printing typically takes 5&ndash;7 business days and shipping is an additional 3&ndash;5 days depending on your location. Standard shipping is free within the U.S.
+            <div class="pdp-acc-item">
+              <button class="pdp-acc-q" onclick="toggleAcc(this)">
+                <span class="pdp-acc-title">Printing and Shipping</span>
+                <span class="pdp-acc-chevron">&#8964;</span>
+              </button>
+              <div class="pdp-acc-body"><div class="pdp-acc-body-inner">Once you approve your book layout, printing typically takes 5&ndash;7 business days and shipping is an additional 3&ndash;5 days depending on your location. Standard shipping is free within the U.S.</div></div>
             </div>
           </div>
         </div>
@@ -695,15 +695,10 @@ pageCss: checkout.css
       btn.classList.add('active');
     }
 
-    /* ── PDP info tabs ── */
-    function pdpSetTab(btn, index) {
-      var wrap = btn.closest('.pdp-tabs');
-      if (!wrap) return;
-      wrap.querySelectorAll('.pdp-tab-btn').forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      wrap.querySelectorAll('.pdp-tab-panel').forEach(function(p) {
-        p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
-      });
+    /* ── PDP info accordion ── */
+    function toggleAcc(btn) {
+      var item = btn.closest('.pdp-acc-item');
+      if (item) item.classList.toggle('open');
     }
 
     /* ── Feature gallery (What's Included) ── */
