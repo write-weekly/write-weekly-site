@@ -106,7 +106,7 @@
       transition: transform 0.25s ease; line-height: 1;}
 .faq-item.open .faq-chevron {transform: rotate(180deg);}
 .faq-answer {max-height: 0; overflow: hidden; transition: max-height 0.3s ease;}
-.faq-item.open .faq-answer {max-height: 400px;}
+.faq-item.open .faq-answer {max-height: 600px;}
 .faq-answer-inner {padding: 0 24px 18px;
       font-size: 14px; color: rgba(42,24,0,0.62); line-height: 1.78;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;}
