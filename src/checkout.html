@@ -711,6 +711,11 @@ pageCss: checkout.css
         </div>
         </div>
         <div class="reviews-empty" id="reviews-empty">No reviews match your search.</div>
+        <div class="reviews-pagination" id="reviews-pagination">
+          <button class="rv-page-btn" id="rv-prev" onclick="rvPage(-1)">&larr; Previous</button>
+          <span class="rv-page-info" id="rv-page-info"></span>
+          <button class="rv-page-btn" id="rv-next" onclick="rvPage(1)">Next &rarr;</button>
+        </div>
       </div>
 
       <!-- GUARANTEE (Departing) -->
@@ -1002,11 +1007,16 @@ pageCss: checkout.css
       });
     }
 
-    /* ── Customer reviews: search, filter, sort ── */
-    var rvState = { q: '', rating: 'all', sort: 'newest' };
-    function rvSetSearch(v) { rvState.q = v.toLowerCase().trim(); rvRender(); }
-    function rvSetFilter(v) { rvState.rating = v; rvRender(); }
-    function rvSetSort(v) { rvState.sort = v; rvRender(); }
+    /* ── Customer reviews: search, filter, sort, paginate ── */
+    var rvState = { q: '', rating: 'all', sort: 'newest', page: 1, size: 5 };
+    function rvSetSearch(v) { rvState.q = v.toLowerCase().trim(); rvState.page = 1; rvRender(); }
+    function rvSetFilter(v) { rvState.rating = v; rvState.page = 1; rvRender(); }
+    function rvSetSort(v) { rvState.sort = v; rvState.page = 1; rvRender(); }
+    function rvPage(delta) { rvState.page += delta; rvRender(); rvScrollTop(); }
+    function rvScrollTop() {
+      var top = document.querySelector('.reviews-title');
+      if (top) top.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     function rvRender() {
       var list = document.getElementById('reviews-list');
       if (!list) return;
@@ -1017,18 +1027,31 @@ pageCss: checkout.css
         if (rvState.sort === 'lowest') return a.dataset.rating - b.dataset.rating || b.dataset.ts - a.dataset.ts;
         return b.dataset.ts - a.dataset.ts; // newest
       });
-      var shown = 0;
-      items.forEach(function(el) {
-        list.appendChild(el); // re-order in DOM
+      items.forEach(function(el) { list.appendChild(el); }); // re-order in DOM
+      var matching = items.filter(function(el) {
         var okRating = rvState.rating === 'all' || el.dataset.rating === rvState.rating;
         var okSearch = !rvState.q || el.textContent.toLowerCase().indexOf(rvState.q) !== -1;
-        var visible = okRating && okSearch;
-        el.style.display = visible ? '' : 'none';
-        if (visible) shown++;
+        return okRating && okSearch;
       });
+      var pages = Math.max(1, Math.ceil(matching.length / rvState.size));
+      if (rvState.page > pages) rvState.page = pages;
+      if (rvState.page < 1) rvState.page = 1;
+      var start = (rvState.page - 1) * rvState.size, end = start + rvState.size;
+      items.forEach(function(el) { el.style.display = 'none'; });
+      matching.forEach(function(el, i) { if (i >= start && i < end) el.style.display = ''; });
+
       var empty = document.getElementById('reviews-empty');
-      if (empty) empty.style.display = shown ? 'none' : 'block';
+      if (empty) empty.style.display = matching.length ? 'none' : 'block';
+      var pag = document.getElementById('reviews-pagination');
+      var info = document.getElementById('rv-page-info');
+      var prev = document.getElementById('rv-prev');
+      var next = document.getElementById('rv-next');
+      if (pag) pag.style.display = matching.length > rvState.size ? 'flex' : 'none';
+      if (info) info.textContent = 'Page ' + rvState.page + ' of ' + pages;
+      if (prev) prev.disabled = rvState.page <= 1;
+      if (next) next.disabled = rvState.page >= pages;
     }
+    rvRender();
 
     /* ── FAQ accordion ── */
     function toggleFaq(btn) {
