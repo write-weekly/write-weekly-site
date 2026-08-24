@@ -540,8 +540,8 @@
 
 /* ── Audience "How it works" step cards (photo on top) ── */
 .aud-how {margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(42,24,0,0.1);}
-.aud-how .steps-intro {font-family: "Lora", Georgia, serif; font-style: italic; font-size: 14px;
-      color: var(--copper); margin-bottom: 22px; display: flex; align-items: center; gap: 10px;}
+.aud-how .steps-intro {font-family: "Lora", Georgia, serif; font-style: italic; font-size: 21px;
+      color: var(--copper); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;}
 .aud-how .steps-intro::before {content: ''; width: 20px; height: 1px; background: var(--copper); flex-shrink: 0;}
 .hiw-steps {display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;}
 .hiw-step {background: #fff; border: 1px solid var(--border); border-radius: 14px;
