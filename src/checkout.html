@@ -80,19 +80,6 @@ pageCss: checkout.css
             </div>
           </div>
 
-          <div class="pdp-section">
-            <div class="pdp-section-label">Upgrade Your Book</div>
-            <label class="pdp-upgrade-row">
-              <input type="checkbox" id="departing-mag-check" onchange="toggleDepartingAddon()">
-              <div class="pdp-upgrade-icon">&#10022;</div>
-              <div class="pdp-upgrade-copy">
-                <div class="pdp-upgrade-name">Google Photos Extraction <span id="dep-mag-price-label" style="display:none;color:#B07040;font-weight:700;">+$100 added</span></div>
-                <div class="pdp-upgrade-desc">Your premium book includes all photos attached to weekly emails. Have additional mission photos in Google Photos? Add our extraction service, and we&rsquo;ll gather them for inclusion in the book.</div>
-              </div>
-              <div class="pdp-upgrade-price">+$100</div>
-            </label>
-          </div>
-
           <button class="tier-prepaid-btn pdp-cta" id="prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
 
           <div class="pdp-trust-row">
@@ -699,23 +686,6 @@ pageCss: checkout.css
         if (href === path) a.classList.add('active');
       });
     })();
-
-    /* ── Add-on toggles — checkbox silently swaps CTA button destinations ── */
-
-    // Departing: swaps the reserve button
-    function toggleDepartingAddon() {
-      var checked = document.getElementById('departing-mag-check').checked;
-      document.getElementById('dep-mag-price-label').style.display = checked ? 'inline' : 'none';
-      var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
-      // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
-      var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
-      ['prepaid-btn', 'prepaid-btn-bottom'].forEach(function(id) {
-        var btn = document.getElementById(id);
-        if (!btn) return;
-        btn.onclick = function() { window.location.href = link; };
-        btn.innerHTML = label;
-      });
-    }
 
     /* ── PDP gallery thumbnail swap ── */
     function pdpSetImage(btn, url) {
