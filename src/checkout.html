@@ -598,6 +598,7 @@ pageCss: checkout.css
       wrap.querySelectorAll('.aud-tab-panel').forEach(function(p) {
         p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
       });
+      wrap.classList.toggle('aud-tabs--rm', index === 1);
     }
 
     /* ── FAQ accordion ── */
