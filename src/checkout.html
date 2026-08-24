@@ -155,7 +155,7 @@ pageCss: checkout.css
       <div class="aud-tabs">
         <div class="aud-tabs-nav">
           <button class="aud-tab-btn active" onclick="audSetTab(this,0)">Currently Serving / Departing Missionary</button>
-          <button class="aud-tab-btn" onclick="audSetTab(this,1)">Returned Missionary</button>
+          <button class="aud-tab-btn aud-tab-btn--rm" onclick="audSetTab(this,1)">Returned Missionary</button>
         </div>
         <div class="aud-tab-panel active" data-tab-index="0">
           <div class="aud-panel-title">For a currently-serving or departing missionary</div>
@@ -598,7 +598,6 @@ pageCss: checkout.css
       wrap.querySelectorAll('.aud-tab-panel').forEach(function(p) {
         p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
       });
-      wrap.classList.toggle('aud-tabs--rm', index === 1);
     }
 
     /* ── FAQ accordion ── */
