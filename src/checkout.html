@@ -12,56 +12,10 @@ pageCss: checkout.css
 
 <div class="page-wrap">
 
-    <!-- STEP 1: PATH SELECTOR -->
-    <div class="path-selector" id="path-selector">
-      <!-- INTRO -->
-      <div class="checkout-intro">
-        <h1>How would you like to<br/><em>secure your missionary&rsquo;s book?</em></h1>
-      </div>
-      <div class="path-selector-label">Who is your book for?</div>
-      <div class="path-cards">
-
-        <button class="path-card path-card-departing grain-dark" onclick="selectPath('departing')">
-          <div class="path-card-inner">
-            <div class="path-card-top">
-              <div class="path-card-name">Departing Missionary</div>
-              <div class="path-card-desc">They haven&rsquo;t left yet &mdash; we&rsquo;ll capture every week from day one.</div>
-            </div>
-            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
-          </div>
-        </button>
-
-        <button class="path-card path-card-serving grain-dark" onclick="selectPath('serving')">
-          <div class="path-card-inner">
-            <div class="path-card-top">
-              <div class="path-card-name">Currently Serving</div>
-              <div class="path-card-desc">They&rsquo;re mid-mission &mdash; we&rsquo;ll build the book from what&rsquo;s already been sent.</div>
-            </div>
-            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
-          </div>
-        </button>
-
-        <button class="path-card path-card-rm grain-light" onclick="selectPath('rm')">
-          <div class="path-card-inner">
-            <div class="path-card-top">
-              <div class="path-card-name">Returned Missionary</div>
-              <div class="path-card-desc">They&rsquo;re already home &mdash; we&rsquo;ll build the book from the emails and photos you have.</div>
-            </div>
-            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
-          </div>
-        </button>
-
-      </div>
-    </div>
-
     <!-- DEPARTING PATH -->
-    <div id="path-departing" style="display:none;">
+    <div id="path-departing">
 
       <div class="pdp-breakout"><div class="pdp-container">
-
-      <div class="path-back">
-        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
-      </div>
 
       <!-- PRODUCT HERO: GALLERY + PURCHASE PANEL (Departing) -->
       <div class="pdp-grid">
@@ -727,156 +681,6 @@ pageCss: checkout.css
 
     </div>
 
-    <!-- CURRENTLY SERVING PATH -->
-    <div id="path-serving" style="display:none;">
-
-      <div class="path-back">
-        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
-      </div>
-
-      <!-- PAY IN FULL ONLY -->
-      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
-        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
-        <div class="tier-prepaid-price">
-          <span class="price-main"><sup>$</sup>399</span>
-          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
-        </div>
-        <div class="incl-simple-header">What&rsquo;s Included</div>
-        <div class="incl-simple-list">
-          <div class="incl-simple-item">Unlimited pages</div>
-          <div class="incl-simple-item">80lb gloss paper stock</div>
-          <div class="incl-simple-item">Full-color, portrait 8x10in hardcover, matte finish</div>
-          <div class="incl-simple-item">Free downloadable PDF copy</div>
-          <div class="incl-simple-item">Free shipping in the U.S.</div>
-          <div class="incl-simple-item">PDF Transfer Recaps</div>
-          <div class="incl-simple-item">One-Year Mission Countdown Calendar</div>
-        </div>
-        <button class="tier-prepaid-btn" id="serving-pif-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
-      </div>
-
-      <!-- ADD-ON (Serving) -->
-      <div class="addon-wrap">
-        <div class="addon-header">Optional Add-on</div>
-        <label class="addon-row">
-          <input type="checkbox" id="serving-mag-check" onchange="toggleServingAddon()">
-          <div class="addon-copy">
-            <div class="addon-name">Google Photos Extraction <span id="srv-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$100 added</span></div>
-            <div class="addon-desc">Your premium book includes all photos attached to weekly emails. Have additional mission photos in Google Photos? Add our extraction service, and we&rsquo;ll gather them for inclusion in the book.</div>
-          </div>
-          <div class="addon-price">+$100</div>
-        </label>
-      </div>
-
-      <!-- STRIPE NOTE (Serving) -->
-      <div class="tier-stripe-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="11" width="18" height="11" rx="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-        Secure checkout &mdash; payments processed by Stripe.
-      </div>
-
-      <!-- GUARANTEE (Serving) -->
-      <div class="guarantee" style="margin-top:20px;">
-        <div class="guarantee-icon">&#128737;</div>
-        <div class="guarantee-copy">
-          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
-          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, we&rsquo;ll work with you on revisions until it&rsquo;s right. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
-        </div>
-      </div>
-
-      <!-- FAQ (Serving) -->
-      <div class="faq-intro">Frequently asked questions</div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">How do I add Weekly to my missionary&rsquo;s email list?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">It requires zero effort from you. We&rsquo;ll give you a dedicated Weekly email address. Your missionary simply adds it to their regular P-Day email list, and our automated system handles 100% of the collecting and formatting from there!</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">What if my missionary comes home before their mission is complete?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">No problem. We&rsquo;ll build the book from whatever has been sent so far and refund any difference. Every situation is handled personally &mdash; just reach out and we&rsquo;ll take care of you.</div></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- RM PATH -->
-    <div id="path-rm" style="display:none;">
-
-      <div class="path-back">
-        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
-      </div>
-
-      <!-- PAY IN FULL ONLY -->
-      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
-        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
-        <div class="tier-prepaid-price">
-          <span class="price-main"><sup>$</sup>399</span>
-          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
-        </div>
-        <div class="incl-simple-header">What&rsquo;s Included</div>
-        <div class="incl-simple-list">
-          <div class="incl-simple-item">Unlimited pages</div>
-          <div class="incl-simple-item">80lb gloss paper stock</div>
-          <div class="incl-simple-item">Full-color, portrait 8x10in hardcover, matte finish</div>
-          <div class="incl-simple-item">Free downloadable PDF copy</div>
-          <div class="incl-simple-item">Free shipping in the U.S.</div>
-        </div>
-        <button class="tier-prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
-      </div>
-
-      <!-- STRIPE NOTE (RM) -->
-      <div class="tier-stripe-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="11" width="18" height="11" rx="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-        Secure checkout &mdash; payments processed by Stripe.
-      </div>
-
-      <!-- GUARANTEE (RM) -->
-      <div class="guarantee" style="margin-top:20px;">
-        <div class="guarantee-icon">&#128737;</div>
-        <div class="guarantee-copy">
-          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
-          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, we&rsquo;ll work with you on revisions until it&rsquo;s right. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
-        </div>
-      </div>
-
-      <!-- FAQ (RM) -->
-      <div class="faq-intro">Frequently asked questions</div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">What if I (or my son/daughter) already served a mission but still wants a book?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">No problem! Just <a href="/returned-missionary/">fill out our returned missionary form</a> and we&rsquo;ll reach out with everything you need to get your book started.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
-            <span class="faq-chevron">&#8964;</span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
 <!-- RECOVERED PAGE SCRIPT -->
@@ -896,23 +700,6 @@ pageCss: checkout.css
       });
     })();
 
-    /* ── Path selection ── */
-    function selectPath(path) {
-      document.getElementById('path-selector').style.display = 'none';
-      document.getElementById('path-departing').style.display = path === 'departing' ? 'block' : 'none';
-      document.getElementById('path-serving').style.display   = path === 'serving'   ? 'block' : 'none';
-      document.getElementById('path-rm').style.display        = path === 'rm'        ? 'block' : 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function resetPath() {
-      document.getElementById('path-selector').style.display  = 'block';
-      document.getElementById('path-departing').style.display = 'none';
-      document.getElementById('path-serving').style.display   = 'none';
-      document.getElementById('path-rm').style.display        = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
     /* ── Add-on toggles — checkbox silently swaps CTA button destinations ── */
 
     // Departing: swaps the reserve button
@@ -928,33 +715,6 @@ pageCss: checkout.css
         btn.onclick = function() { window.location.href = link; };
         btn.innerHTML = label;
       });
-    }
-
-    // Serving: swaps the reserve button
-    function toggleServingAddon() {
-      var checked = document.getElementById('serving-mag-check').checked;
-      document.getElementById('srv-mag-price-label').style.display = checked ? 'inline' : 'none';
-      var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
-      // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
-      var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
-      var btn = document.getElementById('serving-pif-btn');
-      btn.onclick = function() { window.location.href = link; };
-      btn.innerHTML = label;
-    }
-
-    // RM: swaps single PIF button
-    function toggleRmAddon() {
-      var checked = document.getElementById('rm-mag-check').checked;
-      document.getElementById('rm-mag-price-label').style.display = checked ? 'inline' : 'none';
-      // RM PIF button (no id, find by context — use data attribute)
-      var rmBtn = document.querySelector('#path-rm .tier-prepaid-btn');
-      if (rmBtn) {
-        rmBtn.onclick = function() {
-          window.location.href = checked
-            ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d'
-            : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
-        };
-      }
     }
 
     /* ── PDP gallery thumbnail swap ── */
