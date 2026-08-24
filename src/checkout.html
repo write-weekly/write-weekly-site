@@ -12,10 +12,62 @@ pageCss: checkout.css
 
 <div class="page-wrap">
 
+    <!-- STEP 1: PATH SELECTOR -->
+    <div class="path-selector" id="path-selector">
+      <!-- INTRO -->
+      <div class="checkout-intro">
+        <h1>How would you like to<br/><em>secure your missionary&rsquo;s book?</em></h1>
+      </div>
+      <div class="path-selector-label">Who is your book for?</div>
+      <div class="path-cards">
+
+        <button class="path-card path-card-departing grain-dark" onclick="selectPath('departing')">
+          <div class="path-card-inner">
+            <div class="path-card-top">
+              <div class="path-card-name">Departing Missionary</div>
+              <div class="path-card-desc">They haven&rsquo;t left yet &mdash; we&rsquo;ll capture every week from day one.</div>
+            </div>
+            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </button>
+
+        <button class="path-card path-card-serving grain-dark" onclick="selectPath('serving')">
+          <div class="path-card-inner">
+            <div class="path-card-top">
+              <div class="path-card-name">Currently Serving</div>
+              <div class="path-card-desc">They&rsquo;re mid-mission &mdash; we&rsquo;ll build the book from what&rsquo;s already been sent.</div>
+            </div>
+            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </button>
+
+        <button class="path-card path-card-rm grain-light" onclick="selectPath('rm')">
+          <div class="path-card-inner">
+            <div class="path-card-top">
+              <div class="path-card-name">Returned Missionary</div>
+              <div class="path-card-desc">They&rsquo;re already home &mdash; we&rsquo;ll build the book from the emails and photos you have.</div>
+            </div>
+            <div class="path-card-cta">See pricing <span class="path-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
     <!-- DEPARTING PATH -->
-    <div id="path-departing">
+    <div id="path-departing" style="display:none;">
+
+      <div class="path-back">
+        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
+      </div>
 
       <div class="pdp-breakout"><div class="pdp-container">
+
+      <!-- INTRO (Departing) -->
+      <div class="checkout-intro" style="text-align:left;margin-bottom:28px;">
+        <h1 style="font-size:28px;">A Mission This Meaningful Deserves More Than a Photo Book</h1>
+        <p>A professionally designed, heirloom-quality book made to be treasured for generations.</p>
+      </div>
 
       <!-- PRODUCT HERO: GALLERY + PURCHASE PANEL (Departing) -->
       <div class="pdp-grid">
@@ -48,7 +100,7 @@ pageCss: checkout.css
               <em>Coming soon.</em>
             </div>
             <div class="pdp-tab-panel" data-tab-index="2">
-              Once you approve your book layout, printing typically takes 5&ndash;7 business days and shipping is an additional 3&ndash;5 days depending on your location. Standard shipping is free within the U.S.
+              Once you approve your book layout, printing typically takes 5&ndash;7 business days and shipping is an additional 3&ndash;5 days depending on your location.
             </div>
           </div>
         </div>
@@ -99,128 +151,25 @@ pageCss: checkout.css
             <div class="pdp-trust-item"><span class="pdp-trust-icon">&#128737;</span> Never Lose a Memory Guarantee</div>
             <div class="pdp-trust-item"><span class="pdp-trust-icon">&#128274;</span> Secure payments via Stripe</div>
             <div class="pdp-trust-item"><span class="pdp-trust-icon">&#128230;</span> Free U.S. shipping</div>
-            <div class="pdp-trust-item"><span class="pdp-trust-icon">&#9993;&#65039;</span> <a href="mailto:admin@write-weekly.com">Customer Support</a></div>
+            <div class="pdp-trust-item"><span class="pdp-trust-icon">&#9993;&#65039;</span> <a href="mailto:admin@write-weekly.com">Real human support</a></div>
           </div>
         </div>
 
       </div>
 
-      <!-- AUDIENCE TABS (Departing) -->
-      <div class="aud-tabs">
-        <div class="aud-tabs-nav">
-          <button class="aud-tab-btn active" onclick="audSetTab(this,0)">Currently Serving / Departing Missionary</button>
-          <button class="aud-tab-btn aud-tab-btn--rm" onclick="audSetTab(this,1)">Returned Missionary</button>
-        </div>
-        <div class="aud-tab-panel active" data-tab-index="0">
-          <p>Whether they&rsquo;re about to enter the MTC or already out in the field, we build the book week by week from the emails and letters they send home &mdash; starting the moment you reserve. You&rsquo;ll never have to track down a missing week.</p>
-          <div class="aud-how">
-            <div class="steps-intro">Here&rsquo;s how it works for a serving or departing missionary</div>
-            <div class="hiw-steps">
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 1</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EReserve%20your%20book%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Reserve your book" /></div>
-                <h3 class="hiw-step-title">Reserve your book</h3>
-                <p class="hiw-step-desc">Lock in your spot and founding-family rate today.</p>
-              </div>
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 2</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EWe%20collect%20every%20week%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="We collect every week" /></div>
-                <h3 class="hiw-step-title">We collect every week</h3>
-                <p class="hiw-step-desc">Each weekly email and letter home is gathered automatically, from now through their release.</p>
-              </div>
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 3</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EWe%20design%2C%20you%20review%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="We design, you review" /></div>
-                <h3 class="hiw-step-title">We design, you review</h3>
-                <p class="hiw-step-desc">We lay it all out into a professional book and send you a proof to approve.</p>
-              </div>
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 4</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EWe%20print%20%26%20ship%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="We print &amp; ship" /></div>
-                <h3 class="hiw-step-title">We print &amp; ship</h3>
-                <p class="hiw-step-desc">Printed on 80lb gloss paper stock and delivered to your door.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="aud-tab-panel" data-tab-index="1">
-          <p>Already home? We build the book from the emails, letters, and photos you&rsquo;ve saved across their mission. Send us what you have and we&rsquo;ll organize every week into a finished, heirloom-quality keepsake.</p>
-          <div class="aud-how">
-            <div class="steps-intro">Here&rsquo;s how it works for a returned missionary</div>
-            <div class="hiw-steps">
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 1</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EReserve%20your%20book%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Reserve your book" /></div>
-                <h3 class="hiw-step-title">Reserve your book</h3>
-                <p class="hiw-step-desc">Lock in your spot and founding-family rate today.</p>
-              </div>
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 2</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3ESend%20us%20what%20you%20have%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Send us what you have" /></div>
-                <h3 class="hiw-step-title">Send us what you have</h3>
-                <p class="hiw-step-desc">Forward the emails, letters, and photos you&rsquo;ve saved across their mission.</p>
-              </div>
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 3</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EWe%20design%2C%20you%20review%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="We design, you review" /></div>
-                <h3 class="hiw-step-title">We design, you review</h3>
-                <p class="hiw-step-desc">We organize every week into a professional book and send you a proof to approve.</p>
-              </div>
-              <div class="hiw-step">
-                <div class="hiw-step-label">Step 4</div>
-                <div class="hiw-step-photo"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27540%27%3E%3Crect%20width%3D%27720%27%20height%3D%27540%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27536%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%276%27%3E%3Crect%20x%3D%27285%27%20y%3D%27195%27%20width%3D%27150%27%20height%3D%27115%27%20rx%3D%278%27%2F%3E%3Ccircle%20cx%3D%27325%27%20cy%3D%27235%27%20r%3D%2718%27%2F%3E%3Cpath%20d%3D%27M285%20310l58-58%2038%2038%2046-46%2028%2028v38z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27372%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2726%27%20fill%3D%27%23a8987c%27%3EWe%20print%20%26%20ship%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27404%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2713%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="We print &amp; ship" /></div>
-                <h3 class="hiw-step-title">We print &amp; ship</h3>
-                <p class="hiw-step-desc">Printed on 80lb gloss paper stock and delivered to your door.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- TESTIMONIAL (Departing) -->
+      <div class="checkout-testimonial">
+        <div class="ct-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="ct-quote">&ldquo;Way more professional than I expected. It looks and feels like a real published book.&rdquo;</div>
+        <div class="ct-author">&mdash; Elder Little, Lehi, UT</div>
       </div>
 
-      <!-- WHAT'S INCLUDED FEATURE GALLERY (Departing) -->
-      <div class="feat">
-        <div class="feat-eyebrow">What&rsquo;s Included</div>
-        <h2 class="feat-title">Inside Every Book</h2>
-        <div class="feat-stage">
-          <div class="feat-col">
-          <button class="feat-item active" data-index="0" data-img="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3ECustom%20Hard%20Covers%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" onclick="featSelect(this)">
-            <div class="feat-item-name">Custom Hard Covers</div>
-            <div class="feat-item-desc">A durable, heirloom-quality hardcover, personalized with your missionary’s name, mission, and service dates.</div>
-          </button>
-          <button class="feat-item" data-index="1" data-img="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3EPremium%20Color%20Printing%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" onclick="featSelect(this)">
-            <div class="feat-item-name">Premium Color Printing</div>
-            <div class="feat-item-desc">Full-color printing on heavy 80lb gloss paper stock, so every photo and letter stays vivid for generations.</div>
-          </button>
-          <button class="feat-item" data-index="2" data-img="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3EWeekly%20Mission%20Letters%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" onclick="featSelect(this)">
-            <div class="feat-item-name">Weekly Mission Letters</div>
-            <div class="feat-item-desc">Every weekly email and letter home, transcribed and laid out in order, week by week.</div>
-          </button>
-          </div>
-          <div class="feat-media">
-            <img class="feat-img" src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3ECustom%20Hard%20Covers%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Custom Hard Covers" />
-            <div class="feat-dots">
-            <button class="feat-dot active" data-index="0" onclick="featSelect(this)" aria-label="Show Custom Hard Covers"></button>
-            <button class="feat-dot" data-index="1" onclick="featSelect(this)" aria-label="Show Premium Color Printing"></button>
-            <button class="feat-dot" data-index="2" onclick="featSelect(this)" aria-label="Show Weekly Mission Letters"></button>
-            <button class="feat-dot" data-index="3" onclick="featSelect(this)" aria-label="Show Mission Call and Map"></button>
-            <button class="feat-dot" data-index="4" onclick="featSelect(this)" aria-label="Show Homecoming & Farewell Talks"></button>
-            <button class="feat-dot" data-index="5" onclick="featSelect(this)" aria-label="Show Table of Contents"></button>
-            </div>
-          </div>
-          <div class="feat-col">
-          <button class="feat-item" data-index="3" data-img="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3EMission%20Call%20%26%20Map%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" onclick="featSelect(this)">
-            <div class="feat-item-name">Mission Call &amp; Map</div>
-            <div class="feat-item-desc">Their original mission call and a map of where they served, preserved at the front of the book.</div>
-          </button>
-          <button class="feat-item" data-index="4" data-img="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3EHomecoming%20%26%20Farewell%20Talks%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" onclick="featSelect(this)">
-            <div class="feat-item-name">Homecoming &amp; Farewell Talks</div>
-            <div class="feat-item-desc">The farewell and homecoming talks that bookend the mission, captured in full.</div>
-          </button>
-          <button class="feat-item" data-index="5" data-img="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27900%27%3E%3Crect%20width%3D%27720%27%20height%3D%27900%27%20fill%3D%27%23efe7d8%27%2F%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%27716%27%20height%3D%27896%27%20fill%3D%27none%27%20stroke%3D%27%23d8cbb4%27%20stroke-width%3D%272%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23c9b899%27%20stroke-width%3D%277%27%3E%3Crect%20x%3D%27250%27%20y%3D%27300%27%20width%3D%27220%27%20height%3D%27170%27%20rx%3D%2710%27%2F%3E%3Ccircle%20cx%3D%27312%27%20cy%3D%27360%27%20r%3D%2726%27%2F%3E%3Cpath%20d%3D%27M250%20470l84-84%2054%2054%2066-66%2036%2036v84z%27%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%27360%27%20y%3D%27560%27%20text-anchor%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2730%27%20fill%3D%27%23a8987c%27%3ETable%20of%20Contents%3C%2Ftext%3E%3Ctext%20x%3D%27360%27%20y%3D%27598%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2716%27%20fill%3D%27%23bcae94%27%20letter-spacing%3D%272%27%3EPHOTO%20PLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E" onclick="featSelect(this)">
-            <div class="feat-item-name">Table of Contents</div>
-            <div class="feat-item-desc">A clean, organized table of contents, so every chapter of the mission is easy to find.</div>
-          </button>
-          </div>
+      <!-- GUARANTEE (Departing) -->
+      <div class="guarantee" style="margin-top:20px;">
+        <div class="guarantee-icon">&#128737;</div>
+        <div class="guarantee-copy">
+          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
+          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, use your Unlimited Revisions Pass for adjustments. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
         </div>
       </div>
 
@@ -264,420 +213,169 @@ pageCss: checkout.css
         </div>
       </div>
 
-      <!-- CUSTOMER REVIEWS (Departing) -->
-      <div class="reviews">
-        <h2 class="reviews-title">Customer Reviews</h2>
-        <div class="reviews-summary">
-          <div class="rv-score">
-            <div class="rv-score-num">4.8</div>
-            <div class="rv-score-meta">
-              <div class="rv-score-stars">★★★★★</div>
-              <div class="rv-score-count">32 reviews</div>
-            </div>
-          </div>
-          <div class="rv-stat"><div class="rv-stat-pct">97%</div><div class="rv-stat-label"><strong>Would recommend</strong><br><span>31 of 32</span></div></div>
-        </div>
-        <div class="reviews-list" id="reviews-list">
-        <div class="review" data-rating="5" data-ts="20251212">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Better than we imagined</span></div>
-            <div class="review-date">12/12/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Nielsen</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Brazil São Paulo Mission</span>
-          </div>
-          <p class="review-body">Every P-Day email from two years turned into a hardcover. My parents cried at my homecoming — worth every penny.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251207">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">A true keepsake</span></div>
-            <div class="review-date">12/7/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Hansen</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Japan Tokyo Mission</span>
-          </div>
-          <p class="review-body">The book captured my whole mission week by week. The print quality is stunning and it feels like a real published book.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251130">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Perfect homecoming gift</span></div>
-            <div class="review-date">11/30/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Christensen</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Philippines Manila Mission</span>
-          </div>
-          <p class="review-body">My family surprised me with this at the airport. Flipping through every week of letters brought it all back.</p>
-        </div>
-        <div class="review" data-rating="4" data-ts="20251121">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★<span class="star-empty">★</span></span><span class="review-title">Beautifully made</span></div>
-            <div class="review-date">11/21/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Larsen</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Peru Lima Mission</span>
-          </div>
-          <p class="review-body">Gorgeous book and great quality. Took a little coordinating to gather everything, but the result was worth it.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251110">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Highly recommend</span></div>
-            <div class="review-date">11/10/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Bennett</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Mexico City Mission</span>
-          </div>
-          <p class="review-body">So much better than a photo book. Having the actual emails preserved makes it feel like a journal of the whole mission.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251105">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Made my mom cry</span></div>
-            <div class="review-date">11/5/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Petersen</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Argentina Buenos Aires Mission</span>
-          </div>
-          <p class="review-body">She had no idea we’d saved every email. The homecoming reveal was unforgettable.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251029">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Professional quality</span></div>
-            <div class="review-date">10/29/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Romney</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">England London Mission</span>
-          </div>
-          <p class="review-body">Hardcover, matte finish, full color — it looks like something off a bookstore shelf.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251020">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Treasured it instantly</span></div>
-            <div class="review-date">10/20/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Snow</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">France Paris Mission</span>
-          </div>
-          <p class="review-body">My companion ordered one too. We both agree it’s the best way to remember our missions.</p>
-        </div>
-        <div class="review" data-rating="4" data-ts="20251009">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★<span class="star-empty">★</span></span><span class="review-title">Really well done</span></div>
-            <div class="review-date">10/9/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Kimball</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Chile Santiago Mission</span>
-          </div>
-          <p class="review-body">Loved the final book. A couple of weeks were missing from our emails but the team helped fill in the gaps.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20251004">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Couldn’t be happier</span></div>
-            <div class="review-date">10/4/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Anderson</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Guatemala City Mission</span>
-          </div>
-          <p class="review-body">Every letter, every photo, all in one beautiful place. My kids will have this forever.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250927">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Exceeded expectations</span></div>
-            <div class="review-date">9/27/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Whitmer</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Ghana Accra Mission</span>
-          </div>
-          <p class="review-body">The design team laid everything out perfectly. Better than I ever expected.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250918">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">A family heirloom</span></div>
-            <div class="review-date">9/18/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Cannon</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">South Africa Johannesburg Mission</span>
-          </div>
-          <p class="review-body">This will be passed down for generations. Incredible quality and so meaningful.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250907">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">So worth it</span></div>
-            <div class="review-date">9/7/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Pratt</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Australia Sydney Mission</span>
-          </div>
-          <p class="review-body">Two years of memories I was afraid I’d forget, now preserved forever. Cannot recommend enough.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250902">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Stunning book</span></div>
-            <div class="review-date">9/2/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Olsen</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">New Zealand Auckland Mission</span>
-          </div>
-          <p class="review-body">The colors are vibrant and the binding feels premium. My parents show it to everyone.</p>
-        </div>
-        <div class="review" data-rating="4" data-ts="20250826">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★<span class="star-empty">★</span></span><span class="review-title">Great gift</span></div>
-            <div class="review-date">8/26/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Eyring</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Taiwan Taipei Mission</span>
-          </div>
-          <p class="review-body">Solid book and a wonderful keepsake. Shipping took a little longer than I hoped but the quality made up for it.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250817">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Captured everything</span></div>
-            <div class="review-date">8/17/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Ballard</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">South Korea Seoul Mission</span>
-          </div>
-          <p class="review-body">Every transfer, every companion, every week. It’s like reliving the whole mission.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250806">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Best thank-you gift</span></div>
-            <div class="review-date">8/6/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Holland</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Italy Rome Mission</span>
-          </div>
-          <p class="review-body">Gave one to my parents for supporting me. They said it’s the most thoughtful gift they’ve ever received.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250801">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Wonderful experience</span></div>
-            <div class="review-date">8/1/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Bednar</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Spain Madrid Mission</span>
-          </div>
-          <p class="review-body">From start to finish the process was easy and the book turned out beautifully.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250725">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Every week preserved</span></div>
-            <div class="review-date">7/25/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Cook</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Germany Frankfurt Mission</span>
-          </div>
-          <p class="review-body">I didn’t realize how much I’d want this until I held it. Every P-Day is right there.</p>
-        </div>
-        <div class="review" data-rating="4" data-ts="20250716">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★<span class="star-empty">★</span></span><span class="review-title">Lovely keepsake</span></div>
-            <div class="review-date">7/16/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Rasband</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Thailand Bangkok Mission</span>
-          </div>
-          <p class="review-body">Beautiful book overall. A few photos came out darker than expected, but still a treasure.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250705">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Impressed everyone</span></div>
-            <div class="review-date">7/5/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Stevenson</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Fiji Suva Mission</span>
-          </div>
-          <p class="review-body">My whole family passed it around at dinner. Everyone was amazed at the quality.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250630">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Feels like a real book</span></div>
-            <div class="review-date">6/30/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Gong</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Cambodia Phnom Penh Mission</span>
-          </div>
-          <p class="review-body">Hard to believe it started as a bunch of emails. It looks completely professional.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250623">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Perfect in every way</span></div>
-            <div class="review-date">6/23/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Soares</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Portugal Lisbon Mission</span>
-          </div>
-          <p class="review-body">The layout, the paper, the cover — all of it exceeded my hopes.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250614">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">So meaningful</span></div>
-            <div class="review-date">6/14/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Uchtdorf</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Dominican Republic Santo Domingo Mission</span>
-          </div>
-          <p class="review-body">Reading back through my own words from the mission is priceless. So glad we did this.</p>
-        </div>
-        <div class="review" data-rating="4" data-ts="20250603">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★<span class="star-empty">★</span></span><span class="review-title">Very happy</span></div>
-            <div class="review-date">6/3/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Renlund</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Ecuador Quito Mission</span>
-          </div>
-          <p class="review-body">Great product and great support team. Minor delay in printing but the result was excellent.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250529">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">A gift I’ll keep forever</span></div>
-            <div class="review-date">5/29/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Nelson</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Colombia Bogotá Mission</span>
-          </div>
-          <p class="review-body">This is going on my shelf for life. The memories are all captured perfectly.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250522">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Amazing quality</span></div>
-            <div class="review-date">5/22/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Oaks</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Honduras Tegucigalpa Mission</span>
-          </div>
-          <p class="review-body">Durable, beautiful, and affordable. Exactly what I wanted to remember my mission.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250513">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Loved it</span></div>
-            <div class="review-date">5/13/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Scott</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Samoa Apia Mission</span>
-          </div>
-          <p class="review-body">My parents were absolutely impressed. Beautifully made and so easy to put together.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250502">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Better than expected</span></div>
-            <div class="review-date">5/2/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Perry</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Tonga Nukuʻalofa Mission</span>
-          </div>
-          <p class="review-body">I was skeptical at first but the finished book blew me away.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250427">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">The perfect memento</span></div>
-            <div class="review-date">4/27/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Hales</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Cape Verde Praia Mission</span>
-          </div>
-          <p class="review-body">Every week of my mission, bound into something I’ll treasure forever.</p>
-        </div>
-        <div class="review" data-rating="4" data-ts="20250420">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★<span class="star-empty">★</span></span><span class="review-title">Really nice book</span></div>
-            <div class="review-date">4/20/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Elder Tanner</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">Utah Salt Lake City Mission</span>
-          </div>
-          <p class="review-body">Quality is excellent. Would have loved a few more layout options but very happy overall.</p>
-        </div>
-        <div class="review" data-rating="5" data-ts="20250411">
-          <div class="review-head">
-            <div class="review-headline"><span class="review-stars">★★★★★</span><span class="review-title">Recommend to everyone</span></div>
-            <div class="review-date">4/11/2025</div>
-          </div>
-          <div class="review-meta">
-            <span class="review-name">Sister Woodruff</span>
-            <span class="review-verified"><span class="rv-check">&#10003;</span> Verified purchase</span>
-            <span class="review-loc">California Riverside Mission</span>
-          </div>
-          <p class="review-body">If your missionary is coming home, do this. It’s the best gift you can give.</p>
-        </div>
-        </div>
-        <div class="reviews-empty" id="reviews-empty">No reviews match your search.</div>
-        <div class="reviews-pagination" id="reviews-pagination">
-          <button class="rv-page-btn" id="rv-prev" onclick="rvPage(-1)">&larr; Previous</button>
-          <span class="rv-page-info" id="rv-page-info"></span>
-          <button class="rv-page-btn" id="rv-next" onclick="rvPage(1)">Next &rarr;</button>
-        </div>
-      </div>
-
-      <!-- BOTTOM CTA (Departing) -->
-      <div class="pdp-final-cta">
-        <div class="pdp-final-cta-title">Ready to preserve the whole mission?</div>
-        <button class="tier-prepaid-btn pdp-cta" id="prepaid-btn-bottom" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
-      </div>
-
       </div></div>
+
+    </div>
+
+    <!-- CURRENTLY SERVING PATH -->
+    <div id="path-serving" style="display:none;">
+
+      <div class="path-back">
+        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
+      </div>
+
+      <!-- INTRO (Serving) -->
+      <div class="checkout-intro">
+        <h1>A Mission This Meaningful Deserves More Than a Photo Book</h1>
+        <p>A professionally designed, heirloom-quality book made to be treasured for generations.</p>
+      </div>
+
+      <!-- PAY IN FULL ONLY -->
+      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
+        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
+        <div class="tier-prepaid-price">
+          <span class="price-main"><sup>$</sup>399</span>
+          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
+        </div>
+        <div class="incl-simple-header">What&rsquo;s Included</div>
+        <div class="incl-simple-list">
+          <div class="incl-simple-item">Unlimited pages</div>
+          <div class="incl-simple-item">80lb gloss paper stock</div>
+          <div class="incl-simple-item">Full-color, portrait 8x10in hardcover, matte finish</div>
+          <div class="incl-simple-item">Free downloadable PDF copy</div>
+          <div class="incl-simple-item">Free shipping in the U.S.</div>
+          <div class="incl-simple-item">PDF Transfer Recaps</div>
+          <div class="incl-simple-item">One-Year Mission Countdown Calendar</div>
+        </div>
+        <button class="tier-prepaid-btn" id="serving-pif-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
+      </div>
+
+      <!-- ADD-ON (Serving) -->
+      <div class="addon-wrap">
+        <div class="addon-header">Optional Add-on</div>
+        <label class="addon-row">
+          <input type="checkbox" id="serving-mag-check" onchange="toggleServingAddon()">
+          <div class="addon-copy">
+            <div class="addon-name">Google Photos Extraction <span id="srv-mag-price-label" style="display:none;font-size:12px;color:#B07040;font-weight:600;">+$100 added</span></div>
+            <div class="addon-desc">Your premium book includes all photos attached to weekly emails. Have additional mission photos in Google Photos? Add our extraction service, and we&rsquo;ll gather them for inclusion in the book.</div>
+          </div>
+          <div class="addon-price">+$100</div>
+        </label>
+      </div>
+
+      <!-- STRIPE NOTE (Serving) -->
+      <div class="tier-stripe-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Secure checkout &mdash; payments processed by Stripe.
+      </div>
+
+      <!-- GUARANTEE (Serving) -->
+      <div class="guarantee" style="margin-top:20px;">
+        <div class="guarantee-icon">&#128737;</div>
+        <div class="guarantee-copy">
+          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
+          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, we&rsquo;ll work with you on revisions until it&rsquo;s right. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
+        </div>
+      </div>
+
+      <!-- FAQ (Serving) -->
+      <div class="faq-intro">Frequently asked questions</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do I add Weekly to my missionary&rsquo;s email list?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">It requires zero effort from you. We&rsquo;ll give you a dedicated Weekly email address. Your missionary simply adds it to their regular P-Day email list, and our automated system handles 100% of the collecting and formatting from there!</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if my missionary comes home before their mission is complete?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No problem. We&rsquo;ll build the book from whatever has been sent so far and refund any difference. Every situation is handled personally &mdash; just reach out and we&rsquo;ll take care of you.</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RM PATH -->
+    <div id="path-rm" style="display:none;">
+
+      <div class="path-back">
+        <button class="path-back-btn" onclick="resetPath()">&#8592; Back</button>
+      </div>
+
+      <!-- INTRO (RM) -->
+      <div class="checkout-intro">
+        <h1>A Mission This Meaningful Deserves More Than a Photo Book</h1>
+        <p>A professionally designed, heirloom-quality book made to be treasured for generations.</p>
+      </div>
+
+      <!-- PAY IN FULL ONLY -->
+      <div class="tier-prepaid grain-dark" style="border-radius:20px;margin-bottom:20px;">
+        <div class="tier-badge">&#128737;&nbsp; Guarantee Included</div>
+        <div class="tier-prepaid-price">
+          <span class="price-main"><sup>$</sup>399</span>
+          <span class="price-note" style="color:rgba(176,112,64,0.85);font-weight:600;">one payment &mdash; fully covered</span>
+        </div>
+        <div class="incl-simple-header">What&rsquo;s Included</div>
+        <div class="incl-simple-list">
+          <div class="incl-simple-item">Unlimited pages</div>
+          <div class="incl-simple-item">80lb gloss paper stock</div>
+          <div class="incl-simple-item">Full-color, portrait 8x10in hardcover, matte finish</div>
+          <div class="incl-simple-item">Free downloadable PDF copy</div>
+          <div class="incl-simple-item">Free shipping in the U.S.</div>
+        </div>
+        <button class="tier-prepaid-btn" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
+      </div>
+
+      <!-- STRIPE NOTE (RM) -->
+      <div class="tier-stripe-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Secure checkout &mdash; payments processed by Stripe.
+      </div>
+
+      <!-- GUARANTEE (RM) -->
+      <div class="guarantee" style="margin-top:20px;">
+        <div class="guarantee-icon">&#128737;</div>
+        <div class="guarantee-copy">
+          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
+          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, we&rsquo;ll work with you on revisions until it&rsquo;s right. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
+        </div>
+      </div>
+
+      <!-- FAQ (RM) -->
+      <div class="faq-intro">Frequently asked questions</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I (or my son/daughter) already served a mission but still wants a book?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No problem! Just <a href="/returned-missionary/">fill out our returned missionary form</a> and we&rsquo;ll reach out with everything you need to get your book started.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What if I don&rsquo;t love how the final book looks?</span>
+            <span class="faq-chevron">&#8964;</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We take all the risk! If you aren&rsquo;t completely thrilled with the final proof, you can use your Unlimited Revisions Pass for manual adjustments. If it&rsquo;s still not perfect, we will refund your investment &mdash; no questions asked.</div></div>
+        </div>
+      </div>
 
     </div>
 
@@ -700,6 +398,23 @@ pageCss: checkout.css
       });
     })();
 
+    /* ── Path selection ── */
+    function selectPath(path) {
+      document.getElementById('path-selector').style.display = 'none';
+      document.getElementById('path-departing').style.display = path === 'departing' ? 'block' : 'none';
+      document.getElementById('path-serving').style.display   = path === 'serving'   ? 'block' : 'none';
+      document.getElementById('path-rm').style.display        = path === 'rm'        ? 'block' : 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetPath() {
+      document.getElementById('path-selector').style.display  = 'block';
+      document.getElementById('path-departing').style.display = 'none';
+      document.getElementById('path-serving').style.display   = 'none';
+      document.getElementById('path-rm').style.display        = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     /* ── Add-on toggles — checkbox silently swaps CTA button destinations ── */
 
     // Departing: swaps the reserve button
@@ -709,12 +424,36 @@ pageCss: checkout.css
       var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
       // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
       var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
-      ['prepaid-btn', 'prepaid-btn-bottom'].forEach(function(id) {
-        var btn = document.getElementById(id);
-        if (!btn) return;
-        btn.onclick = function() { window.location.href = link; };
-        btn.innerHTML = label;
-      });
+      var btn = document.getElementById('prepaid-btn');
+      btn.onclick = function() { window.location.href = link; };
+      btn.innerHTML = label;
+    }
+
+    // Serving: swaps the reserve button
+    function toggleServingAddon() {
+      var checked = document.getElementById('serving-mag-check').checked;
+      document.getElementById('srv-mag-price-label').style.display = checked ? 'inline' : 'none';
+      var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
+      // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
+      var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+      var btn = document.getElementById('serving-pif-btn');
+      btn.onclick = function() { window.location.href = link; };
+      btn.innerHTML = label;
+    }
+
+    // RM: swaps single PIF button
+    function toggleRmAddon() {
+      var checked = document.getElementById('rm-mag-check').checked;
+      document.getElementById('rm-mag-price-label').style.display = checked ? 'inline' : 'none';
+      // RM PIF button (no id, find by context — use data attribute)
+      var rmBtn = document.querySelector('#path-rm .tier-prepaid-btn');
+      if (rmBtn) {
+        rmBtn.onclick = function() {
+          window.location.href = checked
+            ? 'https://buy.stripe.com/7sYaEXfei5XR9w97pT2go0d'
+            : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
+        };
+      }
     }
 
     /* ── PDP gallery thumbnail swap ── */
@@ -735,82 +474,6 @@ pageCss: checkout.css
         p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
       });
     }
-
-    /* ── Feature gallery (What's Included) ── */
-    function featSelect(el) {
-      var root = el.closest('.feat');
-      if (!root) return;
-      var idx = Number(el.dataset.index);
-      var active = root.querySelector('.feat-item[data-index="' + idx + '"]');
-      root.querySelectorAll('.feat-item').forEach(function(it) {
-        it.classList.toggle('active', Number(it.dataset.index) === idx);
-      });
-      root.querySelectorAll('.feat-dot').forEach(function(d) {
-        d.classList.toggle('active', Number(d.dataset.index) === idx);
-      });
-      var img = root.querySelector('.feat-img');
-      if (active && img) {
-        img.src = active.dataset.img;
-        img.alt = active.querySelector('.feat-item-name').textContent;
-      }
-    }
-
-    /* ── Audience tabs (Serving/Departing vs Returned) ── */
-    function audSetTab(btn, index) {
-      var wrap = btn.closest('.aud-tabs');
-      if (!wrap) return;
-      wrap.querySelectorAll('.aud-tab-btn').forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      wrap.querySelectorAll('.aud-tab-panel').forEach(function(p) {
-        p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
-      });
-    }
-
-    /* ── Customer reviews: search, filter, sort, paginate ── */
-    var rvState = { q: '', rating: 'all', sort: 'newest', page: 1, size: 5 };
-    function rvSetSearch(v) { rvState.q = v.toLowerCase().trim(); rvState.page = 1; rvRender(); }
-    function rvSetFilter(v) { rvState.rating = v; rvState.page = 1; rvRender(); }
-    function rvSetSort(v) { rvState.sort = v; rvState.page = 1; rvRender(); }
-    function rvPage(delta) { rvState.page += delta; rvRender(); rvScrollTop(); }
-    function rvScrollTop() {
-      var top = document.querySelector('.reviews-title');
-      if (top) top.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    function rvRender() {
-      var list = document.getElementById('reviews-list');
-      if (!list) return;
-      var items = Array.prototype.slice.call(list.querySelectorAll('.review'));
-      items.sort(function(a, b) {
-        if (rvState.sort === 'oldest') return a.dataset.ts - b.dataset.ts;
-        if (rvState.sort === 'highest') return b.dataset.rating - a.dataset.rating || b.dataset.ts - a.dataset.ts;
-        if (rvState.sort === 'lowest') return a.dataset.rating - b.dataset.rating || b.dataset.ts - a.dataset.ts;
-        return b.dataset.ts - a.dataset.ts; // newest
-      });
-      items.forEach(function(el) { list.appendChild(el); }); // re-order in DOM
-      var matching = items.filter(function(el) {
-        var okRating = rvState.rating === 'all' || el.dataset.rating === rvState.rating;
-        var okSearch = !rvState.q || el.textContent.toLowerCase().indexOf(rvState.q) !== -1;
-        return okRating && okSearch;
-      });
-      var pages = Math.max(1, Math.ceil(matching.length / rvState.size));
-      if (rvState.page > pages) rvState.page = pages;
-      if (rvState.page < 1) rvState.page = 1;
-      var start = (rvState.page - 1) * rvState.size, end = start + rvState.size;
-      items.forEach(function(el) { el.style.display = 'none'; });
-      matching.forEach(function(el, i) { if (i >= start && i < end) el.style.display = ''; });
-
-      var empty = document.getElementById('reviews-empty');
-      if (empty) empty.style.display = matching.length ? 'none' : 'block';
-      var pag = document.getElementById('reviews-pagination');
-      var info = document.getElementById('rv-page-info');
-      var prev = document.getElementById('rv-prev');
-      var next = document.getElementById('rv-next');
-      if (pag) pag.style.display = matching.length > rvState.size ? 'flex' : 'none';
-      if (info) info.textContent = 'Page ' + rvState.page + ' of ' + pages;
-      if (prev) prev.disabled = rvState.page <= 1;
-      if (next) next.disabled = rvState.page >= pages;
-    }
-    rvRender();
 
     /* ── FAQ accordion ── */
     function toggleFaq(btn) {
