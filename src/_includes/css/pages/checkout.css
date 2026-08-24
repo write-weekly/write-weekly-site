@@ -625,3 +625,10 @@
 .rv-page-btn:hover:not(:disabled) {border-color: var(--copper);}
 .rv-page-btn:disabled {color: rgba(42,24,0,0.28); cursor: default;}
 .rv-page-info {font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums;}
+
+/* ── Bottom "Reserve your book" call to action ── */
+.pdp-final-cta {margin-top: 48px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;}
+.pdp-final-cta-title {font-family: "Playfair Display", Georgia, serif; font-size: 26px;
+      font-weight: 500; color: #1E1000;}
+.pdp-final-cta .tier-prepaid-btn {max-width: 420px; width: 100%;}

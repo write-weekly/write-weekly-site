@@ -717,13 +717,10 @@ pageCss: checkout.css
         </div>
       </div>
 
-      <!-- GUARANTEE (Departing) -->
-      <div class="guarantee" style="margin-top:20px;">
-        <div class="guarantee-icon">&#128737;</div>
-        <div class="guarantee-copy">
-          <div class="guarantee-title">Never Lose a Memory Guarantee</div>
-          <div class="guarantee-text">If you aren&rsquo;t completely thrilled with the final book, use your Unlimited Revisions Pass for adjustments. If it&rsquo;s still not perfect, we&rsquo;ll refund your investment &mdash; no questions asked.</div>
-        </div>
+      <!-- BOTTOM CTA (Departing) -->
+      <div class="pdp-final-cta">
+        <div class="pdp-final-cta-title">Ready to preserve the whole mission?</div>
+        <button class="tier-prepaid-btn pdp-cta" id="prepaid-btn-bottom" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Reserve Your Book &mdash; $399</button>
       </div>
 
       </div></div>
@@ -925,9 +922,12 @@ pageCss: checkout.css
       var label = checked ? 'Reserve Your Book &mdash; $499' : 'Reserve Your Book &mdash; $399';
       // TODO: replace with the real Stripe Payment Link for $499 (Google Photos Extraction add-on) before shipping.
       var link  = checked ? '#TODO-STRIPE-LINK-499' : 'https://buy.stripe.com/bJeeVdc26euneQt4dH2go06';
-      var btn = document.getElementById('prepaid-btn');
-      btn.onclick = function() { window.location.href = link; };
-      btn.innerHTML = label;
+      ['prepaid-btn', 'prepaid-btn-bottom'].forEach(function(id) {
+        var btn = document.getElementById(id);
+        if (!btn) return;
+        btn.onclick = function() { window.location.href = link; };
+        btn.innerHTML = label;
+      });
     }
 
     // Serving: swaps the reserve button
