@@ -352,6 +352,7 @@
   .pdp-gallery-thumbs {flex-direction: row; order: 1;}
   .pdp-gallery-main {flex: none; width: 100%; order: 0; aspect-ratio: 5/4;}
   .pdp-title {font-size: 24px;}
+  .pdp-title-break {display: none;}
   .pdp-trust-row {grid-template-columns: 1fr;}
 }
 @media (max-width: 480px) {
