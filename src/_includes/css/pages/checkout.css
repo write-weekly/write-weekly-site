@@ -524,7 +524,7 @@
       background: var(--copper); color: #fff; border: 1px solid transparent; border-bottom: none;
       opacity: 0.55; transition: opacity 0.2s, box-shadow 0.2s;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;}
-.aud-tab-btn--rm {background: #fff; color: #1E1000; border-color: var(--border);}
+.aud-tab-btn--rm {background: #fff; color: #1E1000; border: 1px solid #1E1000;}
 .aud-tab-btn:hover {opacity: 0.8;}
 /* the selected tab is shown at full strength; colours never change */
 .aud-tab-btn.active {opacity: 1;}
