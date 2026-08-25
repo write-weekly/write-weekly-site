@@ -196,17 +196,6 @@ pageCss: checkout.css
         </div>
       </div>
 
-      <!-- MISSION BOOK DETAILS / SHIPPING (Departing) -->
-      <div class="pdp-acc">
-        <div class="pdp-acc-item">
-          <button class="pdp-acc-q" onclick="toggleAcc(this)">
-            <span class="pdp-acc-title">Mission Book Details</span>
-            <span class="pdp-acc-chevron">&#8964;</span>
-          </button>
-          <div class="pdp-acc-body"><div class="pdp-acc-body-inner">A portrait 8x10in hardcover with a matte finish, printed in full color on 80lb gloss paper stock. Every book has unlimited pages and a binding built to last for generations.<br><br>Each book is built on a professional design template that opens with a personalized title page and a table of contents. Every weekly entry is automatically labeled with the mission area and week number.<br><br>Any photos attached to your missionary&rsquo;s weekly emails are included automatically. If you&rsquo;d like us to pull additional photos from a Google Photos link, that&rsquo;s available as an upgrade add-on at checkout.<br><br>Before the weekly emails, you can choose to include:<ul class="pdp-acc-list"><li>Mission Call</li><li>Mission Map</li><li>Farewell Talk</li><li>Homecoming talk</li></ul></div></div>
-        </div>
-      </div>
-
       <!-- FAQ (Departing) -->
       <div class="faq-intro">Frequently asked questions</div>
       <div class="faq-list">
@@ -696,12 +685,6 @@ pageCss: checkout.css
       if (main) main.style.backgroundImage = "url('" + url + "')";
       document.querySelectorAll('.pdp-thumb').forEach(function(t) { t.classList.remove('active'); });
       btn.classList.add('active');
-    }
-
-    /* ── PDP info accordion ── */
-    function toggleAcc(btn) {
-      var item = btn.closest('.pdp-acc-item');
-      if (item) item.classList.toggle('open');
     }
 
     /* ── Feature gallery (What's Included) ── */
