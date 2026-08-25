@@ -383,11 +383,7 @@
 /* ── How it works: title, text tabs, steps ── */
 .aud-tabs {margin-top: 26px;}
 .aud-title {text-align: center; font-family: "Playfair Display", Georgia, serif;
-      font-size: 30px; font-weight: 500; color: var(--dark); margin: 0 0 20px;
-      transition: opacity 0.7s ease;}
-/* faded until scrolled into view (JS adds fade-title; without JS it stays full) */
-.aud-tabs.fade-title .aud-title {opacity: 0.28;}
-.aud-tabs.fade-title .aud-title.in-view {opacity: 1;}
+      font-size: 30px; font-weight: 500; color: var(--dark); margin: 0 0 20px;}
 /* text-only tabs in the section's serif face; underline carries the active state */
 .aud-tabs-nav {display: flex; justify-content: center; gap: 30px; margin-bottom: 26px;}
 .aud-tab-btn {background: none; border: none; cursor: pointer; padding: 0 0 4px;
@@ -487,3 +483,13 @@
 .pdp-final-cta-title {font-family: "Playfair Display", Georgia, serif; font-size: 26px;
       font-weight: 500; color: #1E1000;}
 .pdp-final-cta .tier-prepaid-btn {max-width: 420px; width: 100%;}
+
+/* ── Scroll reveal: lower sections blur + fade until scrolled into view ──
+   JS-gated (adds .js-reveal); without JS or with reduced motion, everything
+   is fully visible. Once revealed, a section stays sharp. */
+.js-reveal .reveal {opacity: 0.35; filter: blur(5px);
+      transition: opacity 0.6s ease, filter 0.6s ease;}
+.js-reveal .reveal.in-view {opacity: 1; filter: none;}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .reveal {opacity: 1; filter: none; transition: none;}
+}

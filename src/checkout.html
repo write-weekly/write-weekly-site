@@ -78,7 +78,7 @@ pageCss: checkout.css
       </div>
 
       <!-- AUDIENCE TABS (Departing) -->
-      <div class="aud-tabs">
+      <div class="aud-tabs reveal">
         <h2 class="aud-title">Here&rsquo;s how it works</h2>
         <div class="aud-tabs-nav" role="tablist" aria-label="Missionary type">
           <button class="aud-tab-btn active" role="tab" aria-selected="true" onclick="audSetTab(this,0)">Currently serving or departing</button>
@@ -143,7 +143,7 @@ pageCss: checkout.css
       </div>
 
       <!-- WHAT'S INCLUDED FEATURE GALLERY (Departing) -->
-      <div class="feat">
+      <div class="feat reveal">
         <div class="feat-eyebrow">What&rsquo;s Included</div>
         <h2 class="feat-title">Inside Every Book</h2>
         <div class="feat-stage">
@@ -190,8 +190,8 @@ pageCss: checkout.css
       </div>
 
       <!-- FAQ (Departing) -->
-      <div class="faq-intro">Frequently asked questions</div>
-      <div class="faq-list">
+      <div class="faq-intro reveal">Frequently asked questions</div>
+      <div class="faq-list reveal">
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
             <span class="faq-q-text">What makes your books different from a standard photo book?</span>
@@ -237,7 +237,7 @@ pageCss: checkout.css
       </div>
 
       <!-- CUSTOMER REVIEWS (Departing) -->
-      <div class="reviews">
+      <div class="reviews reveal">
         <h2 class="reviews-title">Customer Reviews</h2>
         <div class="reviews-summary">
           <div class="rv-score">
@@ -644,7 +644,7 @@ pageCss: checkout.css
       </div>
 
       <!-- BOTTOM CTA (Departing) -->
-      <div class="pdp-final-cta">
+      <div class="pdp-final-cta reveal">
         <div class="pdp-final-cta-title">Ready to preserve the whole mission?</div>
         <button class="tier-prepaid-btn pdp-cta" id="prepaid-btn-bottom" onclick="window.location.href='https://buy.stripe.com/bJeeVdc26euneQt4dH2go06'">Secure Your Book Today!</button>
       </div>
@@ -714,19 +714,19 @@ pageCss: checkout.css
       });
     }
 
-    /* ── "Here's how it works" title: faded until scrolled into view ── */
+    /* ── Scroll reveal: lower sections blur/fade until scrolled into view ── */
     (function() {
-      var tabs = document.querySelector('.aud-tabs');
-      var title = tabs && tabs.querySelector('.aud-title');
-      if (!title || !('IntersectionObserver' in window)) return;
+      if (!('IntersectionObserver' in window)) return;
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      tabs.classList.add('fade-title');
+      var els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+      document.body.classList.add('js-reveal');
       var io = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
-          if (e.isIntersecting) { title.classList.add('in-view'); io.unobserve(e.target); }
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
         });
-      }, { threshold: 0.6 });
-      io.observe(title);
+      }, { threshold: 0.12 });
+      els.forEach(function(el) { io.observe(el); });
     })();
 
     /* ── Customer reviews: search, filter, sort, paginate ── */
