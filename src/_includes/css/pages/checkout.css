@@ -342,8 +342,10 @@
       transition: transform 0.25s ease;}
 .pdp-acc-item.open .pdp-acc-chevron {transform: rotate(180deg);}
 .pdp-acc-body {max-height: 0; overflow: hidden; transition: max-height 0.3s ease;}
-.pdp-acc-item.open .pdp-acc-body {max-height: 300px;}
+.pdp-acc-item.open .pdp-acc-body {max-height: 680px;}
 .pdp-acc-body-inner {padding: 0 2px 16px; font-size: 13px; color: rgba(42,24,0,0.65); line-height: 1.7;}
+.pdp-acc-list {margin: 8px 0 0; padding-left: 18px;}
+.pdp-acc-list li {margin-bottom: 4px;}
 @media (max-width: 860px) {
   .pdp-grid {grid-template-columns: 1fr; gap: 28px;}
   .pdp-gallery {flex-direction: column;}
