@@ -381,7 +381,7 @@
 
 /* ── Audience tabs (Serving/Departing vs Returned) ── */
 /* ── How it works: title, text tabs, steps ── */
-.aud-tabs {margin-top: 26px;}
+.aud-tabs {margin-top: 60px;}
 .aud-title {text-align: center; font-family: "Playfair Display", Georgia, serif;
       font-size: 30px; font-weight: 500; color: var(--dark); margin: 0 0 20px;}
 /* text-only tabs in the section's serif face; underline carries the active state */
@@ -405,12 +405,18 @@
       font-weight: 700; color: rgba(42,24,0,0.45); margin-bottom: 12px;}
 .hiw-step-photo {border-radius: 8px; overflow: hidden; background: #efe7d8; margin-bottom: 16px;}
 .hiw-step-photo img {display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;}
-.hiw-step-title {font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 500;
-      color: var(--dark); line-height: 1.25; margin-bottom: 8px;}
+.hiw-step-title {font-family: "Playfair Display", Georgia, serif; font-size: 18px; font-weight: 500;
+      color: var(--dark); line-height: 1.3; margin-bottom: 8px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .hiw-step-desc {font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0;}
+/* keep step titles on one line in the narrow 4-column band */
+@media (max-width: 1088px) {
+  .hiw-step-title {font-size: 15px;}
+}
 @media (max-width: 860px) {
   .aud-title {font-size: 26px;}
   .hiw-steps {grid-template-columns: 1fr; gap: 20px;}
+  .hiw-step-title {font-size: 18px;}
 }
 
 /* ── Customer reviews ── */
