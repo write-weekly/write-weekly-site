@@ -349,9 +349,7 @@
 }
 
 /* ── What's Included feature gallery ── */
-.feat {margin-top: 44px; margin-bottom: 56px;
-      background: #fff; border-radius: 16px; padding: 44px 40px;
-      box-shadow: 0 2px 20px rgba(42,24,0,0.05);}
+.feat {margin-top: 44px; margin-bottom: 56px;}
 .feat-eyebrow {text-align: center; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
       color: rgba(42,24,0,0.45); font-weight: 600; margin-bottom: 10px;}
 .feat-title {text-align: center; font-family: "Playfair Display", Georgia, serif; font-size: 34px;
@@ -376,7 +374,6 @@
       background: rgba(42,24,0,0.15); cursor: pointer; transition: background 0.2s;}
 .feat-dot.active {background: #B07040;}
 @media (max-width: 860px) {
-  .feat {padding: 28px 20px;}
   .feat-stage {grid-template-columns: 1fr; gap: 24px;}
   .feat-media {order: -1;}
   .feat-title {font-size: 26px;}
