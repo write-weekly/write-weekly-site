@@ -380,50 +380,37 @@
 }
 
 /* ── Audience tabs (Serving/Departing vs Returned) ── */
+/* ── How it works: title, text tabs, steps ── */
 .aud-tabs {margin-top: 26px;}
-.aud-tabs-nav {display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px;}
-/* Each tab keeps a fixed colour at all times: Serving/Departing copper, Returned white */
-.aud-tab-btn {flex: 1; cursor: pointer; padding: 14px 20px; font-size: 15px; font-weight: 600;
-      line-height: 1.3; text-align: center; margin-bottom: -1px; border-radius: 10px 10px 0 0;
-      background: var(--copper); color: #fff; border: 1px solid transparent; border-bottom: none;
-      opacity: 0.55; transition: opacity 0.2s, box-shadow 0.2s;
+.aud-title {text-align: center; font-family: "Playfair Display", Georgia, serif;
+      font-size: 30px; font-weight: 500; color: var(--dark); margin: 0 0 20px;}
+/* text-only tabs — no fill/pill/border box; semantics + underline carry the affordance */
+.aud-tabs-nav {display: flex; justify-content: center; gap: 30px; margin-bottom: 26px;}
+.aud-tab-btn {background: none; border: none; cursor: pointer; padding: 0 0 4px;
+      font-size: 15px; font-weight: 600; line-height: 1.2;
+      color: var(--text-muted); border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;}
-.aud-tab-btn--rm {background: #fff; color: #1E1000; border: 1px solid #1E1000;}
-.aud-tab-btn:hover {opacity: 0.8;}
-/* the selected tab is shown at full strength; colours never change */
-.aud-tab-btn.active {opacity: 1;}
-.aud-tab-btn--rm.active {box-shadow: 0 -2px 10px rgba(42,24,0,0.04);}
+.aud-tab-btn:hover {color: rgba(42,24,0,0.78);}
+.aud-tab-btn.active {color: var(--dark); border-bottom-color: var(--copper);}
+.aud-tab-btn:focus-visible {outline: 2px solid var(--copper); outline-offset: 3px; border-radius: 2px;}
 .aud-tab-panel {display: none;}
 .aud-tab-panel.active {display: block;}
-.aud-panel-title {font-family: "Playfair Display", Georgia, serif; font-size: 20px;
-      color: #1E1000; margin-bottom: 8px;}
-.aud-tab-panel p {font-size: 14px; line-height: 1.7; color: rgba(42,24,0,0.65); margin: 0;}
-@media (max-width: 560px) {
-  .aud-tab-btn {font-size: 13px; padding: 12px 10px;}
-}
-
-/* ── Audience "How it works" step cards (photo on top) ── */
-.aud-how {margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(42,24,0,0.1);}
-.aud-how .steps-intro {font-family: "Lora", Georgia, serif; font-style: italic; font-size: 21px;
-      color: var(--copper); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;}
-.aud-how .steps-intro::before {content: ''; width: 20px; height: 1px; background: var(--copper); flex-shrink: 0;}
-.hiw-steps {display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;}
-.hiw-step {background: #fff; border: 1px solid var(--border); border-radius: 14px;
-      padding: 20px 20px 24px; box-shadow: 0 2px 12px rgba(42,24,0,0.04);
-      display: flex; flex-direction: column;}
+.aud-intro {max-width: 620px; margin: 24px auto 0; text-align: center;
+      font-size: 14px; line-height: 1.7; color: rgba(42,24,0,0.65);}
+/* steps — no card containers */
+.hiw-steps {display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;}
+.hiw-step {display: flex; flex-direction: column;}
 .hiw-step-label {font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 700; color: var(--dark); margin-bottom: 14px;}
+      font-weight: 700; color: rgba(42,24,0,0.45); margin-bottom: 12px;}
 .hiw-step-photo {border-radius: 8px; overflow: hidden; background: #efe7d8; margin-bottom: 16px;}
 .hiw-step-photo img {display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;}
 .hiw-step-title {font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 500;
       color: var(--dark); line-height: 1.25; margin-bottom: 8px;}
 .hiw-step-desc {font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0;}
-@media (max-width: 900px) {
-  .hiw-steps {grid-template-columns: 1fr 1fr;}
-}
-@media (max-width: 520px) {
-  .hiw-steps {grid-template-columns: 1fr; gap: 14px;}
-  .hiw-step-title {font-size: 19px;}
+@media (max-width: 860px) {
+  .aud-title {font-size: 26px;}
+  .hiw-steps {grid-template-columns: 1fr; gap: 20px;}
 }
 
 /* ── Customer reviews ── */
