@@ -322,16 +322,6 @@
       font-size: 14px; font-weight: 500; color: rgba(42,24,0,0.8);
       line-height: 1.4;}
 .pdp-check-item::before {content: '\2713'; color: #B07040; font-weight: 700; flex-shrink: 0;}
-.pdp-upgrade {display: flex; align-items: flex-start; gap: 12px;
-      background: #FFF8EF; border-radius: 14px; padding: 16px 18px;
-      box-shadow: 0 4px 16px rgba(42,24,0,0.05);}
-.pdp-upgrade-icon {font-size: 15px; color: #B07040; flex-shrink: 0; margin-top: 1px;}
-.pdp-upgrade-copy {flex: 1;}
-.pdp-upgrade-name {font-family: "Playfair Display", Georgia, serif;
-      font-size: 15px; font-weight: 400; color: #1E1000; margin-bottom: 3px;}
-.pdp-upgrade-desc {font-size: 12px; color: rgba(42,24,0,0.5); line-height: 1.55;}
-.pdp-upgrade-price {font-family: "Playfair Display", Georgia, serif;
-      font-size: 16px; font-weight: 400; color: #B07040; flex-shrink: 0;}
 .pdp-cta {margin-top: 4px; margin-bottom: 20px;}
 .pdp-trust-row {display: grid; grid-template-columns: 1fr 1fr; gap: 0;}
 .pdp-trust-item {font-size: 12px; color: rgba(42,24,0,0.55); line-height: 1.4;
