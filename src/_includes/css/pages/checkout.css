@@ -381,23 +381,26 @@
 
 /* ── Audience tabs (Serving/Departing vs Returned) ── */
 /* ── How it works: title, text tabs, steps ── */
-.aud-tabs {margin-top: 26px;}
+.aud-tabs {margin-top: 26px; background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px 40px 44px;}
 .aud-title {text-align: center; font-family: "Playfair Display", Georgia, serif;
-      font-size: 30px; font-weight: 500; color: var(--dark); margin: 0 0 20px;}
-/* text-only tabs — no fill/pill/border box; semantics + underline carry the affordance */
+      font-size: 30px; font-weight: 500; color: var(--dark); margin: 0 0 20px;
+      transition: opacity 0.7s ease;}
+/* faded until scrolled into view (JS adds fade-title; without JS it stays full) */
+.aud-tabs.fade-title .aud-title {opacity: 0.28;}
+.aud-tabs.fade-title .aud-title.in-view {opacity: 1;}
+/* text-only tabs in the section's serif face; underline carries the active state */
 .aud-tabs-nav {display: flex; justify-content: center; gap: 30px; margin-bottom: 26px;}
 .aud-tab-btn {background: none; border: none; cursor: pointer; padding: 0 0 4px;
-      font-size: 15px; font-weight: 600; line-height: 1.2;
+      font-size: 16px; font-weight: 500; line-height: 1.2;
       color: var(--text-muted); border-bottom: 2px solid transparent;
       transition: color 0.2s, border-color 0.2s;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;}
+      font-family: "Playfair Display", Georgia, serif;}
 .aud-tab-btn:hover {color: rgba(42,24,0,0.78);}
 .aud-tab-btn.active {color: var(--dark); border-bottom-color: var(--copper);}
 .aud-tab-btn:focus-visible {outline: 2px solid var(--copper); outline-offset: 3px; border-radius: 2px;}
 .aud-tab-panel {display: none;}
 .aud-tab-panel.active {display: block;}
-.aud-intro {max-width: 620px; margin: 24px auto 0; text-align: center;
-      font-size: 14px; line-height: 1.7; color: rgba(42,24,0,0.65);}
 /* steps — no card containers */
 .hiw-steps {display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;}
 .hiw-step {display: flex; flex-direction: column;}
@@ -409,6 +412,7 @@
       color: var(--dark); line-height: 1.25; margin-bottom: 8px;}
 .hiw-step-desc {font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0;}
 @media (max-width: 860px) {
+  .aud-tabs {padding: 28px 20px 32px;}
   .aud-title {font-size: 26px;}
   .hiw-steps {grid-template-columns: 1fr; gap: 20px;}
 }

@@ -111,7 +111,6 @@ pageCss: checkout.css
               <p class="hiw-step-desc">Printed on 80lb gloss paper stock and delivered to your door.</p>
             </div>
           </div>
-          <p class="aud-intro">Whether they&rsquo;re about to enter the MTC or already out in the field, we build the book week by week from the emails and letters they send home &mdash; starting the moment you reserve. You&rsquo;ll never have to track down a missing week.</p>
         </div>
         <div class="aud-tab-panel" data-tab-index="1">
           <div class="hiw-steps">
@@ -140,7 +139,6 @@ pageCss: checkout.css
               <p class="hiw-step-desc">Printed on 80lb gloss paper stock and delivered to your door.</p>
             </div>
           </div>
-          <p class="aud-intro">Already home? We build the book from the emails, letters, and photos you&rsquo;ve saved across their mission. Send us what you have and we&rsquo;ll organize every week into a finished, heirloom-quality keepsake.</p>
         </div>
       </div>
 
@@ -715,6 +713,21 @@ pageCss: checkout.css
         p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
       });
     }
+
+    /* ── "Here's how it works" title: faded until scrolled into view ── */
+    (function() {
+      var tabs = document.querySelector('.aud-tabs');
+      var title = tabs && tabs.querySelector('.aud-title');
+      if (!title || !('IntersectionObserver' in window)) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      tabs.classList.add('fade-title');
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { title.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.6 });
+      io.observe(title);
+    })();
 
     /* ── Customer reviews: search, filter, sort, paginate ── */
     var rvState = { q: '', rating: 'all', sort: 'newest', page: 1, size: 5 };
