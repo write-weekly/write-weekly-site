@@ -1,0 +1,17 @@
+{#- Month / day / year selects + hidden YYYY-MM-DD value.
+    Set `datePrefix` (e.g. "departure") and `dateLabel` before including.
+    Years and behaviour come from WKTrial.dates.init() in src/js/trial-wizard.js. -#}
+<div class="field" id="{{ datePrefix }}-field">
+  <span class="field-label" id="{{ datePrefix }}-label">{{ dateLabel }}</span>
+  <div class="date-row">
+    <select id="{{ datePrefix }}-month" class="date-select" aria-labelledby="{{ datePrefix }}-label">
+      <option value="">Month</option>
+      {%- for m in ["January","February","March","April","May","June","July","August","September","October","November","December"] %}
+      <option value="{{ loop.index if loop.index > 9 else '0' + loop.index }}">{{ m }}</option>
+      {%- endfor %}
+    </select>
+    <select id="{{ datePrefix }}-day" class="date-select" aria-label="Day"><option value="">Day</option></select>
+    <select id="{{ datePrefix }}-year" class="date-select" aria-label="Year"><option value="">Year</option></select>
+  </div>
+  <input type="hidden" id="{{ datePrefix }}-date" />
+</div>

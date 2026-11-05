@@ -1,0 +1,284 @@
+---
+layout: funnel.njk
+# One template → two pages: /free-trial/serving/ and /free-trial/returned/.
+# Separate URLs so ads and analytics can tell the tracks apart; the status is
+# fixed per page at build time. /free-trial/start/ redirects here (netlify.toml).
+pagination:
+  data: tracks
+  size: 1
+  alias: track
+tracks:
+  - status: serving
+    chip: "Currently serving"
+    pageTitle: "Your Free Sample — Currently Serving — Weekly"
+    sub: "Six of their emails, turned into real book pages."
+  - status: returned
+    chip: "Already home"
+    pageTitle: "Your Free Sample — Already Home — Weekly"
+    sub: "Six emails you already have, turned into real book pages."
+permalink: "/free-trial/{{ track.status }}/"
+eleventyComputed:
+  title: "{{ track.pageTitle }}"
+  description: "{{ track.sub }} Free, and yours to keep."
+funnelCta:
+  label: "Skip My Sample — Buy Now"
+  url: "/checkout/"
+noindex: true
+pageCss: freetrial-track.css
+---
+
+{#- Fields can be prefilled from the URL (title, first, last, mission,
+    departure, memail) — the leaving-soon path uses this when someone's
+    departure date has already passed. -#}
+
+<div class="tf-wrap">
+  {% set chipLabel = track.chip %}
+  {% include "partials/trial/path-chip.njk" %}
+
+  <header class="tf-head">
+    <h1>Start your <em>free sample.</em></h1>
+    <p class="tf-sub">{{ track.sub }}</p>
+  </header>
+
+  <div class="form-card">
+
+    <!-- CONFIRMATION — replaces the form on submit -->
+    <div class="form-success" id="form-success" aria-live="polite">
+      <div class="form-success-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>You're all set.</h2>
+      <p id="success-lead"></p>
+      <span class="form-success-address">missionary@write-weekly.com</span>
+      <p>Send them all at once if you like. We'll format them and send you the pages.</p>
+      <p class="form-success-small">We've emailed you this address too.</p>
+    </div>
+
+    <!-- WIZARD -->
+    <div id="form-wizard">
+      <div class="tf-progress">
+        <span class="tf-progress-label" id="tf-progress-label">Step 1 of 3</span>
+        <span class="tf-progress-bar"><span class="tf-progress-fill" id="tf-progress-fill"></span></span>
+      </div>
+
+      <form id="trial-form" novalidate>
+
+        <div class="step-panel active" id="step-1">
+          <h2 class="step-title" id="s1-title">Their mission</h2>
+          {% include "partials/trial/missionary-name.njk" %}
+          {% include "partials/trial/mission-picker.njk" %}
+          <div class="step-nav"><button type="button" class="btn-primary tf-next">Continue</button></div>
+        </div>
+
+        <div class="step-panel" id="step-2">
+          <h2 class="step-title">About you</h2>
+          {% include "partials/trial/about-you.njk" %}
+          <div class="step-nav">
+            <button type="button" class="btn-text tf-prev">Back</button>
+            <button type="button" class="btn-primary tf-next">Continue</button>
+          </div>
+        </div>
+
+        <div class="step-panel" id="step-3">
+          <h2 class="step-title" id="s3-title">Their dates</h2>
+          {% include "partials/trial/mission-email.njk" %}
+          {% set datePrefix = "departure" %}{% set dateLabel = "Departure / MTC date" if track.status == "serving" else "Departure date" %}
+          {% include "partials/trial/date-select.njk" %}
+          {#- Return date: shown for "already home"; for "serving" it stays
+              hidden and is calculated from the departure date. -#}
+          {% set datePrefix = "return" %}{% set dateLabel = "Return date" %}
+          {% include "partials/trial/date-select.njk" %}
+          <div class="step-nav">
+            <button type="button" class="btn-text tf-prev">Back</button>
+            <button type="submit" class="btn-primary" id="submit-btn">Start my free sample</button>
+          </div>
+          <p class="tf-fineprint">No credit card. Yours to keep.</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>window.WK_MISSIONS = {{ missions | dump | safe }};</script>
+<script src="/js/mission-picker.js"></script>
+<script src="/js/trial-wizard.js"></script>
+<script>
+  var LIST_ID = 'WsSQ5H'; // Klaviyo list ID
+  var STATUS = '{{ track.status }}'; // 'serving' or 'returned' — fixed per page
+  var P = WKTrial.params();
+  var form = document.getElementById('trial-form');
+
+  WKTrial.bindChangeLink(P.v);
+  WKTrial.bindEmailPlaceholder();
+
+  var missionPicker = WKMissionPicker({
+    input:      document.getElementById('mission-search'),
+    list:       document.getElementById('mission-list'),
+    otherWrap:  document.getElementById('mission-other-wrap'),
+    otherInput: document.getElementById('mission-other'),
+    missions:   window.WK_MISSIONS
+  });
+
+  // ── Validation (inline errors) ─────────────────────────────────
+  function validate(n) {
+    var c = WKTrial.check();
+    var isSelf = WKTrial.isSelf();
+    if (n === 1) {
+      if (!WKTrial.radio('missionary_title')) c.fail('title-field', 'Choose Elder or Sister.');
+      // Relationship comes in step 2, so the name is required here unless the
+      // visitor already went back and marked themselves the missionary.
+      if (!isSelf) {
+        var first = document.getElementById('missionary-first').value.trim();
+        var last  = document.getElementById('missionary-last').value.trim();
+        if (!first || !last) c.fail('names-field', "Enter the missionary's first and last name.");
+      }
+      var mission = missionPicker.getValue();
+      if (!mission) c.fail('mission-field', 'Choose a mission from the list.');
+      else if (mission.id === 'other' && !mission.name) c.fail('mission-field', 'Type the mission name.');
+    }
+    if (n === 2) {
+      if (!WKTrial.radio('relationship')) c.fail('relationship-field', 'Choose one.');
+      if (!document.getElementById('parent-name').value.trim()) c.fail('parent-name-field', 'Enter your name.');
+      if (!WKTrial.isEmail(document.getElementById('parent-email').value.trim())) c.fail('parent-email-field', 'Enter a valid email address.');
+    }
+    if (n === 3) {
+      var m = document.getElementById('missionary-email').value.trim();
+      if (m && !WKTrial.isEmail(m)) c.fail('memail-field', "That doesn't look like an email. Check it, or leave it blank.");
+    }
+    return c.ok();
+  }
+
+  var wizard = WKTrial.wizard({ form: form, total: 3, validate: validate });
+
+  // ── Labels: "I'm the Missionary" + status ──────────────────────
+  function applyLabels() {
+    var isSelf = WKTrial.isSelf();
+    document.getElementById('self-note').classList.toggle('visible', isSelf);
+    document.getElementById('names-field').hidden = isSelf;
+    document.getElementById('title-label').textContent = isSelf ? "You're serving as" : 'Serving as';
+    document.getElementById('s1-title').textContent = isSelf ? 'Your mission' : 'Their mission';
+    document.getElementById('s3-title').textContent = isSelf ? 'Your dates' : 'Their dates';
+    document.getElementById('mission-label').textContent = isSelf ? 'Your mission' : 'Mission';
+    document.getElementById('missionary-email-label').firstChild.textContent = isSelf ? 'Your mission email ' : 'Mission email ';
+    // Serving: departure only (return is calculated). Returned: both.
+    document.getElementById('return-field').hidden = STATUS !== 'returned';
+  }
+  document.querySelectorAll('input[name="relationship"]').forEach(function (r) {
+    r.addEventListener('change', applyLabels);
+  });
+  applyLabels();
+
+  // ── Dates ──────────────────────────────────────────────────────
+  // Auto return date: Elder 24 months, Sister 18. Fills the visible field
+  // for "returned" (they can correct it) and the hidden value for "serving".
+  function updateReturnDate() {
+    var r = WKTrial.returnDate(WKTrial.dates.get('departure'), WKTrial.radio('missionary_title'));
+    if (r) WKTrial.dates.set('return', r);
+  }
+  var thisYear = new Date().getFullYear();
+  if (STATUS === 'returned') {
+    WKTrial.dates.init('departure', thisYear - 40, thisYear, updateReturnDate, true);
+    WKTrial.dates.init('return',    thisYear - 40, thisYear + 1, null, true);
+  } else {
+    WKTrial.dates.init('departure', thisYear - 3, thisYear, updateReturnDate, true);
+    WKTrial.dates.init('return',    thisYear - 1, thisYear + 3, null, true);
+  }
+  document.querySelectorAll('input[name="missionary_title"]').forEach(function (r) {
+    r.addEventListener('change', updateReturnDate);
+  });
+
+  // ── Prefill from URL (carried over from the leaving-soon path) ──
+  WKTrial.setRadio('missionary_title', P.get('title'));
+  if (P.get('first'))  document.getElementById('missionary-first').value = P.get('first');
+  if (P.get('last'))   document.getElementById('missionary-last').value  = P.get('last');
+  if (P.get('memail')) document.getElementById('missionary-email').value = P.get('memail');
+  if (P.get('mission')) missionPicker.select(P.get('mission'));
+  if (/^\d{4}-\d{2}-\d{2}$/.test(P.get('departure') || '')) { WKTrial.dates.set('departure', P.get('departure')); updateReturnDate(); }
+
+  // ── Submit ─────────────────────────────────────────────────────
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!wizard.validateAll()) return;
+
+    var isSelf = WKTrial.isSelf();
+    var parentName  = document.getElementById('parent-name').value.trim();
+    var parentEmail = document.getElementById('parent-email').value.trim();
+    var mission = missionPicker.getValue();
+    var title = WKTrial.radio('missionary_title');
+    var first, last;
+    if (isSelf) {
+      first = parentName.split(' ')[0] || parentName;
+      last  = parentName.split(' ').slice(1).join(' ');
+    } else {
+      first = document.getElementById('missionary-first').value.trim();
+      last  = document.getElementById('missionary-last').value.trim();
+    }
+    var missionaryEmail = document.getElementById('missionary-email').value.trim();
+
+    var payload = {
+      ad_variant:           P.variant,
+      relationship:         WKTrial.radio('relationship'),
+      parent_name:          parentName,
+      parent_email:         parentEmail,
+      missionary_title:     title,
+      missionary_first:     first,
+      missionary_last:      last,
+      missionary_name:      [title, first, last].filter(Boolean).join(' '),
+      missionary_status:    STATUS,
+      mission_id:           mission.id,
+      mission_name:         mission.name,
+      // Kept so existing Klaviyo views on the old free-text field still fill.
+      mission_assignment:   mission.name,
+      missionary_email:     missionaryEmail,
+      has_missionary_email: missionaryEmail ? 'yes' : 'no',
+      departure_date:       WKTrial.dates.get('departure'),
+      return_date:          WKTrial.dates.get('return')
+    };
+
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    var fd = new FormData();
+    fd.append('g',           LIST_ID);
+    fd.append('email',       payload.parent_email);
+    fd.append('$fields',     '$first_name,$consent,ad_variant,relationship,missionary_title,missionary_first,missionary_last,missionary_name,missionary_status,mission_id,mission_name,mission_assignment,missionary_email,has_missionary_email,departure_date,return_date');
+    fd.append('$consent',    'email');
+    fd.append('$first_name', payload.parent_name);
+    fd.append('ad_variant',           payload.ad_variant);
+    fd.append('relationship',         payload.relationship);
+    fd.append('missionary_title',     payload.missionary_title);
+    fd.append('missionary_first',     payload.missionary_first);
+    fd.append('missionary_last',      payload.missionary_last);
+    fd.append('missionary_name',      payload.missionary_name);
+    fd.append('missionary_status',    payload.missionary_status);
+    fd.append('mission_id',           payload.mission_id);
+    fd.append('mission_name',         payload.mission_name);
+    fd.append('mission_assignment',   payload.mission_assignment);
+    fd.append('missionary_email',     payload.missionary_email);
+    fd.append('has_missionary_email', payload.has_missionary_email);
+    fd.append('departure_date',       payload.departure_date);
+    fd.append('return_date',          payload.return_date);
+
+    fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe', {
+      method: 'POST',
+      body:   fd,
+      mode:   'no-cors'
+    })
+    .catch(function () {})
+    .finally(function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { variant: payload.ad_variant, status: payload.missionary_status });
+      }
+      // "Elder Lastname" when we have it, else first name, else a fallback.
+      var label = [payload.missionary_title, payload.missionary_last].filter(Boolean).join(' ')
+               || payload.missionary_first || 'your missionary';
+      var lead = document.getElementById('success-lead');
+      lead.textContent = 'Forward six of ';
+      var who = document.createElement('strong');
+      who.textContent = isSelf ? 'your' : label + "'s";
+      lead.appendChild(who);
+      lead.appendChild(document.createTextNode(' emails, photos included, to:'));
+      WKTrial.showSuccess();
+    });
+  });
+</script>

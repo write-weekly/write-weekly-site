@@ -1,1017 +1,112 @@
 ---
 layout: funnel.njk
-title: "Start Your Free Trial — Weekly"
-description: "Try six formatted emails free — no card required."
+title: "Get a Free Sample — Weekly"
+description: "Get a free sample of their missionary book — no card required."
 permalink: "/free-trial/"
-topBar: "<strong>Founding Offer:</strong> Try six formatted emails — completely free, no card required."
 funnelCta:
   label: "Skip My Sample — Buy Now"
   url: "/checkout/"
+showFooter: true
 pageCss: freetrial.css
 ---
 
-<section class="hero">
+<section class="ft-hero">
 
-    <!-- ── DEFAULT (organic / direct / nav) ── -->
-    <div class="hero-copy" data-variant="default">
-      <span class="eyebrow">No payment. No card. Completely free.</span>
-      <h1>Get 6 emails formatted<br/><em>— free.</em></h1>
-      <p class="hero-sub">
-        We'll take six of your missionary's emails and typeset them
-        into a beautiful book preview — <em>at no cost and with no card required.</em>
-      </p>
-      <div class="hero-badges">
-        <span class="hero-badge">✓ 6 formatted emails, free</span>
-        <span class="hero-badge">✓ No credit card, ever</span>
-        <span class="hero-badge">✓ No commitment</span>
-      </div>
-    </div>
-
-    <!-- ── VARIANT 1 — "wherever they are" ── -->
-    <div class="hero-copy" data-variant="1" hidden>
-      <span class="eyebrow">Free 6-Week Trial</span>
-      <h1>Wherever they are in their mission,<br/><em>we'll preserve it.</em></h1>
-      <p class="hero-sub">
-        Leaving soon, currently serving, or already home — Weekly turns their weekly
-        emails and photos into a professionally printed book.
-        <em>Six weeks formatted free, plus a custom cover designed at no cost.</em>
-      </p>
-      <div class="hero-badges">
-        <span class="hero-badge">✓ Six weeks formatted free</span>
-        <span class="hero-badge">✓ Free custom cover</span>
-        <span class="hero-badge">✓ No credit card</span>
-      </div>
-    </div>
-
-    <!-- ── VARIANT 2 — "the messy inbox" ── -->
-    <div class="hero-copy" data-variant="2" hidden>
-      <span class="eyebrow">Free 6-Week Trial</span>
-      <h1>Stop copying and pasting<br/><em>their emails.</em></h1>
-      <p class="hero-sub">
-        No more digging through a cluttered inbox for photos you'll lose track of anyway.
-        Weekly formats everything automatically into a book you'll keep forever.
-        <em>Six weeks free, plus a custom cover on us.</em>
-      </p>
-      <div class="hero-badges">
-        <span class="hero-badge">✓ Six weeks formatted free</span>
-        <span class="hero-badge">✓ Free custom cover</span>
-        <span class="hero-badge">✓ No credit card</span>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ── TRUST BAR ── -->
-  <div class="wk-trustbar">
-    <div class="wk-trust-item">
-      <span class="wk-trust-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-      No credit card required
-    </div>
-    <div class="wk-trust-item">
-      <span class="wk-trust-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-      Nothing to organize — just forward their emails
-    </div>
-    <div class="wk-trust-item wk-trust-item--key">
-      <span class="wk-trust-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-      Yours to keep whether you buy or not
-    </div>
+  <!-- Default (organic / direct / nav). All three copy sets live in the
+       HTML; JS only toggles which one shows, so this renders without JS. -->
+  <div class="hero-copy" data-variant="default">
+    <h1>Get a <em>free&nbsp;sample</em> of&nbsp;their&nbsp;book.</h1>
+    <p class="hero-sub">We'll typeset six of their emails into real book pages.</p>
   </div>
 
-  <div class="form-outer">
-    <div class="form-card">
-
-      <!-- SUCCESS -->
-      <div class="form-success" id="form-success">
-        <div class="form-success-icon">✉️</div>
-        <h3 id="success-heading">You're all set.</h3>
-        <div class="form-success-divider"></div>
-        <p class="form-success-body" id="success-body"></p>
-      </div>
-
-      <!-- WIZARD -->
-      <div id="form-wizard">
-
-        <!-- PROGRESS -->
-        <div class="step-progress">
-          <div class="step-pip active" id="pip-1">
-            <div class="step-pip-dot">1</div>
-            <div class="step-pip-label">Their mission</div>
-          </div>
-          <div class="step-connector" id="conn-1"></div>
-          <div class="step-pip" id="pip-2">
-            <div class="step-pip-dot">2</div>
-            <div class="step-pip-label">About you</div>
-          </div>
-          <div class="step-connector" id="conn-2"></div>
-          <div class="step-pip" id="pip-3">
-            <div class="step-pip-dot">3</div>
-            <div class="step-pip-label">The emails</div>
-          </div>
-        </div>
-
-        <form id="trial-form" novalidate onkeydown="return handleFormKey(event);">
-
-          <input type="hidden" id="ad-variant" name="ad_variant" value="default" />
-
-          <!-- ── STEP 1: Their mission ── -->
-          <div class="step-panel active" id="step-1">
-            <h2 class="step-heading" id="s1-heading">First, <em>about their mission.</em></h2>
-            <p class="step-sub" id="s1-sub">Where they are tells us how to set everything up.</p>
-
-            <div class="field-group">
-              <label class="field-label" id="status-question-label">Where is your missionary right now? <span class="req">*</span></label>
-              <div class="status-grid">
-                <div class="status-option">
-                  <input type="radio" name="status" id="status-serving" value="Currently serving" required />
-                  <label class="status-label" for="status-serving">
-                    <span class="status-icon">✈️</span>
-                    <span class="status-text" id="status-text-serving">Currently serving</span>
-                  </label>
-                </div>
-                <div class="status-option">
-                  <input type="radio" name="status" id="status-leaving" value="Leaving soon" />
-                  <label class="status-label" for="status-leaving">
-                    <span class="status-icon">📅</span>
-                    <span class="status-text" id="status-text-leaving">Leaving soon</span>
-                  </label>
-                </div>
-                <div class="status-option">
-                  <input type="radio" name="status" id="status-returned" value="Returned missionary" />
-                  <label class="status-label" for="status-returned">
-                    <span class="status-icon">🏠</span>
-                    <span class="status-text" id="status-text-returned">Already returned</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="field-group" id="missionary-name-group">
-              <label class="field-label" id="missionary-name-label">Missionary's name <span class="req">*</span></label>
-              <div class="title-name-row">
-                <div class="title-pills">
-                  <div class="title-option">
-                    <input type="radio" name="missionary_title" id="title-elder" value="Elder" />
-                    <label class="title-pill" for="title-elder">Elder</label>
-                  </div>
-                  <div class="title-option">
-                    <input type="radio" name="missionary_title" id="title-sister" value="Sister" />
-                    <label class="title-pill" for="title-sister">Sister</label>
-                  </div>
-                </div>
-                <div class="name-fields-row">
-                  <input type="text" id="missionary-first" name="missionary_first" placeholder="First name" autocomplete="off" />
-                  <input type="text" id="missionary-last" name="missionary_last" placeholder="Last name" autocomplete="off" />
-                </div>
-              </div>
-              <input type="hidden" id="missionary-name" name="missionary_name" />
-            </div>
-
-            <div class="step-nav">
-              <div class="step-nav-right">
-                <button type="button" class="big-cta" onclick="goToStep(2)">Continue</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── STEP 2: About you ── -->
-          <div class="step-panel" id="step-2">
-            <h2 class="step-heading" id="s2-heading">Now, <em>a little about you.</em></h2>
-            <p class="step-sub" id="s2-sub">Just who you are and where to send everything.</p>
-
-            <div class="field-group">
-              <label class="field-label">Your relationship to the missionary <span class="req">*</span></label>
-              <div class="radio-grid">
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-mom" value="Mom" required />
-                  <label class="radio-label" for="rel-mom"><span class="radio-dot"></span> Mom</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-dad" value="Dad" />
-                  <label class="radio-label" for="rel-dad"><span class="radio-dot"></span> Dad</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-missionary" value="I am the missionary" />
-                  <label class="radio-label rel-label-missionary" for="rel-missionary"><span class="radio-dot"></span> I'm the Missionary</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-grandparent" value="Grandparent" />
-                  <label class="radio-label" for="rel-grandparent"><span class="radio-dot"></span> Grandparent</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-aunt-uncle" value="Aunt/Uncle" />
-                  <label class="radio-label" for="rel-aunt-uncle"><span class="radio-dot"></span> Aunt / Uncle</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-friend" value="Friend" />
-                  <label class="radio-label" for="rel-friend"><span class="radio-dot"></span> Friend</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" name="relationship" id="rel-other" value="Other" />
-                  <label class="radio-label" for="rel-other"><span class="radio-dot"></span> Other</label>
-                </div>
-              </div>
-              <div class="missionary-self-note" id="missionary-self-note">
-                Welcome! We love hearing from missionaries directly. Fill in your own details below.
-              </div>
-            </div>
-
-            <div class="field-group">
-              <label class="field-label" for="parent-name">Your name <span class="req">*</span></label>
-              <input type="text" id="parent-name" name="parent_name" placeholder="e.g. Sarah" autocomplete="given-name" required />
-            </div>
-
-            <div class="field-group">
-              <label class="field-label" for="parent-email">Your email address <span class="req">*</span></label>
-              <input type="email" id="parent-email" name="parent_email" placeholder="you@example.com" autocomplete="email" required />
-              <span class="field-hint">We'll send your formatted preview here.</span>
-            </div>
-
-            <div class="step-nav">
-              <button type="button" class="btn-back" onclick="goToStep(1)">← Back</button>
-              <button type="button" class="big-cta" onclick="goToStep(3)">Continue</button>
-            </div>
-          </div>
-
-          <!-- ── STEP 3: The Emails ── -->
-          <div class="step-panel" id="step-3">
-            <h2 class="step-heading" id="s3-heading">Last step — <em>the emails.</em></h2>
-            <p class="step-sub" id="s3-sub">This is how we'll receive your missionary's letters.</p>
-
-            <div class="field-group">
-              <label class="field-label" id="mission-assignment-label">Mission assignment <span class="req">*</span></label>
-              <input type="text" id="mission-assignment" name="mission_assignment" placeholder="e.g. Brazil São Paulo South Mission" autocomplete="off" />
-              <span class="field-hint" id="mission-assignment-hint" style="display:none;">No call letter yet? Leave this blank — we'll capture it later.</span>
-            </div>
-
-            <div class="field-group">
-              <label class="field-label">Mission dates</label>
-              <div class="date-row">
-                <div>
-                  <label class="field-label" id="departure-date-label" style="margin-bottom:6px;">Departure / MTC date</label>
-                  <div class="date-dropdowns" id="departure-dropdowns">
-                    <select id="departure-month" name="departure_month" class="date-select">
-                      <option value="">Month</option>
-                      <option value="01">January</option><option value="02">February</option>
-                      <option value="03">March</option><option value="04">April</option>
-                      <option value="05">May</option><option value="06">June</option>
-                      <option value="07">July</option><option value="08">August</option>
-                      <option value="09">September</option><option value="10">October</option>
-                      <option value="11">November</option><option value="12">December</option>
-                    </select>
-                    <select id="departure-day" name="departure_day" class="date-select">
-                      <option value="">Day</option>
-                    </select>
-                    <select id="departure-year" name="departure_year" class="date-select">
-                      <option value="">Year</option>
-                    </select>
-                  </div>
-                  <input type="hidden" id="departure-date" name="departure_date" />
-                </div>
-                <div id="return-date-wrap">
-                  <label class="field-label" id="return-date-label" style="margin-bottom:6px;">Expected return date</label>
-                  <div class="date-dropdowns" id="return-dropdowns">
-                    <select id="return-month" name="return_month" class="date-select">
-                      <option value="">Month</option>
-                      <option value="01">January</option><option value="02">February</option>
-                      <option value="03">March</option><option value="04">April</option>
-                      <option value="05">May</option><option value="06">June</option>
-                      <option value="07">July</option><option value="08">August</option>
-                      <option value="09">September</option><option value="10">October</option>
-                      <option value="11">November</option><option value="12">December</option>
-                    </select>
-                    <select id="return-day" name="return_day" class="date-select">
-                      <option value="">Day</option>
-                    </select>
-                    <select id="return-year" name="return_year" class="date-select">
-                      <option value="">Year</option>
-                    </select>
-                  </div>
-                  <input type="hidden" id="return-date" name="return_date" />
-                </div>
-              </div>
-            </div>
-
-            <div class="field-group" id="missionary-email-group">
-              <label class="field-label" id="missionary-email-label">Missionary's mission email address</label>
-              <input type="email" id="missionary-email" name="missionary_email" placeholder="e.g. elder.ashton@missionary.org" autocomplete="off" />
-              <span class="field-hint">Leave blank if currently unknown.</span>
-            </div>
-
-            <div class="field-group" id="email-delivery-group">
-              <label class="field-label" id="email-delivery-label">How will the emails reach us? <span class="req">*</span></label>
-              <div class="radio-grid" style="grid-template-columns:1fr 1fr;">
-                <div class="radio-option" style="grid-column:auto;">
-                  <input type="radio" name="email_delivery" id="delivery-forward" value="Parent will forward" required />
-                  <label class="radio-label" for="delivery-forward" style="flex-direction:column; align-items:flex-start; gap:4px;">
-                    <span style="display:flex; align-items:center; gap:8px;"><span class="radio-dot"></span> <strong>I'll forward them</strong></span>
-                    <span style="font-size:12px; color:rgba(42,24,0,0.45); padding-left:22px;">I'll forward each email to Weekly</span>
-                  </label>
-                </div>
-                <div class="radio-option" style="grid-column:auto;">
-                  <input type="radio" name="email_delivery" id="delivery-cc" value="Missionary will CC" />
-                  <label class="radio-label" for="delivery-cc" style="flex-direction:column; align-items:flex-start; gap:4px;">
-                    <span style="display:flex; align-items:center; gap:8px;"><span class="radio-dot"></span> <strong>Missionary will CC us</strong></span>
-                    <span style="font-size:12px; color:rgba(42,24,0,0.45); padding-left:22px;">They'll CC Weekly on each letter</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="field-group">
-              <label class="field-label" for="notes">Anything else we should know?</label>
-              <textarea id="notes" name="notes" placeholder="Special circumstances, twin missionaries, languages spoken, book dedication ideas…"></textarea>
-            </div>
-
-            <div class="step-nav">
-              <button type="button" class="btn-back" onclick="goToStep(2)">← Back</button>
-              <button type="submit" class="big-cta" id="submit-btn">Start My Free Trial</button>
-            </div>
-            <p class="urgency-line" id="urgency-line" style="display:none;"></p>
-            <p style="text-align:center; margin-top:10px; font-size:12px; font-style:italic; color:rgba(42,24,0,0.38);">No credit card. No commitment. Six weeks formatted free — plus a custom cover on us.</p>
-          </div>
-
-        </form>
-      </div><!-- end wizard -->
-    </div><!-- end form-card -->
-
-    <!-- ── OFFER STACK ── -->
-    <div class="offer-stack" id="offer-stack">
-      <span class="offer-stack-head">Free with your trial</span>
-      <ul class="offer-stack-list">
-        <li>Six weeks of their emails, professionally formatted</li>
-        <li>A custom cover designed for your missionary</li>
-        <li>Delivered as a digital proof you keep, no purchase needed</li>
-      </ul>
-    </div>
-
-    <div class="trust-row">
-      <div class="trust-item"><span class="trust-dot"></span> No card required</div>
-      <div class="trust-item"><span class="trust-dot"></span> Cancel anytime</div>
-      <div class="trust-item"><span class="trust-dot"></span> Heirloom-quality printing</div>
-      <div class="trust-item"><span class="trust-dot"></span> LDS family owned</div>
-    </div>
+  <!-- ?v=1 — "wherever they are" -->
+  <div class="hero-copy" data-variant="1" hidden>
+    <h1>Wherever they are in their mission, <em>we'll preserve it.</em></h1>
+    <p class="hero-sub">Weekly turns their weekly emails and photos into a printed book.</p>
   </div>
 
-  <!-- ── PROOF: REAL FINISHED BOOKS ── -->
-  <section class="proof-section">
-    <span class="eyebrow">These are real books</span>
-    <h2 class="proof-title">Not a mock-up. <em>A finished heirloom.</em></h2>
-    <p class="proof-sub">Every trial ends in a real, printable book — hardcover, full-color photos, warm cream paper.</p>
-
-    <div class="proof-grid">
-      <figure class="proof-card">
-        <img src="https://res.cloudinary.com/dchehgltv/image/upload/w_600,c_fill,g_auto,f_auto,q_auto/v1777001604/Page_00001_pf5ykr.png" alt="Custom missionary memory book cover" loading="lazy" />
-        <figcaption>The custom cover</figcaption>
-      </figure>
-      <figure class="proof-card">
-        <img src="https://res.cloudinary.com/dchehgltv/image/upload/w_600,c_fill,g_auto,f_auto,q_auto/v1776811537/1_odhdb1.jpg" alt="An open spread with the week's letter and photos" loading="lazy" />
-        <figcaption>A formatted spread</figcaption>
-      </figure>
-      <figure class="proof-card">
-        <img src="https://res.cloudinary.com/dchehgltv/image/upload/w_600,c_fill,g_auto,f_auto,q_auto/v1776811537/2_dop6xj.jpg" alt="Close detail of the printed pages" loading="lazy" />
-        <figcaption>Printed to keep</figcaption>
-      </figure>
-    </div>
-
-    <!-- Variant 2 only: the messy inbox vs. the finished spread -->
-    <div class="proof-beforeafter" id="proof-beforeafter" hidden>
-      <div class="ba-col">
-        <span class="ba-tag ba-tag--before">Before — a cluttered inbox</span>
-        <div class="ba-inbox" aria-label="A cluttered email inbox">
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--80"></span></div>
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--60"></span><span class="ba-clip">📎</span></div>
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--90"></span></div>
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--50"></span><span class="ba-clip">📎</span></div>
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--75"></span></div>
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--65"></span><span class="ba-clip">📎</span></div>
-          <div class="ba-inbox-row"><span class="ba-dot"></span><span class="ba-line ba-line--85"></span></div>
-        </div>
-      </div>
-      <div class="ba-arrow" aria-hidden="true">→</div>
-      <div class="ba-col">
-        <span class="ba-tag ba-tag--after">After — a formatted spread</span>
-        <img class="ba-spread" src="https://res.cloudinary.com/dchehgltv/image/upload/w_600,c_fill,g_auto,f_auto,q_auto/v1777001765/Page_00002_ylwecg.png" alt="The same letters, formatted into a clean printed spread" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ── -->
-  <section class="how-section">
-    <span class="eyebrow">Three steps, then it runs itself</span>
-    <h2 class="how-title">How <em>Weekly</em> works</h2>
-    <div class="how-grid">
-      <div class="how-step">
-        <span class="how-num">1</span>
-        <p class="how-text">Tell us about your missionary.</p>
-      </div>
-      <div class="how-step">
-        <span class="how-num">2</span>
-        <p class="how-text">Forward their emails to <strong>missionary@write-weekly.com</strong> — or set up automatic forwarding once and forget it.</p>
-      </div>
-      <div class="how-step">
-        <span class="how-num">3</span>
-        <p class="how-text">We format every week and send you the pages.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FAQ ── -->
-  <section class="ft-faq">
-    <span class="eyebrow">A few quick answers</span>
-    <h2 class="ft-faq-title">Questions parents ask</h2>
-    <div class="ft-faq-list">
-      <div class="faq-item">
-        <button class="faq-q" type="button" onclick="toggleFaq(this)">
-          <span class="faq-q-text">What if they haven't left yet?</span>
-          <span class="faq-chevron"><svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg></span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">
-          Perfect timing. We'll hold your spot and reach out the week they enter the field, so the very first email is captured. There's nothing for you to do until then — and we'll start on the cover in the meantime.
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button" onclick="toggleFaq(this)">
-          <span class="faq-q-text">Do I have to send the emails every week?</span>
-          <span class="faq-chevron"><svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg></span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">
-          You don't have to lift a finger each week. Set up automatic forwarding once — or have your missionary add us to their weekly email — and every letter flows to us on its own.
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button" onclick="toggleFaq(this)">
-          <span class="faq-q-text">What happens after the six free weeks?</span>
-          <span class="faq-chevron"><svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg></span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">
-          Nothing automatic — there's no card on file, so nothing charges. You'll have your formatted preview to keep either way. If you love it, you can continue capturing every week and order the finished book whenever you're ready.
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button" onclick="toggleFaq(this)">
-          <span class="faq-q-text">What does the finished book cost?</span>
-          <span class="faq-chevron"><svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg></span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">
-          There are pay-monthly and pay-in-full options depending on mission length. You can see the full breakdown on the <a href="/checkout/">pricing page</a> — but the trial and the cover are free regardless of whether you ever buy.
-        </div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FLOATING HELP BUBBLE -->
-  <div class="help-bubble-wrap" id="help-bubble-wrap">
-    <div class="help-card" id="help-card">
-      <div class="help-card-label">Need help?</div>
-      <p class="help-card-text">We're happy to answer any questions about your missionary's book.</p>
-      <a class="help-card-email" href="mailto:admin@write-weekly.com">admin@write-weekly.com</a>
-    </div>
-    <button class="help-btn" id="help-btn" onclick="toggleHelp()" aria-label="Questions? Contact us">
-      <span class="help-btn-icon q-icon">?</span>
-      <span class="help-btn-icon close-icon">✕</span>
-    </button>
+  <!-- ?v=2 — "the messy inbox" -->
+  <div class="hero-copy" data-variant="2" hidden>
+    <h1>Stop copying and pasting <em>their emails.</em></h1>
+    <p class="hero-sub">Weekly formats everything into a book you'll keep forever.</p>
   </div>
 
-  <!-- STICKY MOBILE BAR -->
-  <div class="sticky-mobile-bar">
-    <span class="sticky-mobile-bar-text">Free 6-week trial — no card needed.</span>
-    <a class="big-cta" href="#" onclick="document.querySelector('.form-outer').scrollIntoView({behavior:'smooth'}); return false;">Get Started</a>
+</section>
+
+<section class="ft-select" aria-labelledby="status-q">
+
+  <!-- A finished cover, reused from /sample/ -->
+  <figure class="ft-book">
+    <img src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_440/v1777001604/Page_00001_pf5ykr.png"
+         width="600" height="777" alt="A finished Weekly missionary book cover" />
+  </figure>
+
+  <div class="ft-choose">
+    <h2 class="ft-question" id="status-q">Where is your missionary right now?</h2>
+
+    <div class="status-list">
+      <a class="status-row" href="/free-trial/departing/" data-status="leaving_soon">
+        <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+        <span class="status-label">Leaving soon</span>
+        <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+      <!-- URGENCY LINE: copy from Lucas -->
+      <a class="status-row" href="/free-trial/serving/" data-status="serving">
+        <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5s1.2-6.1 3.8-8.5z"/></svg></span>
+        <span class="status-label">Currently serving</span>
+        <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="status-row" href="/free-trial/returned/" data-status="returned">
+        <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V19.5h12V9.5"/><path d="M10 19.5v-5h4v5"/></svg></span>
+        <span class="status-label">Already home</span>
+        <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+
+    <!-- One review, reused from the homepage carousel -->
+    <p class="ft-review"><span class="ft-stars" aria-label="5 out of 5 stars">★★★★★</span> &ldquo;Easiest thing I&rsquo;ve done for my missionary.&rdquo; <span class="ft-review-by">&mdash; Phil Stooksbury, parent</span></p>
   </div>
+</section>
 
-  <script>
-    var LIST_ID = 'WsSQ5H'; // Klaviyo list ID
-    var currentStep = 1;
-    var resolvedVariant = 'default';
-    var icFired = false; // InitiateCheckout fires once
+<script>
+  (function () {
+    // ── Variant: ?v=1 or ?v=2 swaps the hero; anything else is ignored ──
+    var v = null;
+    try { v = new URLSearchParams(window.location.search).get('v'); } catch (err) {}
+    if (v !== '1' && v !== '2') v = null;
+    var variant = v || 'default';
 
-    // ── VARIANT SWITCHING ─────────────────────────────────────────
-    // Read ?v on load, swap hero copy, reveal the v2 pain-visual, and
-    // stamp the resolved variant into a hidden field for Klaviyo. All
-    // three copy sets live in the HTML — JS only toggles visibility, so
-    // the default renders correctly if JS never runs.
-    (function initVariant() {
-      var v;
-      try { v = new URLSearchParams(window.location.search).get('v'); }
-      catch (err) { v = null; }
-      resolvedVariant = (v === '1' || v === '2') ? v : 'default';
-
-      if (resolvedVariant !== 'default') {
-        document.querySelectorAll('.hero-copy').forEach(function(el) {
-          el.hidden = el.getAttribute('data-variant') !== resolvedVariant;
-        });
-      }
-      if (resolvedVariant === '2') {
-        var ba = document.getElementById('proof-beforeafter');
-        if (ba) ba.hidden = false;
-      }
-      var hid = document.getElementById('ad-variant');
-      if (hid) hid.value = resolvedVariant;
-
-      if (typeof fbq === 'function') {
-        fbq('track', 'ViewContent', { variant: resolvedVariant });
-      }
-    })();
-
-    function getStatusValue() {
-      return (document.querySelector('input[name="status"]:checked') || {}).value || '';
-    }
-    function isSelfMissionary() {
-      return (document.querySelector('input[name="relationship"]:checked') || {}).value === 'I am the missionary';
+    if (v) {
+      document.querySelectorAll('.hero-copy').forEach(function (el) {
+        el.hidden = el.getAttribute('data-variant') !== v;
+      });
     }
 
-    // ── STEP NAVIGATION ───────────────────────────────────────────
-    function goToStep(n) {
-      if (n > currentStep && !validateStep(currentStep)) return;
+    if (typeof fbq === 'function') {
+      fbq('track', 'ViewContent', { variant: variant });
+    }
 
-      // InitiateCheckout — step 1 completed, status captured
-      if (currentStep === 1 && n > 1 && !icFired) {
-        icFired = true;
+    // ── Cards: carry v forward, fire InitiateCheckout, brief pressed state ──
+    document.querySelectorAll('.status-row').forEach(function (card) {
+      if (v) card.href = card.getAttribute('href') + '?v=' + v;
+
+      card.addEventListener('click', function (e) {
+        // Let new-tab / new-window clicks behave normally.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        var href = card.href;
+        card.classList.add('is-pressed');
         if (typeof fbq === 'function') {
-          fbq('track', 'InitiateCheckout', { variant: resolvedVariant, missionary_status: getStatusValue() });
+          fbq('track', 'InitiateCheckout', { variant: variant, status: card.getAttribute('data-status') });
         }
-      }
-
-      document.getElementById('step-' + currentStep).classList.remove('active');
-      document.getElementById('step-' + n).classList.add('active');
-
-      // Update progress pips
-      for (var i = 1; i <= 3; i++) {
-        var pip = document.getElementById('pip-' + i);
-        pip.classList.remove('active', 'done');
-        if (i < n)      pip.classList.add('done');
-        else if (i === n) pip.classList.add('active');
-      }
-      for (var j = 1; j <= 2; j++) {
-        var conn = document.getElementById('conn-' + j);
-        conn.classList.toggle('done', j < n);
-      }
-
-      currentStep = n;
-      window.scrollTo({ top: document.querySelector('.form-outer').offsetTop - 80, behavior: 'smooth' });
-    }
-
-    // ── VALIDATION ────────────────────────────────────────────────
-    function validateStep(n) {
-      var isSelf = isSelfMissionary();
-
-      // Step 1 — Their mission: status first, then Elder/Sister + name
-      if (n === 1) {
-        var status = document.querySelector('input[name="status"]:checked');
-        if (!status) { alert(isSelf ? 'Please select where you are in your mission.' : 'Please tell us where your missionary is right now.'); return false; }
-        // Relationship isn't known until step 2, so the name is required
-        // here unless the visitor already went back and marked themselves
-        // the missionary (their own name comes from step 2 instead).
-        if (!isSelf) {
-          var title = document.querySelector('input[name="missionary_title"]:checked');
-          var first = document.getElementById('missionary-first').value.trim();
-          var last  = document.getElementById('missionary-last').value.trim();
-          if (!title) { alert('Please select Elder or Sister.'); return false; }
-          if (!first) { alert("Please enter the missionary's first name."); return false; }
-          if (!last)  { alert("Please enter the missionary's last name."); return false; }
-        }
-      }
-
-      // Step 2 — About you
-      if (n === 2) {
-        var rel = document.querySelector('input[name="relationship"]:checked');
-        var name = document.getElementById('parent-name').value.trim();
-        var email = document.getElementById('parent-email').value.trim();
-        if (!rel)   { alert('Please tell us your relationship to the missionary.'); return false; }
-        if (!name)  { alert('Please enter your name.'); return false; }
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return false; }
-      }
-
-      // Step 3 — The emails
-      if (n === 3 && currentStep === 3) {
-        // Mission assignment is optional for the "Leaving soon" segment —
-        // a call letter may not have arrived, and blocking the most
-        // valuable visitors on a required field is the worst trade.
-        var mission = document.getElementById('mission-assignment').value.trim();
-        if (!mission && getStatusValue() !== 'Leaving soon') { alert('Please enter the mission assignment.'); return false; }
-
-        var delivery = document.querySelector('input[name="email_delivery"]:checked');
-        if (!delivery) { alert('Please let us know how emails will reach Weekly.'); return false; }
-      }
-
-      return true;
-    }
-
-    // ── CONDITIONAL FORM MODE ─────────────────────────────────────
-    function applyMissionaryMode(isSelf) {
-      document.getElementById('missionary-self-note').classList.toggle('visible', isSelf);
-
-      // Step 1 heading (Their mission)
-      document.getElementById('s1-heading').innerHTML = isSelf
-        ? 'First, <em>about your mission.</em>'
-        : 'First, <em>about their mission.</em>';
-
-      // Step 2 heading (About you)
-      document.getElementById('s2-heading').innerHTML = isSelf
-        ? 'Now, <em>about you.</em>'
-        : 'Now, <em>a little about you.</em>';
-
-      // Step 3 heading + sub (The emails)
-      document.getElementById('s3-heading').innerHTML = isSelf
-        ? 'Last step — <em>your emails.</em>'
-        : 'Last step — <em>the emails.</em>';
-      document.getElementById('s3-sub').textContent = isSelf
-        ? 'This is how we\'ll receive your weekly letters.'
-        : 'This is how we\'ll receive your missionary\'s letters.';
-
-      // Status question label + option text (step 1)
-      document.getElementById('status-question-label').innerHTML = (isSelf
-        ? 'Where are you in your mission?'
-        : 'Where is your missionary right now?') + ' <span class="req">*</span>';
-      document.getElementById('status-text-serving').textContent  = isSelf ? "I'm currently serving"  : 'Currently serving';
-      document.getElementById('status-text-leaving').textContent  = isSelf ? "I'm leaving soon"       : 'Leaving soon';
-      document.getElementById('status-text-returned').textContent = isSelf ? "I've returned"          : 'Already returned';
-
-      // Missionary name group (step 1) — hidden when self
-      document.getElementById('missionary-name-group').style.display = isSelf ? 'none' : 'block';
-
-      // Departure label (step 3)
-      document.getElementById('departure-date-label').textContent = isSelf ? 'Your MTC / departure date' : 'Departure / MTC date';
-
-      // Missionary email label (step 3)
-      document.getElementById('missionary-email-label').textContent = isSelf
-        ? 'Your mission email address'
-        : "Missionary's mission email address";
-
-      // Email delivery labels
-      var delivLabel = document.getElementById('email-delivery-label');
-      if (delivLabel) delivLabel.innerHTML = (isSelf ? 'How will your emails reach us?' : 'How will the emails reach us?') + ' <span class="req">*</span>';
-      var ccLabel  = document.querySelector('label[for="delivery-cc"] strong');
-      if (ccLabel)  ccLabel.textContent  = isSelf ? "I'll CC Weekly on each letter"   : "Missionary will CC us";
-      var ccDesc = document.querySelector('label[for="delivery-cc"] span:last-child');
-      if (ccDesc) ccDesc.textContent = isSelf ? "I'll CC Weekly each time I write home" : "They'll CC Weekly on each letter";
-
-      // Notes placeholder
-      document.getElementById('notes').placeholder = isSelf
-        ? 'Languages spoken, mission highlights, book dedication ideas…'
-        : 'Special circumstances, twin missionaries, languages spoken, book dedication ideas…';
-
-      // Re-run status-dependent bits with the new self flag
-      updateMissionRequired();
-      var currentStatus = document.querySelector('input[name="status"]:checked');
-      if (currentStatus) applyStatusMode(currentStatus.value, isSelf);
-    }
-
-    function applyStatusMode(statusValue, isSelf) {
-      var isReturned = statusValue === 'Returned missionary';
-
-      document.getElementById('missionary-email-group').style.display = isReturned ? 'none' : 'block';
-      if (isReturned) document.getElementById('missionary-email').value = '';
-
-      var returnLabel = document.getElementById('return-date-label');
-      if (returnLabel) {
-        returnLabel.textContent = isReturned
-          ? (isSelf ? 'Your return date' : 'Return date')
-          : (isSelf ? 'Your expected return date' : 'Expected return date');
-      }
-    }
-
-    // Mission assignment: required label except for "Leaving soon"
-    function updateMissionRequired() {
-      var isSelf = isSelfMissionary();
-      var leaving = getStatusValue() === 'Leaving soon';
-      var base = isSelf ? 'Your mission assignment' : 'Mission assignment';
-      var lbl  = document.getElementById('mission-assignment-label');
-      lbl.innerHTML = base + (leaving ? '' : ' <span class="req">*</span>');
-      var hint = document.getElementById('mission-assignment-hint');
-      if (hint) hint.style.display = leaving ? 'block' : 'none';
-    }
-
-    // Urgency line under the CTA — follows the current status
-    function updateUrgency() {
-      var el = document.getElementById('urgency-line');
-      if (!el) return;
-      var status = getStatusValue();
-      var msg = '';
-      if (status === 'Leaving soon')            msg = "Set this up before they leave and you won't miss a single week.";
-      else if (status === 'Currently serving')  msg = 'Every week that passes is a week of emails already sent.';
-      else if (status === 'Returned missionary') msg = "We'll build it from the emails you already have.";
-      el.textContent = msg;
-      el.style.display = msg ? 'block' : 'none';
-    }
-
-    document.querySelectorAll('input[name="relationship"]').forEach(function(r) {
-      r.addEventListener('change', function() { applyMissionaryMode(this.value === 'I am the missionary'); });
-    });
-    document.querySelectorAll('input[name="status"]').forEach(function(r) {
-      r.addEventListener('change', function() {
-        applyStatusMode(this.value, isSelfMissionary());
-        updateMissionRequired();
-        updateUrgency();
+        setTimeout(function () { window.location.href = href; }, 180);
       });
     });
 
-    // ── DATE DROPDOWNS ────────────────────────────────────────────
-    var MONTHS_31 = [1,3,5,7,8,10,12];
-
-    function getDaysInMonth(month, year) {
-      if (!month) return 31;
-      month = parseInt(month);
-      year  = parseInt(year) || 2000;
-      if (month === 2) return (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 29 : 28;
-      return MONTHS_31.indexOf(month) >= 0 ? 31 : 30;
-    }
-
-    function populateDays(monthSel, daySel, yearSel) {
-      var currentDay = daySel.value;
-      var days = getDaysInMonth(monthSel.value, yearSel.value);
-      daySel.innerHTML = '<option value="">Day</option>';
-      for (var d = 1; d <= days; d++) {
-        var opt = document.createElement('option');
-        opt.value = String(d).padStart(2, '0');
-        opt.textContent = d;
-        if (opt.value === currentDay) opt.selected = true;
-        daySel.appendChild(opt);
-      }
-    }
-
-    function populateYears(yearSel, startYear, endYear, selectedYear) {
-      yearSel.innerHTML = '<option value="">Year</option>';
-      for (var y = startYear; y <= endYear; y++) {
-        var opt = document.createElement('option');
-        opt.value = y;
-        opt.textContent = y;
-        if (y === selectedYear) opt.selected = true;
-        yearSel.appendChild(opt);
-      }
-    }
-
-    function syncHiddenDate(prefix) {
-      var m = document.getElementById(prefix + '-month').value;
-      var d = document.getElementById(prefix + '-day').value;
-      var y = document.getElementById(prefix + '-year').value;
-      document.getElementById(prefix + '-date').value = (m && d && y) ? y + '-' + m + '-' + d : '';
-    }
-
-    function setDropdownDate(prefix, dateStr) {
-      if (!dateStr) return;
-      var parts = dateStr.split('-');
-      if (parts.length < 3) return;
-      var y = parseInt(parts[0]), m = parts[1], d = parts[2];
-      var yearSel  = document.getElementById(prefix + '-year');
-      var monthSel = document.getElementById(prefix + '-month');
-      var daySel   = document.getElementById(prefix + '-day');
-      // Ensure year is in list
-      var found = false;
-      for (var i = 0; i < yearSel.options.length; i++) {
-        if (parseInt(yearSel.options[i].value) === y) { found = true; break; }
-      }
-      if (!found) {
-        var opt = document.createElement('option');
-        opt.value = y; opt.textContent = y;
-        yearSel.appendChild(opt);
-        Array.from(yearSel.options).sort(function(a,b){ return parseInt(a.value)-parseInt(b.value); })
-          .forEach(function(o){ yearSel.appendChild(o); });
-      }
-      monthSel.value = m;
-      yearSel.value  = y;
-      populateDays(monthSel, daySel, yearSel);
-      daySel.value = d;
-      syncHiddenDate(prefix);
-    }
-
-    // Init year ranges — extended back for returned missionaries
-    var thisYear = new Date().getFullYear();
-    populateYears(document.getElementById('departure-year'), thisYear - 10, thisYear + 2, thisYear);
-    populateYears(document.getElementById('return-year'),    thisYear - 10, thisYear + 4, thisYear);
-
-    // Init days
-    populateDays(
-      document.getElementById('departure-month'),
-      document.getElementById('departure-day'),
-      document.getElementById('departure-year')
-    );
-    populateDays(
-      document.getElementById('return-month'),
-      document.getElementById('return-day'),
-      document.getElementById('return-year')
-    );
-
-    // Wire up departure dropdowns
-    ['departure-month','departure-day','departure-year'].forEach(function(id) {
-      document.getElementById(id).addEventListener('change', function() {
-        var mSel = document.getElementById('departure-month');
-        var dSel = document.getElementById('departure-day');
-        var ySel = document.getElementById('departure-year');
-        populateDays(mSel, dSel, ySel);
-        syncHiddenDate('departure');
-        updateReturnDate();
-      });
+    // Coming back via the browser's back button restores the page from
+    // cache with the pressed state still on — clear it.
+    window.addEventListener('pageshow', function () {
+      document.querySelectorAll('.status-row.is-pressed').forEach(function (c) { c.classList.remove('is-pressed'); });
     });
-
-    // Wire up return dropdowns
-    ['return-month','return-day','return-year'].forEach(function(id) {
-      document.getElementById(id).addEventListener('change', function() {
-        var mSel = document.getElementById('return-month');
-        var dSel = document.getElementById('return-day');
-        var ySel = document.getElementById('return-year');
-        populateDays(mSel, dSel, ySel);
-        syncHiddenDate('return');
-      });
-    });
-
-    // ── AUTO RETURN DATE ──────────────────────────────────────────
-    // Elder = 2 years, Sister = 18 months from departure date
-    function updateReturnDate() {
-      var depVal  = document.getElementById('departure-date').value;
-      var titleEl = document.querySelector('input[name="missionary_title"]:checked');
-      if (!depVal || !titleEl) return;
-      var dep = new Date(depVal + 'T12:00:00');
-      if (isNaN(dep)) return;
-      var ret = new Date(dep);
-      if (titleEl.value === 'Elder') {
-        ret.setFullYear(ret.getFullYear() + 2);
-      } else {
-        ret.setMonth(ret.getMonth() + 18);
-      }
-      var yyyy = ret.getFullYear();
-      var mm   = String(ret.getMonth() + 1).padStart(2, '0');
-      var dd   = String(ret.getDate()).padStart(2, '0');
-      // Expand return year range if needed
-      var retYearSel = document.getElementById('return-year');
-      var found = false;
-      for (var i = 0; i < retYearSel.options.length; i++) {
-        if (parseInt(retYearSel.options[i].value) === yyyy) { found = true; break; }
-      }
-      if (!found) populateYears(retYearSel, thisYear - 1, yyyy + 1, yyyy);
-      setDropdownDate('return', yyyy + '-' + mm + '-' + dd);
-    }
-
-    document.querySelectorAll('input[name="missionary_title"]').forEach(function(r) {
-      r.addEventListener('change', updateReturnDate);
-    });
-
-    // ── ENTER KEY HANDLER ─────────────────────────────────────────
-    function handleFormKey(e) {
-      if (e.key !== 'Enter') return true;
-      var tag = e.target.tagName.toLowerCase();
-      // Allow enter in textareas
-      if (tag === 'textarea') return true;
-      e.preventDefault();
-      // Advance to next step or submit on last step
-      if (currentStep < 3) {
-        goToStep(currentStep + 1);
-      } else {
-        document.getElementById('trial-form').dispatchEvent(new Event('submit'));
-      }
-      return false;
-    }
-
-    // ── SUBMIT ────────────────────────────────────────────────────
-    document.getElementById('trial-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      if (!validateStep(3)) return;
-
-      var rel    = document.querySelector('input[name="relationship"]:checked');
-      var status = document.querySelector('input[name="status"]:checked');
-      var title  = document.querySelector('input[name="missionary_title"]:checked');
-      var parentName  = document.getElementById('parent-name').value.trim();
-      var parentEmail = document.getElementById('parent-email').value.trim();
-      var isSelf = rel.value === 'I am the missionary';
-
-      var missionaryTitle = title ? title.value : '';
-      var missionaryFirst, missionaryLast, missionaryFullName;
-      if (isSelf) {
-        missionaryFirst    = parentName.split(' ')[0] || parentName;
-        missionaryLast     = parentName.split(' ').slice(1).join(' ') || '';
-        missionaryFullName = [missionaryTitle, parentName].filter(Boolean).join(' ');
-      } else {
-        missionaryFirst    = document.getElementById('missionary-first').value.trim();
-        missionaryLast     = document.getElementById('missionary-last').value.trim();
-        missionaryFullName = [missionaryTitle, missionaryFirst, missionaryLast].filter(Boolean).join(' ');
-      }
-      document.getElementById('missionary-name').value = missionaryFullName;
-
-      var missionEmailEl = document.getElementById('missionary-email');
-      var missionaryEmail = missionEmailEl ? missionEmailEl.value.trim() : '';
-      var payload = {
-        ad_variant:         resolvedVariant,
-        relationship:       rel.value,
-        parent_name:        parentName,
-        parent_email:       parentEmail,
-        missionary_title:   missionaryTitle,
-        missionary_first:   missionaryFirst,
-        missionary_last:    missionaryLast,
-        missionary_name:    missionaryFullName,
-        missionary_status:  status.value,
-        mission_assignment: document.getElementById('mission-assignment').value.trim(),
-        missionary_email:   missionaryEmail,
-        has_missionary_email: missionaryEmail ? 'yes' : 'no',
-        email_delivery:     (document.querySelector('input[name="email_delivery"]:checked') || {}).value || '',
-        departure_date:     document.getElementById('departure-date').value,
-        return_date:        document.getElementById('return-date').value,
-        notes:              document.getElementById('notes').value.trim()
-      };
-
-      var btn = document.getElementById('submit-btn');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-
-      var fd = new FormData();
-      fd.append('g',           LIST_ID);
-      fd.append('email',       payload.parent_email);
-      fd.append('$fields',     '$first_name,$consent,ad_variant,relationship,missionary_title,missionary_first,missionary_last,missionary_name,missionary_status,mission_assignment,missionary_email,has_missionary_email,email_delivery,departure_date,return_date,notes');
-      fd.append('$consent',    'email');
-      fd.append('$first_name', payload.parent_name);
-      fd.append('ad_variant',           payload.ad_variant);
-      fd.append('relationship',         payload.relationship);
-      fd.append('missionary_title',     payload.missionary_title);
-      fd.append('missionary_first',     payload.missionary_first);
-      fd.append('missionary_last',      payload.missionary_last);
-      fd.append('missionary_name',      payload.missionary_name);
-      fd.append('missionary_status',    payload.missionary_status);
-      fd.append('mission_assignment',   payload.mission_assignment);
-      fd.append('missionary_email',     payload.missionary_email);
-      fd.append('has_missionary_email', payload.has_missionary_email);
-      fd.append('email_delivery',       payload.email_delivery);
-      fd.append('departure_date',       payload.departure_date);
-      fd.append('return_date',          payload.return_date);
-      fd.append('notes',                payload.notes);
-
-      fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe', {
-        method: 'POST',
-        body:   fd,
-        mode:   'no-cors'
-      })
-      .catch(function() {})
-      .finally(function() {
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
-            variant: payload.ad_variant,
-            missionary_status: payload.missionary_status,
-            has_missionary_email: payload.has_missionary_email
-          });
-        }
-        showSuccess(payload);
-      });
-    });
-
-    // ── SUCCESS MESSAGE — two tracks ──────────────────────────────
-    function showSuccess(payload) {
-      document.getElementById('form-wizard').style.display = 'none';
-      var s = document.getElementById('form-success');
-      s.classList.add('visible');
-
-      var isSelf = payload.relationship === 'I am the missionary';
-      var status = payload.missionary_status; // read at submit time
-      // How we address the missionary: "Elder Lastname" when we have it,
-      // otherwise the first name, otherwise a gentle fallback.
-      var label = [payload.missionary_title, payload.missionary_last].filter(Boolean).join(' ')
-                  || payload.missionary_first
-                  || (isSelf ? 'you' : 'your missionary');
-      var themObj = isSelf ? 'you'   : label;
-      var theirPos = isSelf ? 'your' : 'their';
-      var themLower = isSelf ? 'yourself' : 'them';
-
-      var heading = '';
-      var body = '';
-
-      if (status === 'Leaving soon') {
-        // Track A — nothing to forward yet.
-        heading = 'Your spot is reserved.';
-        if (isSelf) {
-          body = "We'll reach out the week <strong>you leave</strong> to get everything set up — you don't need to do anything until then."
-               + "<br><br><strong>In the meantime, let's design your cover.</strong> Reply to the email we just sent with a favorite photo of yourself.";
-        } else {
-          body = "We'll reach out the week <strong>" + themObj + " leaves</strong> to get everything set up — you don't need to do anything until then."
-               + "<br><br><strong>In the meantime, let's design their cover.</strong> Reply to the email we just sent with a favorite photo of them.";
-        }
-      } else {
-        // Track B — Currently serving / Already returned. Trial starts now.
-        heading = "You're all set.";
-        body = "Forward six of <strong>" + themObj + (isSelf ? "" : "'s") + " emails</strong> — photos included — to <strong>missionary@write-weekly.com</strong> and we'll format them into real pages."
-             + "<br><br>Already have them in your inbox? Send all six at once, we'll sort them into the right weeks."
-             + "<br><br>Your free custom cover is part of the trial — reply to our welcome email with a favorite photo of " + themLower + " and we'll start designing it.";
-      }
-
-      document.getElementById('success-heading').innerHTML = heading;
-      document.getElementById('success-body').innerHTML = body;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // ── FAQ ACCORDION ─────────────────────────────────────────────
-    function toggleFaq(btn) {
-      var item = btn.closest('.faq-item');
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.ft-faq .faq-item.open').forEach(function(el) { el.classList.remove('open'); });
-      if (!isOpen) item.classList.add('open');
-    }
-
-    // ── HELP BUBBLE ───────────────────────────────────────────────
-    function toggleHelp() {
-      var btn = document.getElementById('help-btn'), card = document.getElementById('help-card');
-      card.classList.toggle('open', !card.classList.contains('open'));
-      btn.classList.toggle('open', !btn.classList.contains('open'));
-    }
-    document.addEventListener('click', function(e) {
-      var wrap = document.getElementById('help-bubble-wrap');
-      if (wrap && !wrap.contains(e.target)) {
-        document.getElementById('help-card').classList.remove('open');
-        document.getElementById('help-btn').classList.remove('open');
-      }
-    });
-  </script>
+  })();
+</script>
