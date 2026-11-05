@@ -1,7 +1,7 @@
 ---
 layout: funnel.njk
-title: "Start Your Free Trial — Weekly"
-description: "Try six formatted emails free — no card required."
+title: "Get a Free Sample — Weekly"
+description: "Get a free sample of their missionary book — no card required."
 permalink: "/free-trial/"
 funnelCta:
   label: "Skip My Sample — Buy Now"
@@ -15,8 +15,8 @@ pageCss: freetrial.css
   <!-- Default (organic / direct / nav). All three copy sets live in the
        HTML; JS only toggles which one shows, so this renders without JS. -->
   <div class="hero-copy" data-variant="default">
-    <h1>Get 6 emails formatted <em>— free.</em></h1>
-    <p class="hero-sub">We'll typeset six of your missionary's emails into a real book preview.</p>
+    <h1>Get a <em>free&nbsp;sample</em> of&nbsp;their&nbsp;book.</h1>
+    <p class="hero-sub">We'll typeset six of their emails into real book pages.</p>
   </div>
 
   <!-- ?v=1 — "wherever they are" -->
@@ -34,24 +34,37 @@ pageCss: freetrial.css
 </section>
 
 <section class="ft-select" aria-labelledby="status-q">
-  <h2 class="ft-question" id="status-q">Where is your missionary right now?</h2>
 
-  <div class="status-list">
-    <a class="status-row" href="/free-trial/departing/?status=leaving_soon" data-status="leaving_soon">
-      <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
-      <span class="status-label">Leaving soon</span>
-      <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="status-row" href="/free-trial/start/?status=serving" data-status="serving">
-      <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5s1.2-6.1 3.8-8.5z"/></svg></span>
-      <span class="status-label">Currently serving</span>
-      <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="status-row" href="/free-trial/start/?status=returned" data-status="returned">
-      <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V19.5h12V9.5"/><path d="M10 19.5v-5h4v5"/></svg></span>
-      <span class="status-label">Already home</span>
-      <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
-    </a>
+  <!-- A finished cover, reused from /sample/ -->
+  <figure class="ft-book">
+    <img src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_440/v1777001604/Page_00001_pf5ykr.png"
+         width="600" height="777" alt="A finished Weekly missionary book cover" />
+  </figure>
+
+  <div class="ft-choose">
+    <h2 class="ft-question" id="status-q">Where is your missionary right now?</h2>
+
+    <div class="status-list">
+      <a class="status-row" href="/free-trial/departing/" data-status="leaving_soon">
+        <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+        <span class="status-label">Leaving soon</span>
+        <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+      <!-- URGENCY LINE: copy from Lucas -->
+      <a class="status-row" href="/free-trial/serving/" data-status="serving">
+        <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5s1.2-6.1 3.8-8.5z"/></svg></span>
+        <span class="status-label">Currently serving</span>
+        <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="status-row" href="/free-trial/returned/" data-status="returned">
+        <span class="status-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V19.5h12V9.5"/><path d="M10 19.5v-5h4v5"/></svg></span>
+        <span class="status-label">Already home</span>
+        <span class="status-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+
+    <!-- One review, reused from the homepage carousel -->
+    <p class="ft-review"><span class="ft-stars" aria-label="5 out of 5 stars">★★★★★</span> &ldquo;Easiest thing I&rsquo;ve done for my missionary.&rdquo; <span class="ft-review-by">&mdash; Phil Stooksbury, parent</span></p>
   </div>
 </section>
 
@@ -75,7 +88,7 @@ pageCss: freetrial.css
 
     // ── Cards: carry v forward, fire InitiateCheckout, brief pressed state ──
     document.querySelectorAll('.status-row').forEach(function (card) {
-      if (v) card.href = card.getAttribute('href') + '&v=' + v;
+      if (v) card.href = card.getAttribute('href') + '?v=' + v;
 
       card.addEventListener('click', function (e) {
         // Let new-tab / new-window clicks behave normally.

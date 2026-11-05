@@ -1,28 +1,43 @@
 ---
 layout: funnel.njk
-title: "Start Your Free Sample — Weekly"
-description: "Send us six of their emails. We'll turn them into real book pages."
-permalink: "/free-trial/start/"
+# One template → two pages: /free-trial/serving/ and /free-trial/returned/.
+# Separate URLs so ads and analytics can tell the tracks apart; the status is
+# fixed per page at build time. /free-trial/start/ redirects here (netlify.toml).
+pagination:
+  data: tracks
+  size: 1
+  alias: track
+tracks:
+  - status: serving
+    chip: "Currently serving"
+    pageTitle: "Your Free Sample — Currently Serving — Weekly"
+    sub: "Six of their emails, turned into real book pages."
+  - status: returned
+    chip: "Already home"
+    pageTitle: "Your Free Sample — Already Home — Weekly"
+    sub: "Six emails you already have, turned into real book pages."
+permalink: "/free-trial/{{ track.status }}/"
+eleventyComputed:
+  title: "{{ track.pageTitle }}"
+  description: "{{ track.sub }} Free, and yours to keep."
 funnelCta:
   label: "Skip My Sample — Buy Now"
   url: "/checkout/"
 noindex: true
-pageCss: freetrial-start.css
+pageCss: freetrial-track.css
 ---
 
-{#- Track B — currently serving or already home.
-    ?status=serving|returned (anything else → serving) swaps the subhead and
-    the date fields. Fields can be prefilled from the URL (title, first, last,
-    mission, departure, memail) — Track A uses this when someone's departure
-    date has already passed. -#}
+{#- Fields can be prefilled from the URL (title, first, last, mission,
+    departure, memail) — the leaving-soon path uses this when someone's
+    departure date has already passed. -#}
 
 <div class="tf-wrap">
-  <a class="tf-back" href="/free-trial/" id="back-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Not the right option? Go back</a>
+  {% set chipLabel = track.chip %}
+  {% include "partials/trial/path-chip.njk" %}
 
   <header class="tf-head">
-    <h1>Start your free <em>sample.</em></h1>
-    <p class="tf-sub" data-status="serving">Send us six of their emails. We'll turn them into real book pages.</p>
-    <p class="tf-sub" data-status="returned" hidden>Send us six emails you already have. We'll turn them into real book pages.</p>
+    <h1>Start your <em>free sample.</em></h1>
+    <p class="tf-sub">{{ track.sub }}</p>
   </header>
 
   <div class="form-card">
@@ -64,12 +79,11 @@ pageCss: freetrial-start.css
 
         <div class="step-panel" id="step-3">
           <h2 class="step-title" id="s3-title">Their dates</h2>
-          <div class="field">
-            <label class="field-label" for="missionary-email" id="missionary-email-label">Mission email <span class="opt">(optional)</span></label>
-            <input type="email" id="missionary-email" placeholder="elder.smith@missionary.org" autocomplete="off" />
-          </div>
-          {% set datePrefix = "departure" %}{% set dateLabel = "Departure date" %}
+          {% include "partials/trial/mission-email.njk" %}
+          {% set datePrefix = "departure" %}{% set dateLabel = "Departure / MTC date" if track.status == "serving" else "Departure date" %}
           {% include "partials/trial/date-select.njk" %}
+          {#- Return date: shown for "already home"; for "serving" it stays
+              hidden and is calculated from the departure date. -#}
           {% set datePrefix = "return" %}{% set dateLabel = "Return date" %}
           {% include "partials/trial/date-select.njk" %}
           <div class="step-nav">
@@ -89,14 +103,12 @@ pageCss: freetrial-start.css
 <script src="/js/trial-wizard.js"></script>
 <script>
   var LIST_ID = 'WsSQ5H'; // Klaviyo list ID
+  var STATUS = '{{ track.status }}'; // 'serving' or 'returned' — fixed per page
   var P = WKTrial.params();
-  var STATUS = P.get('status') === 'returned' ? 'returned' : 'serving';
   var form = document.getElementById('trial-form');
 
-  document.getElementById('back-link').href = '/free-trial/' + (P.v ? '?v=' + P.v : '');
-  document.querySelectorAll('.tf-sub').forEach(function (el) {
-    el.hidden = el.getAttribute('data-status') !== STATUS;
-  });
+  WKTrial.bindChangeLink(P.v);
+  WKTrial.bindEmailPlaceholder();
 
   var missionPicker = WKMissionPicker({
     input:      document.getElementById('mission-search'),
@@ -106,31 +118,33 @@ pageCss: freetrial-start.css
     missions:   window.WK_MISSIONS
   });
 
-  // ── Validation ─────────────────────────────────────────────────
+  // ── Validation (inline errors) ─────────────────────────────────
   function validate(n) {
+    var c = WKTrial.check();
     var isSelf = WKTrial.isSelf();
     if (n === 1) {
+      if (!WKTrial.radio('missionary_title')) c.fail('title-field', 'Choose Elder or Sister.');
       // Relationship comes in step 2, so the name is required here unless the
       // visitor already went back and marked themselves the missionary.
       if (!isSelf) {
-        if (!WKTrial.radio('missionary_title')) { alert('Please choose Elder or Sister.'); return false; }
-        if (!document.getElementById('missionary-first').value.trim()) { alert("Please enter the missionary's first name."); return false; }
-        if (!document.getElementById('missionary-last').value.trim())  { alert("Please enter the missionary's last name."); return false; }
+        var first = document.getElementById('missionary-first').value.trim();
+        var last  = document.getElementById('missionary-last').value.trim();
+        if (!first || !last) c.fail('names-field', "Enter the missionary's first and last name.");
       }
       var mission = missionPicker.getValue();
-      if (!mission) { alert('Please choose a mission from the list.'); missionPicker.focus(); return false; }
-      if (mission.id === 'other' && !mission.name) { alert('Please type the mission name.'); document.getElementById('mission-other').focus(); return false; }
+      if (!mission) c.fail('mission-field', 'Choose a mission from the list.');
+      else if (mission.id === 'other' && !mission.name) c.fail('mission-field', 'Type the mission name.');
     }
     if (n === 2) {
-      if (!WKTrial.radio('relationship')) { alert('Please tell us how you know the missionary.'); return false; }
-      if (!document.getElementById('parent-name').value.trim()) { alert('Please enter your name.'); return false; }
-      if (!WKTrial.isEmail(document.getElementById('parent-email').value.trim())) { alert('Please enter a valid email address.'); return false; }
+      if (!WKTrial.radio('relationship')) c.fail('relationship-field', 'Choose one.');
+      if (!document.getElementById('parent-name').value.trim()) c.fail('parent-name-field', 'Enter your name.');
+      if (!WKTrial.isEmail(document.getElementById('parent-email').value.trim())) c.fail('parent-email-field', 'Enter a valid email address.');
     }
     if (n === 3) {
       var m = document.getElementById('missionary-email').value.trim();
-      if (m && !WKTrial.isEmail(m)) { alert("That mission email doesn't look right. Check it, or leave it blank."); return false; }
+      if (m && !WKTrial.isEmail(m)) c.fail('memail-field', "That doesn't look like an email. Check it, or leave it blank.");
     }
-    return true;
+    return c.ok();
   }
 
   var wizard = WKTrial.wizard({ form: form, total: 3, validate: validate });
@@ -138,16 +152,15 @@ pageCss: freetrial-start.css
   // ── Labels: "I'm the Missionary" + status ──────────────────────
   function applyLabels() {
     var isSelf = WKTrial.isSelf();
-    var returned = STATUS === 'returned';
     document.getElementById('self-note').classList.toggle('visible', isSelf);
-    document.getElementById('missionary-name-group').hidden = isSelf;
+    document.getElementById('names-field').hidden = isSelf;
+    document.getElementById('title-label').textContent = isSelf ? "You're serving as" : 'Serving as';
     document.getElementById('s1-title').textContent = isSelf ? 'Your mission' : 'Their mission';
     document.getElementById('s3-title').textContent = isSelf ? 'Your dates' : 'Their dates';
     document.getElementById('mission-label').textContent = isSelf ? 'Your mission' : 'Mission';
     document.getElementById('missionary-email-label').firstChild.textContent = isSelf ? 'Your mission email ' : 'Mission email ';
-    document.getElementById('departure-label').textContent = returned ? 'Departure date' : 'Departure / MTC date';
     // Serving: departure only (return is calculated). Returned: both.
-    document.getElementById('return-field').hidden = !returned;
+    document.getElementById('return-field').hidden = STATUS !== 'returned';
   }
   document.querySelectorAll('input[name="relationship"]').forEach(function (r) {
     r.addEventListener('change', applyLabels);
@@ -173,7 +186,7 @@ pageCss: freetrial-start.css
     r.addEventListener('change', updateReturnDate);
   });
 
-  // ── Prefill from URL (carried over from Track A) ───────────────
+  // ── Prefill from URL (carried over from the leaving-soon path) ──
   WKTrial.setRadio('missionary_title', P.get('title'));
   if (P.get('first'))  document.getElementById('missionary-first').value = P.get('first');
   if (P.get('last'))   document.getElementById('missionary-last').value  = P.get('last');

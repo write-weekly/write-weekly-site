@@ -1,6 +1,7 @@
 /* ============================================================
-   Free-trial wizard helpers — shared by /free-trial/start/ and
-   /free-trial/departing/. The Klaviyo submit stays in each page.
+   Free-sample wizard helpers — shared by /free-trial/departing/,
+   /free-trial/serving/ and /free-trial/returned/.
+   The Klaviyo submit stays in each page.
 
    Markup conventions:
      .step-panel#step-N            one per step
@@ -128,13 +129,91 @@
     }
   };
 
+  // ── Inline errors ───────────────────────────────────────────
+  // Same look as /onboarding/: tinted border on the field, a small italic
+  // message under it. Errors clear as soon as the visitor edits that field.
+  T.fieldError = function (fieldId, msg) {
+    var f = $(fieldId);
+    if (!f) return;
+    f.classList.remove('has-error');
+    void f.offsetWidth; // restart the shake animation
+    f.classList.add('has-error');
+    var m = f.querySelector('.field-error');
+    if (!msg) { if (m) m.remove(); return; }
+    if (!m) {
+      m = document.createElement('p');
+      m.className = 'field-error';
+      m.setAttribute('role', 'alert');
+      f.appendChild(m);
+    }
+    m.textContent = msg;
+  };
+
+  T.clearError = function (f) {
+    if (!f) return;
+    f.classList.remove('has-error');
+    var m = f.querySelector('.field-error');
+    if (m) m.remove();
+  };
+
+  T.clearErrors = function (scope) {
+    scope.querySelectorAll('.field.has-error').forEach(T.clearError);
+  };
+
+  // Collects a step's errors, then focuses the first one.
+  //   var c = WKTrial.check();
+  //   if (!x) c.fail('field-id', 'Message');
+  //   return c.ok();
+  T.check = function () {
+    var first = null;
+    return {
+      fail: function (fieldId, msg) {
+        T.fieldError(fieldId, msg);
+        if (!first) first = fieldId;
+      },
+      ok: function () {
+        if (!first) return true;
+        var f = $(first);
+        var input = f.querySelector('input[type="text"]:not([disabled]), input[type="email"], select');
+        f.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        if (input) input.focus({ preventScroll: true });
+        return false;
+      }
+    };
+  };
+
+  // ── Small shared bits ───────────────────────────────────────
+  // Mission email placeholder follows Elder / Sister.
+  T.bindEmailPlaceholder = function () {
+    var input = $('missionary-email');
+    if (!input) return;
+    function update() {
+      input.placeholder = (T.radio('missionary_title') === 'Sister' ? 'sister' : 'elder') + '.smith@missionary.org';
+    }
+    document.querySelectorAll('input[name="missionary_title"]').forEach(function (r) {
+      r.addEventListener('change', update);
+    });
+    update();
+  };
+
+  // "change" link in the path chip goes back to the chooser, keeping ?v=.
+  T.bindChangeLink = function (v) {
+    var a = $('change-link');
+    if (a) a.href = '/free-trial/' + (v ? '?v=' + v : '');
+  };
+
   // ── Step wizard ─────────────────────────────────────────────
   // opts: { form, total, validate(step) → bool }
   T.wizard = function (opts) {
     var current = 1;
 
+    function validateStep(s) {
+      T.clearErrors($('step-' + s));
+      return opts.validate(s);
+    }
+
     function goTo(n) {
-      if (n > current && !opts.validate(current)) return;
+      if (n > current && !validateStep(current)) return;
       $('step-' + current).classList.remove('active');
       $('step-' + n).classList.add('active');
       current = n;
@@ -145,6 +224,13 @@
         window.scrollTo({ top: window.scrollY + card.getBoundingClientRect().top - 90, behavior: 'smooth' });
       }
     }
+
+    // Editing a field clears its error.
+    ['input', 'change'].forEach(function (type) {
+      opts.form.addEventListener(type, function (e) {
+        T.clearError(e.target.closest && e.target.closest('.field.has-error'));
+      });
+    });
 
     opts.form.querySelectorAll('.tf-next').forEach(function (b) {
       b.addEventListener('click', function () { goTo(current + 1); });
@@ -171,7 +257,8 @@
       // Validate every step; jump to the first failing one.
       validateAll: function () {
         for (var s = 1; s <= opts.total; s++) {
-          if (!opts.validate(s)) { if (s !== current) goTo(s); return false; }
+          if (s !== current && !opts.validate(s)) { goTo(s); validateStep(s); return false; }
+          if (s === current && !validateStep(s)) return false;
         }
         return true;
       }

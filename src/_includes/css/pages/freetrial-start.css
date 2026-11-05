@@ -1,3 +1,0 @@
-/* /free-trial/start/ — Track B (serving / returned). All the wizard styling
-   is shared with Track A and lives in _includes/css/trial-form.css. */
-{% include "css/trial-form.css" %}

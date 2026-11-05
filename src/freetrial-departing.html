@@ -1,7 +1,7 @@
 ---
 layout: funnel.njk
 title: "Get Set Up Before They Leave — Weekly"
-description: "Add us to their weekly email list. We'll format their first six weeks, free."
+description: "Add us to their weekly email list. Their first six weeks become your free sample."
 permalink: "/free-trial/departing/"
 funnelCta:
   label: "Skip My Sample — Buy Now"
@@ -10,15 +10,17 @@ noindex: true
 pageCss: freetrial-departing.css
 ---
 
-{#- Track A — leaving soon. We collect the missionary's details and the
-    family adds missionary@write-weekly.com to the missionary's weekly list. -#}
+{#- Leaving-soon path. We collect the missionary's details and the family
+    adds missionary@write-weekly.com to the missionary's weekly list.
+    Three light steps: the missionary + departure date / their mission / you. -#}
 
 <div class="tf-wrap">
-  <a class="tf-back" href="/free-trial/" id="back-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Not the right option? Go back</a>
+  {% set chipLabel = "Leaving soon" %}
+  {% include "partials/trial/path-chip.njk" %}
 
   <header class="tf-head">
     <h1>Get set up before <em>they leave.</em></h1>
-    <p class="tf-sub">Add us to their weekly email list. We'll format their first six weeks, free.</p>
+    <p class="tf-sub">Their first six weeks become your free sample.</p>
   </header>
 
   <div class="form-card">
@@ -36,28 +38,33 @@ pageCss: freetrial-departing.css
     <!-- WIZARD -->
     <div id="form-wizard">
       <div class="tf-progress">
-        <span class="tf-progress-label" id="tf-progress-label">Step 1 of 2</span>
+        <span class="tf-progress-label" id="tf-progress-label">Step 1 of 3</span>
         <span class="tf-progress-bar"><span class="tf-progress-fill" id="tf-progress-fill"></span></span>
       </div>
 
       <form id="trial-form" novalidate>
 
         <div class="step-panel active" id="step-1">
-          <h2 class="step-title" id="s1-title">Their mission</h2>
+          <h2 class="step-title" id="s1-title">The missionary</h2>
           {% include "partials/trial/missionary-name.njk" %}
           {% set datePrefix = "departure" %}{% set dateLabel = "Departure / MTC date" %}
           {% include "partials/trial/date-select.njk" %}
-          <p class="tf-note" id="past-note" hidden>That date has already passed. If they're serving now, <a href="/free-trial/start/?status=serving" id="past-switch">start a free sample instead →</a></p>
-          {% set missionUnknownOption = true %}
-          {% include "partials/trial/mission-picker.njk" %}
-          <div class="field">
-            <label class="field-label" for="missionary-email" id="missionary-email-label">Mission email <span class="opt">(optional)</span></label>
-            <input type="email" id="missionary-email" placeholder="elder.smith@missionary.org" autocomplete="off" />
-          </div>
+          <p class="tf-note" id="past-note" hidden>That date has already passed. If they're serving now, <a href="/free-trial/serving/" id="past-switch">start a free sample instead →</a></p>
           <div class="step-nav"><button type="button" class="btn-primary tf-next">Continue</button></div>
         </div>
 
         <div class="step-panel" id="step-2">
+          <h2 class="step-title" id="s2-title">Their mission</h2>
+          {% set missionUnknownOption = true %}
+          {% include "partials/trial/mission-picker.njk" %}
+          {% include "partials/trial/mission-email.njk" %}
+          <div class="step-nav">
+            <button type="button" class="btn-text tf-prev">Back</button>
+            <button type="button" class="btn-primary tf-next">Continue</button>
+          </div>
+        </div>
+
+        <div class="step-panel" id="step-3">
           <h2 class="step-title">About you</h2>
           {% include "partials/trial/about-you.njk" %}
           <div class="step-nav">
@@ -82,7 +89,8 @@ pageCss: freetrial-departing.css
   var P = WKTrial.params();
   var form = document.getElementById('trial-form');
 
-  document.getElementById('back-link').href = '/free-trial/' + (P.v ? '?v=' + P.v : '');
+  WKTrial.bindChangeLink(P.v);
+  WKTrial.bindEmailPlaceholder();
 
   var missionPicker = WKMissionPicker({
     input:      document.getElementById('mission-search'),
@@ -96,7 +104,7 @@ pageCss: freetrial-departing.css
 
   // ── Departure date ─────────────────────────────────────────────
   // Return date is calculated (Elder 24 months, Sister 18) and sent hidden.
-  // A date in the past gets an inline note offering Track B instead, with
+  // A date in the past gets an inline note offering /free-trial/serving/, with
   // what they've entered carried over in the URL.
   function departure() { return WKTrial.dates.get('departure'); }
   function isPast() { return !!departure() && departure() < WKTrial.today(); }
@@ -109,7 +117,7 @@ pageCss: freetrial-departing.css
   }
 
   function updateSwitchLink() {
-    var q = new URLSearchParams({ status: 'serving' });
+    var q = new URLSearchParams();
     if (P.v) q.set('v', P.v);
     var fields = {
       title:  WKTrial.radio('missionary_title'),
@@ -121,51 +129,62 @@ pageCss: freetrial-departing.css
     var m = missionPicker.getValue();
     if (m && m.id !== 'other' && m.id !== 'unknown') fields.mission = m.id;
     Object.keys(fields).forEach(function (k) { if (fields[k]) q.set(k, fields[k]); });
-    document.getElementById('past-switch').href = '/free-trial/start/?' + q.toString();
+    var qs = q.toString();
+    document.getElementById('past-switch').href = '/free-trial/serving/' + (qs ? '?' + qs : '');
   }
   // Refresh the carried-over values right before they follow the link.
   document.getElementById('past-switch').addEventListener('mousedown', updateSwitchLink);
   document.getElementById('past-switch').addEventListener('touchstart', updateSwitchLink, { passive: true });
 
+  // Current year and next year only.
   var thisYear = new Date().getFullYear();
-  WKTrial.dates.init('departure', thisYear - 1, thisYear + 2, onDepartureChange);
+  WKTrial.dates.init('departure', thisYear, thisYear + 1, onDepartureChange);
   document.querySelectorAll('input[name="missionary_title"]').forEach(function (r) {
     r.addEventListener('change', onDepartureChange);
   });
 
-  // ── Validation ─────────────────────────────────────────────────
+  // ── Validation (inline errors) ─────────────────────────────────
   function validate(n) {
+    var c = WKTrial.check();
     var isSelf = WKTrial.isSelf();
     if (n === 1) {
+      if (!WKTrial.radio('missionary_title')) c.fail('title-field', 'Choose Elder or Sister.');
+      // Relationship comes in step 3, so the name is required here unless the
+      // visitor already went back and marked themselves the missionary.
       if (!isSelf) {
-        if (!WKTrial.radio('missionary_title')) { alert('Please choose Elder or Sister.'); return false; }
-        if (!document.getElementById('missionary-first').value.trim()) { alert("Please enter the missionary's first name."); return false; }
-        if (!document.getElementById('missionary-last').value.trim())  { alert("Please enter the missionary's last name."); return false; }
+        var first = document.getElementById('missionary-first').value.trim();
+        var last  = document.getElementById('missionary-last').value.trim();
+        if (!first || !last) c.fail('names-field', "Enter the missionary's first and last name.");
       }
-      if (!departure()) { alert('Please enter the departure date.'); return false; }
-      if (isPast()) { document.getElementById('past-note').hidden = false; return false; }
-      var mission = missionPicker.getValue();
-      if (!mission) { alert('Please choose a mission from the list, or tick "not known yet".'); missionPicker.focus(); return false; }
-      if (mission.id === 'other' && !mission.name) { alert('Please type the mission name.'); document.getElementById('mission-other').focus(); return false; }
-      var m = document.getElementById('missionary-email').value.trim();
-      if (m && !WKTrial.isEmail(m)) { alert("That mission email doesn't look right. Check it, or leave it blank."); return false; }
+      if (!departure()) c.fail('departure-field', 'Choose the departure date.');
+      // Past date: flag the field; the note under it offers the serving path.
+      else if (isPast()) { document.getElementById('past-note').hidden = false; c.fail('departure-field', ''); }
     }
     if (n === 2) {
-      if (!WKTrial.radio('relationship')) { alert('Please tell us how you know the missionary.'); return false; }
-      if (!document.getElementById('parent-name').value.trim()) { alert('Please enter your name.'); return false; }
-      if (!WKTrial.isEmail(document.getElementById('parent-email').value.trim())) { alert('Please enter a valid email address.'); return false; }
+      var mission = missionPicker.getValue();
+      if (!mission) c.fail('mission-field', 'Choose a mission from the list, or tick "not known yet".');
+      else if (mission.id === 'other' && !mission.name) c.fail('mission-field', 'Type the mission name.');
+      var m = document.getElementById('missionary-email').value.trim();
+      if (m && !WKTrial.isEmail(m)) c.fail('memail-field', "That doesn't look like an email. Check it, or leave it blank.");
     }
-    return true;
+    if (n === 3) {
+      if (!WKTrial.radio('relationship')) c.fail('relationship-field', 'Choose one.');
+      if (!document.getElementById('parent-name').value.trim()) c.fail('parent-name-field', 'Enter your name.');
+      if (!WKTrial.isEmail(document.getElementById('parent-email').value.trim())) c.fail('parent-email-field', 'Enter a valid email address.');
+    }
+    return c.ok();
   }
 
-  var wizard = WKTrial.wizard({ form: form, total: 2, validate: validate });
+  var wizard = WKTrial.wizard({ form: form, total: 3, validate: validate });
 
   // ── "I'm the Missionary" relabeling ────────────────────────────
   function applyLabels() {
     var isSelf = WKTrial.isSelf();
     document.getElementById('self-note').classList.toggle('visible', isSelf);
-    document.getElementById('missionary-name-group').hidden = isSelf;
-    document.getElementById('s1-title').textContent = isSelf ? 'Your mission' : 'Their mission';
+    document.getElementById('names-field').hidden = isSelf;
+    document.getElementById('title-label').textContent = isSelf ? "You'll serve as" : 'Serving as';
+    document.getElementById('s1-title').textContent = isSelf ? 'You' : 'The missionary';
+    document.getElementById('s2-title').textContent = isSelf ? 'Your mission' : 'Their mission';
     document.getElementById('mission-label').textContent = isSelf ? 'Your mission' : 'Mission';
     document.getElementById('missionary-email-label').firstChild.textContent = isSelf ? 'Your mission email ' : 'Mission email ';
   }

@@ -1,6 +1,6 @@
 /* ============================================================
    Mission picker — type-to-search list of missions.
-   Used on /free-trial/start/ (and /free-trial/departing/).
+   Used on /free-trial/departing/, /free-trial/serving/ and /free-trial/returned/.
 
    Markup it expects (ids are passed in, not assumed):
      <div class="mp">

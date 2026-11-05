@@ -1,5 +1,7 @@
-{#- Minimal nav for conversion pages: logo only, no exits. -#}
-<nav class="wk-nav">
+{#- Minimal nav for conversion pages: logo only, no exits. The optional
+    funnelCta is a secondary (outline) link — the filled copper button is
+    reserved for the main action on the page. -#}
+<nav class="wk-nav wk-nav--funnel">
   <a class="wk-logo-block" href="/">
     <span class="wk-logo">{{ site.name }}</span>
     <span class="wk-logo-sub">{{ site.tagline }}</span>
@@ -8,6 +10,6 @@
   <div class="wk-nav-tag">{{ navTag }}</div>
   {%- endif %}
   {%- if funnelCta %}
-  <a class="wk-nav-cta" href="{{ funnelCta.url }}">{{ funnelCta.label }}</a>
+  <a class="wk-nav-secondary" href="{{ funnelCta.url }}">{{ funnelCta.label }}</a>
   {%- endif %}
 </nav>

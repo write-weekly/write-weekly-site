@@ -1,14 +1,16 @@
-/* /free-trial/ — status selector.
-   One narrow column: headline, one line, the question, three stacked rows.
-   Modelled on onboarding-style signup pages: quiet type, big tap targets. */
+/* /free-trial/ — status chooser for the free sample.
+   Headline, one line, then a finished book beside the three stacked rows
+   (desktop) or a small cover above them (phones). Quiet type, big tap targets. */
 
 .ft-hero {position:relative; z-index:1; text-align:center; max-width:520px; margin:0 auto; padding:96px 24px 0;}
 .hero-copy[hidden] {display:none;}
-.ft-hero h1 {font-family:'Playfair Display',Georgia,serif; font-size:clamp(30px,4vw,40px); font-weight:500; color:var(--dark); line-height:1.2; letter-spacing:-0.01em; margin-bottom:14px;}
+.ft-hero h1 {font-family:'Playfair Display',Georgia,serif; font-size:clamp(30px,4vw,40px); font-weight:500; color:var(--dark); line-height:1.2; letter-spacing:-0.01em; margin-bottom:14px; text-wrap:balance;}
 .ft-hero h1 em {font-style:italic; color:var(--copper);}
-.hero-sub {font-size:17px; line-height:1.55; color:var(--body-text); max-width:400px; margin:0 auto;}
+.hero-sub {font-size:17px; line-height:1.55; color:var(--body-text); max-width:400px; margin:0 auto; text-wrap:balance;}
 
-.ft-select {position:relative; z-index:1; max-width:440px; margin:0 auto; padding:56px 24px 120px;}
+.ft-select {position:relative; z-index:1; display:grid; grid-template-columns:170px minmax(0,400px); gap:40px; align-items:center; justify-content:center; max-width:700px; margin:0 auto; padding:52px 24px 112px;}
+.ft-book {margin:0;}
+.ft-book img {display:block; width:100%; height:auto; transform:rotate(-3deg); filter:drop-shadow(0 14px 22px rgba(42,24,0,0.18));}
 .ft-question {font-size:15px; font-weight:600; color:var(--dark); text-align:center; margin-bottom:16px;}
 
 .status-list {display:flex; flex-direction:column; gap:10px;}
@@ -25,13 +27,23 @@
 .status-row:hover .status-chev svg,
 .status-row.is-pressed .status-chev svg {stroke:var(--copper); transform:translateX(2px);}
 
+/* One quiet review line under the rows */
+.ft-review {margin-top:18px; font-size:13.5px; line-height:1.5; color:var(--body-text); text-align:center;}
+.ft-stars {color:var(--copper-light); letter-spacing:1px; margin-right:4px;}
+.ft-review-by {color:var(--text-muted); white-space:nowrap;}
+
 @media (max-width:768px) {
-  .ft-hero {padding-top:48px;}
-  .ft-select {padding:36px 20px 72px;}
+  .ft-hero {padding-top:40px;}
+  .ft-select {grid-template-columns:1fr; gap:18px; max-width:440px; padding:26px 20px 72px;}
+  .ft-book {width:84px; margin:0 auto;}
+  .ft-book img {transform:rotate(-4deg);}
 }
 @media (max-width:420px) {
-  .ft-hero {padding:36px 20px 0;}
-  .ft-hero h1 {font-size:28px;}
-  .hero-sub {font-size:16px;}
-  .ft-select {padding:28px 16px 64px;}
+  .ft-hero {padding:28px 20px 0;}
+  .ft-hero h1 {font-size:27px;}
+  .hero-sub {font-size:15.5px;}
+  .ft-select {gap:14px; padding:20px 16px 64px;}
+  .ft-book {width:68px;}
+  .ft-question {margin-bottom:12px;}
+  .status-row {min-height:58px;}
 }
