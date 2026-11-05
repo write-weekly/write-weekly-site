@@ -57,74 +57,87 @@
 #   status=returned + v  → /free-trial/returned/?v=…
 #   status=returned      → /free-trial/returned/
 #   anything else        → /free-trial/serving/ (other params pass through)
+# force = true so a leftover /free-trial/start/ file can never shadow them.
 
 [[redirects]]
   from = "/free-trial/start"
   to = "/free-trial/returned/?v=:v"
   status = 301
+  force = true
   query = {status = "returned", v = ":v"}
 
 [[redirects]]
   from = "/free-trial/start"
   to = "/free-trial/returned/"
   status = 301
+  force = true
   query = {status = "returned"}
 
 [[redirects]]
   from = "/free-trial/start"
   to = "/free-trial/serving/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/free-trial/start/"
   to = "/free-trial/returned/?v=:v"
   status = 301
+  force = true
   query = {status = "returned", v = ":v"}
 
 [[redirects]]
   from = "/free-trial/start/"
   to = "/free-trial/returned/"
   status = 301
+  force = true
   query = {status = "returned"}
 
 [[redirects]]
   from = "/free-trial/start/"
   to = "/free-trial/serving/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/freetrial/start"
   to = "/free-trial/returned/?v=:v"
   status = 301
+  force = true
   query = {status = "returned", v = ":v"}
 
 [[redirects]]
   from = "/freetrial/start"
   to = "/free-trial/returned/"
   status = 301
+  force = true
   query = {status = "returned"}
 
 [[redirects]]
   from = "/freetrial/start"
   to = "/free-trial/serving/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/freetrial/start/"
   to = "/free-trial/returned/?v=:v"
   status = 301
+  force = true
   query = {status = "returned", v = ":v"}
 
 [[redirects]]
   from = "/freetrial/start/"
   to = "/free-trial/returned/"
   status = 301
+  force = true
   query = {status = "returned"}
 
 [[redirects]]
   from = "/freetrial/start/"
   to = "/free-trial/serving/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/freetrial/departing"
