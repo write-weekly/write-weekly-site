@@ -3,7 +3,6 @@ layout: funnel.njk
 title: "Start Your Free Trial — Weekly"
 description: "Try six formatted emails free — no card required."
 permalink: "/free-trial/"
-topBar: "<strong>Founding Offer:</strong> Try six formatted emails — completely free, no card required."
 funnelCta:
   label: "Skip My Sample — Buy Now"
   url: "/checkout/"
@@ -16,21 +15,18 @@ pageCss: freetrial.css
   <!-- Default (organic / direct / nav). All three copy sets live in the
        HTML; JS only toggles which one shows, so this renders without JS. -->
   <div class="hero-copy" data-variant="default">
-    <span class="eyebrow">No payment. No card. Completely free.</span>
     <h1>Get 6 emails formatted <em>— free.</em></h1>
     <p class="hero-sub">We'll typeset six of your missionary's emails into a real book preview.</p>
   </div>
 
   <!-- ?v=1 — "wherever they are" -->
   <div class="hero-copy" data-variant="1" hidden>
-    <span class="eyebrow">Free 6-Week Trial</span>
     <h1>Wherever they are in their mission, <em>we'll preserve it.</em></h1>
     <p class="hero-sub">Weekly turns their weekly emails and photos into a printed book.</p>
   </div>
 
   <!-- ?v=2 — "the messy inbox" -->
   <div class="hero-copy" data-variant="2" hidden>
-    <span class="eyebrow">Free 6-Week Trial</span>
     <h1>Stop copying and pasting <em>their emails.</em></h1>
     <p class="hero-sub">Weekly formats everything into a book you'll keep forever.</p>
   </div>
@@ -43,22 +39,17 @@ pageCss: freetrial.css
   <div class="status-cards">
     <a class="status-card" href="/free-trial/departing/?status=leaving_soon" data-status="leaving_soon">
       <span class="status-card-title">Leaving soon</span>
-      <span class="status-card-desc">They have a call and haven't left yet</span>
       <span class="status-card-arrow" aria-hidden="true">→</span>
     </a>
     <a class="status-card" href="/free-trial/start/?status=serving" data-status="serving">
       <span class="status-card-title">Currently serving</span>
-      <span class="status-card-desc">They're in the field now</span>
       <span class="status-card-arrow" aria-hidden="true">→</span>
     </a>
     <a class="status-card" href="/free-trial/start/?status=returned" data-status="returned">
       <span class="status-card-title">Already home</span>
-      <span class="status-card-desc">They've returned from their mission</span>
       <span class="status-card-arrow" aria-hidden="true">→</span>
     </a>
   </div>
-
-  <p class="ft-trust">No credit card required <span aria-hidden="true">·</span> Yours to keep whether you buy or not</p>
 </section>
 
 <script>
