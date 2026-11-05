@@ -51,6 +51,18 @@
   to = "/free-trial/"
   status = 301
 
+# Spec paths for the free-trial tracks (query strings like ?v= and
+# ?status= carry through Netlify redirects automatically).
+[[redirects]]
+  from = "/freetrial/start"
+  to = "/free-trial/start/"
+  status = 301
+
+[[redirects]]
+  from = "/freetrial/start/"
+  to = "/free-trial/start/"
+  status = 301
+
 [[redirects]]
   from = "/rmform.html"
   to = "/returned-missionary/"

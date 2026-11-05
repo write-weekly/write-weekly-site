@@ -35,7 +35,8 @@ Do **not** paste a header or footer into a page file. It comes from the layout a
 | `src/interactivesample.html` | `/interactive-sample/` | marketing |
 | `src/rmform.html` | `/returned-missionary/` | marketing |
 | `src/checkout.html` | `/checkout/` | funnel + footer |
-| `src/freetrial.html` | `/free-trial/` | funnel |
+| `src/freetrial.html` | `/free-trial/` (status selector) | funnel + footer |
+| `src/freetrial-start.html` | `/free-trial/start/` (serving / returned) | funnel, noindex |
 | `src/onboarding.html` | `/onboarding/` | funnel, noindex |
 | `src/setup.html` | `/setup/` | funnel, noindex |
 
