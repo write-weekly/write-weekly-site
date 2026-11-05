@@ -1,0 +1,18 @@
+{#- Type-to-search mission field. Behaviour: src/js/mission-picker.js.
+    Set `missionUnknownOption = true` before including to add the
+    "Mission assignment not known yet" checkbox (Track A). -#}
+<div class="field">
+  <label class="field-label" for="mission-search" id="mission-label">Mission</label>
+  <div class="mp">
+    <input type="text" id="mission-search" placeholder="Search by country or city"
+           autocomplete="off" role="combobox" aria-autocomplete="list"
+           aria-expanded="false" aria-controls="mission-list" />
+    <ul class="mp-list" id="mission-list" role="listbox" aria-labelledby="mission-label" hidden></ul>
+  </div>
+  <div class="mp-other" id="mission-other-wrap" hidden>
+    <input type="text" id="mission-other" placeholder="Type the mission name" autocomplete="off" aria-label="Mission name" />
+  </div>
+  {%- if missionUnknownOption %}
+  <label class="check"><input type="checkbox" id="mission-unknown" /> Mission assignment not known yet</label>
+  {%- endif %}
+</div>

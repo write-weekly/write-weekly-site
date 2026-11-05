@@ -1,0 +1,19 @@
+{#- Relationship, your name, your email. "I'm the Missionary" relabels the
+    form (handled in each page's script). -#}
+<div class="field">
+  <span class="field-label">You are their…</span>
+  <div class="chips" role="radiogroup" aria-label="Your relationship to the missionary">
+    {%- for rel in [["mom","Mom","Mom"],["dad","Dad","Dad"],["grandparent","Grandparent","Grandparent"],["aunt-uncle","Aunt/Uncle","Aunt / Uncle"],["friend","Friend","Friend"],["other","Other","Other"],["missionary","I am the missionary","I'm the Missionary"]] %}
+    <span class="chip"><input type="radio" name="relationship" id="rel-{{ rel[0] }}" value="{{ rel[1] }}" /><label for="rel-{{ rel[0] }}">{{ rel[2] }}</label></span>
+    {%- endfor %}
+  </div>
+  <p class="self-note" id="self-note">Welcome! Just fill in your own details.</p>
+</div>
+<div class="field">
+  <label class="field-label" for="parent-name">Your name</label>
+  <input type="text" id="parent-name" autocomplete="given-name" />
+</div>
+<div class="field">
+  <label class="field-label" for="parent-email">Your email</label>
+  <input type="email" id="parent-email" placeholder="you@example.com" autocomplete="email" />
+</div>

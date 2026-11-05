@@ -1,0 +1,13 @@
+{#- Elder / Sister + first and last name. Hidden by the page script when
+    the visitor picks "I'm the Missionary" (their own name is used). -#}
+<div class="field" id="missionary-name-group">
+  <span class="field-label">Missionary</span>
+  <div class="seg" role="radiogroup" aria-label="Elder or Sister">
+    <input type="radio" name="missionary_title" id="title-elder" value="Elder" /><label for="title-elder">Elder</label>
+    <input type="radio" name="missionary_title" id="title-sister" value="Sister" /><label for="title-sister">Sister</label>
+  </div>
+  <div class="row-2">
+    <input type="text" id="missionary-first" placeholder="First name" autocomplete="off" aria-label="Missionary's first name" />
+    <input type="text" id="missionary-last" placeholder="Last name" autocomplete="off" aria-label="Missionary's last name" />
+  </div>
+</div>

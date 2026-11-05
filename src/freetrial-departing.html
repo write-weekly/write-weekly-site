@@ -1,0 +1,274 @@
+---
+layout: funnel.njk
+title: "Get Set Up Before They Leave — Weekly"
+description: "Add us to their weekly email list. We'll format their first six weeks, free."
+permalink: "/free-trial/departing/"
+funnelCta:
+  label: "Skip My Sample — Buy Now"
+  url: "/checkout/"
+noindex: true
+pageCss: freetrial-departing.css
+---
+
+{#- Track A — leaving soon. We collect the missionary's details and the
+    family adds missionary@write-weekly.com to the missionary's weekly list. -#}
+
+<div class="tf-wrap">
+  <a class="tf-back" href="/free-trial/" id="back-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Not the right option? Go back</a>
+
+  <header class="tf-head">
+    <h1>Get set up before <em>they leave.</em></h1>
+    <p class="tf-sub">Add us to their weekly email list. We'll format their first six weeks, free.</p>
+  </header>
+
+  <div class="form-card">
+
+    <!-- CONFIRMATION — replaces the form on submit -->
+    <div class="form-success" id="form-success" aria-live="polite">
+      <div class="form-success-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2 id="success-heading">You're all set.</h2>
+      <p id="success-lead"></p>
+      <span class="form-success-address">missionary@write-weekly.com</span>
+      <p id="success-body"></p>
+      <p class="form-success-small" id="success-small"></p>
+    </div>
+
+    <!-- WIZARD -->
+    <div id="form-wizard">
+      <div class="tf-progress">
+        <span class="tf-progress-label" id="tf-progress-label">Step 1 of 2</span>
+        <span class="tf-progress-bar"><span class="tf-progress-fill" id="tf-progress-fill"></span></span>
+      </div>
+
+      <form id="trial-form" novalidate>
+
+        <div class="step-panel active" id="step-1">
+          <h2 class="step-title" id="s1-title">Their mission</h2>
+          {% include "partials/trial/missionary-name.njk" %}
+          {% set datePrefix = "departure" %}{% set dateLabel = "Departure / MTC date" %}
+          {% include "partials/trial/date-select.njk" %}
+          <p class="tf-note" id="past-note" hidden>That date has already passed. If they're serving now, <a href="/free-trial/start/?status=serving" id="past-switch">start a free sample instead →</a></p>
+          {% set missionUnknownOption = true %}
+          {% include "partials/trial/mission-picker.njk" %}
+          <div class="field">
+            <label class="field-label" for="missionary-email" id="missionary-email-label">Mission email <span class="opt">(optional)</span></label>
+            <input type="email" id="missionary-email" placeholder="elder.smith@missionary.org" autocomplete="off" />
+          </div>
+          <div class="step-nav"><button type="button" class="btn-primary tf-next">Continue</button></div>
+        </div>
+
+        <div class="step-panel" id="step-2">
+          <h2 class="step-title">About you</h2>
+          {% include "partials/trial/about-you.njk" %}
+          <div class="step-nav">
+            <button type="button" class="btn-text tf-prev">Back</button>
+            <button type="submit" class="btn-primary" id="submit-btn">Get set up</button>
+          </div>
+          <p class="tf-fineprint">No credit card. Yours to keep.</p>
+        </div>
+
+        <input type="hidden" id="return-date" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>window.WK_MISSIONS = {{ missions | dump | safe }};</script>
+<script src="/js/mission-picker.js"></script>
+<script src="/js/trial-wizard.js"></script>
+<script>
+  var LIST_ID = 'WsSQ5H'; // Klaviyo list ID
+  var STATUS = 'leaving_soon';
+  var P = WKTrial.params();
+  var form = document.getElementById('trial-form');
+
+  document.getElementById('back-link').href = '/free-trial/' + (P.v ? '?v=' + P.v : '');
+
+  var missionPicker = WKMissionPicker({
+    input:      document.getElementById('mission-search'),
+    list:       document.getElementById('mission-list'),
+    otherWrap:  document.getElementById('mission-other-wrap'),
+    otherInput: document.getElementById('mission-other'),
+    missions:   window.WK_MISSIONS
+  });
+  var unknownBox = document.getElementById('mission-unknown');
+  unknownBox.addEventListener('change', function () { missionPicker.setDisabled(this.checked); });
+
+  // ── Departure date ─────────────────────────────────────────────
+  // Return date is calculated (Elder 24 months, Sister 18) and sent hidden.
+  // A date in the past gets an inline note offering Track B instead, with
+  // what they've entered carried over in the URL.
+  function departure() { return WKTrial.dates.get('departure'); }
+  function isPast() { return !!departure() && departure() < WKTrial.today(); }
+
+  function onDepartureChange() {
+    document.getElementById('return-date').value =
+      WKTrial.returnDate(departure(), WKTrial.radio('missionary_title'));
+    document.getElementById('past-note').hidden = !isPast();
+    updateSwitchLink();
+  }
+
+  function updateSwitchLink() {
+    var q = new URLSearchParams({ status: 'serving' });
+    if (P.v) q.set('v', P.v);
+    var fields = {
+      title:  WKTrial.radio('missionary_title'),
+      first:  document.getElementById('missionary-first').value.trim(),
+      last:   document.getElementById('missionary-last').value.trim(),
+      departure: departure(),
+      memail: document.getElementById('missionary-email').value.trim()
+    };
+    var m = missionPicker.getValue();
+    if (m && m.id !== 'other' && m.id !== 'unknown') fields.mission = m.id;
+    Object.keys(fields).forEach(function (k) { if (fields[k]) q.set(k, fields[k]); });
+    document.getElementById('past-switch').href = '/free-trial/start/?' + q.toString();
+  }
+  // Refresh the carried-over values right before they follow the link.
+  document.getElementById('past-switch').addEventListener('mousedown', updateSwitchLink);
+  document.getElementById('past-switch').addEventListener('touchstart', updateSwitchLink, { passive: true });
+
+  var thisYear = new Date().getFullYear();
+  WKTrial.dates.init('departure', thisYear - 1, thisYear + 2, onDepartureChange);
+  document.querySelectorAll('input[name="missionary_title"]').forEach(function (r) {
+    r.addEventListener('change', onDepartureChange);
+  });
+
+  // ── Validation ─────────────────────────────────────────────────
+  function validate(n) {
+    var isSelf = WKTrial.isSelf();
+    if (n === 1) {
+      if (!isSelf) {
+        if (!WKTrial.radio('missionary_title')) { alert('Please choose Elder or Sister.'); return false; }
+        if (!document.getElementById('missionary-first').value.trim()) { alert("Please enter the missionary's first name."); return false; }
+        if (!document.getElementById('missionary-last').value.trim())  { alert("Please enter the missionary's last name."); return false; }
+      }
+      if (!departure()) { alert('Please enter the departure date.'); return false; }
+      if (isPast()) { document.getElementById('past-note').hidden = false; return false; }
+      var mission = missionPicker.getValue();
+      if (!mission) { alert('Please choose a mission from the list, or tick "not known yet".'); missionPicker.focus(); return false; }
+      if (mission.id === 'other' && !mission.name) { alert('Please type the mission name.'); document.getElementById('mission-other').focus(); return false; }
+      var m = document.getElementById('missionary-email').value.trim();
+      if (m && !WKTrial.isEmail(m)) { alert("That mission email doesn't look right. Check it, or leave it blank."); return false; }
+    }
+    if (n === 2) {
+      if (!WKTrial.radio('relationship')) { alert('Please tell us how you know the missionary.'); return false; }
+      if (!document.getElementById('parent-name').value.trim()) { alert('Please enter your name.'); return false; }
+      if (!WKTrial.isEmail(document.getElementById('parent-email').value.trim())) { alert('Please enter a valid email address.'); return false; }
+    }
+    return true;
+  }
+
+  var wizard = WKTrial.wizard({ form: form, total: 2, validate: validate });
+
+  // ── "I'm the Missionary" relabeling ────────────────────────────
+  function applyLabels() {
+    var isSelf = WKTrial.isSelf();
+    document.getElementById('self-note').classList.toggle('visible', isSelf);
+    document.getElementById('missionary-name-group').hidden = isSelf;
+    document.getElementById('s1-title').textContent = isSelf ? 'Your mission' : 'Their mission';
+    document.getElementById('mission-label').textContent = isSelf ? 'Your mission' : 'Mission';
+    document.getElementById('missionary-email-label').firstChild.textContent = isSelf ? 'Your mission email ' : 'Mission email ';
+  }
+  document.querySelectorAll('input[name="relationship"]').forEach(function (r) {
+    r.addEventListener('change', applyLabels);
+  });
+
+  // ── Submit ─────────────────────────────────────────────────────
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!wizard.validateAll()) return;
+
+    var isSelf = WKTrial.isSelf();
+    var parentName  = document.getElementById('parent-name').value.trim();
+    var parentEmail = document.getElementById('parent-email').value.trim();
+    var mission = missionPicker.getValue();
+    var title = WKTrial.radio('missionary_title');
+    var first, last;
+    if (isSelf) {
+      first = parentName.split(' ')[0] || parentName;
+      last  = parentName.split(' ').slice(1).join(' ');
+    } else {
+      first = document.getElementById('missionary-first').value.trim();
+      last  = document.getElementById('missionary-last').value.trim();
+    }
+    var missionaryEmail = document.getElementById('missionary-email').value.trim();
+
+    var payload = {
+      ad_variant:           P.variant,
+      relationship:         WKTrial.radio('relationship'),
+      parent_name:          parentName,
+      parent_email:         parentEmail,
+      missionary_title:     title,
+      missionary_first:     first,
+      missionary_last:      last,
+      missionary_name:      [title, first, last].filter(Boolean).join(' '),
+      missionary_status:    STATUS,
+      mission_id:           mission.id,
+      mission_name:         mission.name,
+      // Kept so existing Klaviyo views on the old free-text field still fill.
+      mission_assignment:   mission.name,
+      missionary_email:     missionaryEmail,
+      has_missionary_email: missionaryEmail ? 'yes' : 'no',
+      departure_date:       departure(),
+      return_date:          WKTrial.returnDate(departure(), title)
+    };
+
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    var fd = new FormData();
+    fd.append('g',           LIST_ID);
+    fd.append('email',       payload.parent_email);
+    fd.append('$fields',     '$first_name,$consent,ad_variant,relationship,missionary_title,missionary_first,missionary_last,missionary_name,missionary_status,mission_id,mission_name,mission_assignment,missionary_email,has_missionary_email,departure_date,return_date');
+    fd.append('$consent',    'email');
+    fd.append('$first_name', payload.parent_name);
+    fd.append('ad_variant',           payload.ad_variant);
+    fd.append('relationship',         payload.relationship);
+    fd.append('missionary_title',     payload.missionary_title);
+    fd.append('missionary_first',     payload.missionary_first);
+    fd.append('missionary_last',      payload.missionary_last);
+    fd.append('missionary_name',      payload.missionary_name);
+    fd.append('missionary_status',    payload.missionary_status);
+    fd.append('mission_id',           payload.mission_id);
+    fd.append('mission_name',         payload.mission_name);
+    fd.append('mission_assignment',   payload.mission_assignment);
+    fd.append('missionary_email',     payload.missionary_email);
+    fd.append('has_missionary_email', payload.has_missionary_email);
+    fd.append('departure_date',       payload.departure_date);
+    fd.append('return_date',          payload.return_date);
+
+    fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe', {
+      method: 'POST',
+      body:   fd,
+      mode:   'no-cors'
+    })
+    .catch(function () {})
+    .finally(function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { variant: payload.ad_variant, status: payload.missionary_status });
+      }
+      showSuccess(payload, isSelf);
+    });
+  });
+
+  // ── Confirmation ───────────────────────────────────────────────
+  function showSuccess(payload, isSelf) {
+    var label = [payload.missionary_title, payload.missionary_last].filter(Boolean).join(' ')
+             || payload.missionary_first;
+    var when = WKTrial.formatDate(payload.departure_date);
+
+    document.getElementById('success-heading').textContent =
+      (!isSelf && label) ? "You're all set for " + label + '.' : "You're all set.";
+    document.getElementById('success-lead').textContent = isSelf
+      ? 'Add this address to your weekly email list before you leave:'
+      : "Add this address to the email list they'll send their weekly updates to:";
+    document.getElementById('success-body').textContent = isSelf
+      ? "We'll format your first six weeks as they arrive."
+      : "We'll format their first six weeks as they arrive.";
+    document.getElementById('success-small').textContent = isSelf
+      ? "We've sent you a confirmation, and we'll be in touch the week before you leave on " + when + '.'
+      : "We've sent you a confirmation, and we'll be in touch the week before they leave on " + when + '.';
+    WKTrial.showSuccess();
+  }
+</script>

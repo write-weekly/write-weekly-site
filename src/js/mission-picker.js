@@ -162,6 +162,13 @@
           close();
         }
       },
+      // Preselect by slug (e.g. carried over in the URL). Unknown slugs are ignored.
+      select: function (slug) {
+        for (var i = 0; i < index.length; i++) {
+          if (index[i].m.slug === slug) { choose(index[i].m); return true; }
+        }
+        return false;
+      },
       focus: function () { input.focus(); }
     };
   };

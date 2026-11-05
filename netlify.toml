@@ -64,6 +64,16 @@
   status = 301
 
 [[redirects]]
+  from = "/freetrial/departing"
+  to = "/free-trial/departing/"
+  status = 301
+
+[[redirects]]
+  from = "/freetrial/departing/"
+  to = "/free-trial/departing/"
+  status = 301
+
+[[redirects]]
   from = "/rmform.html"
   to = "/returned-missionary/"
   status = 301

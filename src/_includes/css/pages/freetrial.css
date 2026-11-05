@@ -1,37 +1,37 @@
-/* /free-trial/ — status selector. Deliberately minimal: headline, one
-   line, the question, three choices. */
+/* /free-trial/ — status selector.
+   One narrow column: headline, one line, the question, three stacked rows.
+   Modelled on onboarding-style signup pages: quiet type, big tap targets. */
 
-.ft-hero {position:relative; z-index:1; text-align:center; padding:112px 24px 0; max-width:880px; margin:0 auto;}
+.ft-hero {position:relative; z-index:1; text-align:center; max-width:520px; margin:0 auto; padding:96px 24px 0;}
 .hero-copy[hidden] {display:none;}
-.ft-hero h1 {font-family:'Playfair Display',Georgia,serif; font-size:clamp(32px,5vw,52px); font-weight:500; color:var(--dark); line-height:1.15; margin-bottom:20px; letter-spacing:-0.01em;}
+.ft-hero h1 {font-family:'Playfair Display',Georgia,serif; font-size:clamp(30px,4vw,40px); font-weight:500; color:var(--dark); line-height:1.2; letter-spacing:-0.01em; margin-bottom:14px;}
 .ft-hero h1 em {font-style:italic; color:var(--copper);}
-.hero-sub {font-family:'Lora',Georgia,serif; font-size:18px; line-height:1.6; color:var(--body-text); max-width:460px; margin:0 auto;}
+.hero-sub {font-size:17px; line-height:1.55; color:var(--body-text); max-width:400px; margin:0 auto;}
 
-.ft-select {position:relative; z-index:1; max-width:860px; margin:0 auto; padding:72px 24px 128px; text-align:center;}
-.ft-question {font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:clamp(20px,2.6vw,24px); font-weight:400; color:var(--dark); margin-bottom:28px;}
+.ft-select {position:relative; z-index:1; max-width:440px; margin:0 auto; padding:56px 24px 120px;}
+.ft-question {font-size:15px; font-weight:600; color:var(--dark); text-align:center; margin-bottom:16px;}
 
-.status-cards {display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
-.status-card {display:flex; align-items:center; justify-content:space-between; gap:12px; padding:26px 26px; text-decoration:none; background:var(--surface); border:1.5px solid rgba(176,112,64,0.18); border-radius:16px; transition:border-color 0.2s, box-shadow 0.2s, transform 0.12s, background 0.2s; -webkit-tap-highlight-color:transparent;}
-.status-card:hover {border-color:rgba(176,112,64,0.55); box-shadow:0 12px 32px rgba(42,24,0,0.07);}
-.status-card:focus-visible {outline:none; border-color:var(--copper); box-shadow:0 0 0 3px rgba(176,112,64,0.18);}
-.status-card:active,
-.status-card.is-pressed {transform:scale(0.98); border-color:var(--copper); background:var(--copper-pale);}
-.status-card-title {font-family:'Playfair Display',Georgia,serif; font-size:20px; font-weight:500; color:var(--dark); line-height:1.25; text-align:left; white-space:nowrap;}
-.status-card-arrow {font-size:18px; color:var(--copper); transition:transform 0.2s; flex-shrink:0;}
-.status-card:hover .status-card-arrow,
-.status-card.is-pressed .status-card-arrow {transform:translateX(3px);}
+.status-list {display:flex; flex-direction:column; gap:10px;}
+.status-row {display:flex; align-items:center; gap:14px; min-height:64px; padding:12px 16px 12px 14px; background:#fff; border:1px solid rgba(42,24,0,0.10); border-radius:14px; text-decoration:none; color:var(--dark); box-shadow:0 1px 2px rgba(42,24,0,0.04); transition:border-color 0.15s, box-shadow 0.15s, transform 0.1s, background 0.15s; -webkit-tap-highlight-color:transparent;}
+.status-row:hover {border-color:rgba(176,112,64,0.55); box-shadow:0 6px 18px rgba(42,24,0,0.07);}
+.status-row:focus-visible {outline:none; border-color:var(--copper); box-shadow:0 0 0 3px rgba(176,112,64,0.18);}
+.status-row:active,
+.status-row.is-pressed {transform:scale(0.985); border-color:var(--copper); background:var(--copper-pale);}
+
+.status-ico {width:38px; height:38px; flex-shrink:0; border-radius:10px; background:var(--copper-pale); display:flex; align-items:center; justify-content:center;}
+.status-ico svg {width:20px; height:20px; fill:none; stroke:var(--copper); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.status-label {flex:1; font-size:16.5px; font-weight:500; letter-spacing:-0.005em;}
+.status-chev svg {display:block; width:18px; height:18px; fill:none; stroke:rgba(42,24,0,0.35); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:transform 0.15s, stroke 0.15s;}
+.status-row:hover .status-chev svg,
+.status-row.is-pressed .status-chev svg {stroke:var(--copper); transform:translateX(2px);}
 
 @media (max-width:768px) {
-  .ft-hero {padding:56px 24px 0;}
-  .ft-hero h1 {margin-bottom:14px;}
-  .hero-sub {font-size:16.5px;}
-  .ft-select {padding:44px 20px 80px;}
-  .ft-question {margin-bottom:18px;}
-  .status-cards {grid-template-columns:1fr; gap:12px;}
-  .status-card {padding:20px 22px;}
-  .status-card-title {font-size:19px;}
+  .ft-hero {padding-top:48px;}
+  .ft-select {padding:36px 20px 72px;}
 }
 @media (max-width:420px) {
-  .ft-hero {padding-top:44px;}
-  .ft-hero h1 {font-size:30px;}
+  .ft-hero {padding:36px 20px 0;}
+  .ft-hero h1 {font-size:28px;}
+  .hero-sub {font-size:16px;}
+  .ft-select {padding:28px 16px 64px;}
 }
