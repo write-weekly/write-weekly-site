@@ -8,7 +8,7 @@
 .ft-hero h1 em {font-style:italic; color:var(--copper);}
 .hero-sub {font-size:17px; line-height:1.55; color:var(--body-text); max-width:400px; margin:0 auto; text-wrap:balance;}
 
-.ft-select {position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; max-width:920px; margin:0 auto; padding:52px 24px 112px;}
+.ft-select {position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,54fr) minmax(0,46fr); gap:40px; align-items:center; max-width:960px; margin:0 auto; padding:52px 24px 112px;}
 /* The PNGs carry their own soft shadow on a transparent background —
    no border, box or extra shadow here. */
 .ft-pages {margin:0;}
