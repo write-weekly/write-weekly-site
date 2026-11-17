@@ -117,7 +117,19 @@
 .form-success h2 {font-family:'Playfair Display',Georgia,serif; font-size:25px; font-weight:500; color:var(--dark); margin-bottom:10px;}
 .form-success p {font-size:15.5px; line-height:1.6; color:var(--body-text); max-width:360px; margin:0 auto;}
 .form-success p strong {color:var(--dark); font-weight:600;}
-.form-success-address {display:block; margin:16px 0; padding:16px 12px; border-radius:12px; background:var(--copper-pale); font-size:clamp(17px,4.4vw,21px); font-weight:600; color:var(--copper-hover); word-break:break-all; user-select:all; -webkit-user-select:all;}
+/* Forwarding address — the whole box copies it (tap or click) */
+.form-success-address {display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 12px; width:100%; margin:16px 0 0; padding:16px 12px; border:1px solid transparent; border-radius:12px; background:var(--copper-pale); font-family:inherit; color:var(--copper-hover); cursor:pointer; transition:border-color 0.15s, background 0.15s; -webkit-tap-highlight-color:transparent;}
+.form-success-address:hover {border-color:rgba(176,112,64,0.45);}
+.form-success-address:focus-visible {outline:none; border-color:var(--copper); box-shadow:0 0 0 3px rgba(176,112,64,0.2);}
+.form-success-address:active {background:rgba(176,112,64,0.14);}
+.fsa-email {font-size:clamp(17px,4.4vw,21px); font-weight:600; overflow-wrap:anywhere;}
+.fsa-copy {display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border:1px solid rgba(176,112,64,0.35); border-radius:100px; background:#fff; font-size:13px; font-weight:600; color:var(--copper-hover); white-space:nowrap;}
+.fsa-copy svg {width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+.fsa-ico-done {display:none;}
+.form-success-address.is-copied .fsa-copy {border-color:var(--green); color:var(--green);}
+.form-success-address.is-copied .fsa-ico-copy {display:none;}
+.form-success-address.is-copied .fsa-ico-done {display:inline;}
+.fsa-status {min-height:20px; margin:6px auto 10px !important; font-size:13px !important; color:var(--text-muted) !important;}
 .form-success-small {margin-top:14px !important; font-size:13.5px !important; color:var(--text-muted) !important;}
 
 @media (max-width:420px) {

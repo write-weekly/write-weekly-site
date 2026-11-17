@@ -265,6 +265,58 @@
     };
   };
 
+  // ── Copy-to-clipboard ([data-copy] buttons) ──────────────────
+  // Uses the Clipboard API, with a fallback for older phones and non-HTTPS
+  // previews. If copying fails, the address text is selected so the visitor
+  // can copy it by hand.
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length); // iOS
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      if (ok) resolve(); else reject();
+    });
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    var label = btn.querySelector('.fsa-copy-label');
+    var status = btn.parentNode.querySelector('.fsa-status');
+    var timer;
+    btn.addEventListener('click', function () {
+      copyText(btn.getAttribute('data-copy')).then(function () {
+        btn.classList.add('is-copied');
+        if (label) label.textContent = 'Copied';
+        if (status) status.textContent = 'Copied. Paste it into your email.';
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          btn.classList.remove('is-copied');
+          if (label) label.textContent = 'Copy';
+          if (status) status.textContent = '';
+        }, 2500);
+      }, function () {
+        var email = btn.querySelector('.fsa-email');
+        var range = document.createRange();
+        range.selectNodeContents(email);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        if (status) status.textContent = 'Press and hold the address to copy it.';
+      });
+    });
+  });
+
   // Swap the wizard for the confirmation.
   T.showSuccess = function () {
     $('form-wizard').hidden = true;

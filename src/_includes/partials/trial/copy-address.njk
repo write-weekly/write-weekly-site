@@ -1,0 +1,13 @@
+{#- The forwarding address on the confirmation screen. The whole box is a
+    button that copies the address (behaviour: WKTrial copy helper in
+    src/js/trial-wizard.js). The address must stay exact — the backend
+    identifies sample emails by it. -#}
+<button type="button" class="form-success-address" data-copy="missionary@write-weekly.com" aria-label="Copy the address missionary@write-weekly.com">
+  <span class="fsa-email">missionary@write-weekly.com</span>
+  <span class="fsa-copy" aria-hidden="true">
+    <svg class="fsa-ico-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+    <svg class="fsa-ico-done" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    <span class="fsa-copy-label">Copy</span>
+  </span>
+</button>
+<p class="fsa-status" aria-live="polite"></p>
