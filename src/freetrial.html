@@ -35,10 +35,17 @@ pageCss: freetrial.css
 
 <section class="ft-select" aria-labelledby="status-q">
 
-  <!-- A finished cover, reused from /sample/ -->
-  <figure class="ft-book">
-    <img src="https://res.cloudinary.com/dchehgltv/image/upload/q_auto,f_auto,w_440/v1777001604/Page_00001_pf5ykr.png"
-         width="600" height="777" alt="A finished Weekly missionary book cover" />
+  <!-- Fanned sample pages. Phones get the 3-page image, everything wider the
+       4-page one. To show the 4-page image on phones too, delete the <source>. -->
+  <figure class="ft-pages">
+    <picture>
+      <source media="(max-width: 768px)"
+              srcset="{{ 'https://res.cloudinary.com/dchehgltv/image/upload/v1794948597/sample-pages-mobile_cuhqhl.png' | cdnUrl(1000) }}"
+              width="1788" height="1394" />
+      <img src="{{ 'https://res.cloudinary.com/dchehgltv/image/upload/v1794948595/sample-pages-desktop_p0gtgv.png' | cdnUrl(1000) }}"
+           width="2172" height="1438"
+           alt="Sample pages from a Weekly missionary book, showing weekly emails and photos typeset as book pages" />
+    </picture>
   </figure>
 
   <div class="ft-choose">

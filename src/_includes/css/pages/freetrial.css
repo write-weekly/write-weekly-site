@@ -1,6 +1,6 @@
 /* /free-trial/ — status chooser for the free sample.
-   Headline, one line, then a finished book beside the three stacked rows
-   (desktop) or a small cover above them (phones). Quiet type, big tap targets. */
+   Headline, one line, then fanned sample pages beside the three stacked rows
+   (desktop) or above them (phones). Quiet type, big tap targets. */
 
 .ft-hero {position:relative; z-index:1; text-align:center; max-width:520px; margin:0 auto; padding:96px 24px 0;}
 .hero-copy[hidden] {display:none;}
@@ -8,9 +8,11 @@
 .ft-hero h1 em {font-style:italic; color:var(--copper);}
 .hero-sub {font-size:17px; line-height:1.55; color:var(--body-text); max-width:400px; margin:0 auto; text-wrap:balance;}
 
-.ft-select {position:relative; z-index:1; display:grid; grid-template-columns:170px minmax(0,400px); gap:40px; align-items:center; justify-content:center; max-width:700px; margin:0 auto; padding:52px 24px 112px;}
-.ft-book {margin:0;}
-.ft-book img {display:block; width:100%; height:auto; transform:rotate(-3deg); filter:drop-shadow(0 14px 22px rgba(42,24,0,0.18));}
+.ft-select {position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; max-width:920px; margin:0 auto; padding:52px 24px 112px;}
+/* The PNGs carry their own soft shadow on a transparent background —
+   no border, box or extra shadow here. */
+.ft-pages {margin:0;}
+.ft-pages img {display:block; width:100%; height:auto;}
 .ft-question {font-size:15px; font-weight:600; color:var(--dark); text-align:center; margin-bottom:16px;}
 
 .status-list {display:flex; flex-direction:column; gap:10px;}
@@ -34,16 +36,18 @@
 
 @media (max-width:768px) {
   .ft-hero {padding-top:40px;}
-  .ft-select {grid-template-columns:1fr; gap:18px; max-width:440px; padding:26px 20px 72px;}
-  .ft-book {width:84px; margin:0 auto;}
-  .ft-book img {transform:rotate(-4deg);}
+  .ft-select {grid-template-columns:1fr; gap:12px; max-width:440px; padding:20px 20px 72px;}
+  /* ~90% of the screen; the negative bottom margin tucks the question into
+     the image's transparent shadow edge so the options sit higher. */
+  .ft-pages {width:90vw; max-width:420px; margin:0 auto -10px; justify-self:center;}
 }
 @media (max-width:420px) {
-  .ft-hero {padding:28px 20px 0;}
-  .ft-hero h1 {font-size:27px;}
-  .hero-sub {font-size:15.5px;}
-  .ft-select {gap:14px; padding:20px 16px 64px;}
-  .ft-book {width:68px;}
-  .ft-question {margin-bottom:12px;}
-  .status-row {min-height:58px;}
+  .ft-hero {padding:18px 20px 0;}
+  .ft-hero h1 {font-size:26px; margin-bottom:8px;}
+  .hero-sub {font-size:15px;}
+  .ft-select {gap:10px; padding:8px 16px 64px;}
+  .ft-question {margin-bottom:10px;}
+  .status-list {gap:8px;}
+  .status-row {min-height:52px; padding-top:8px; padding-bottom:8px;}
+  .status-ico {width:34px; height:34px;}
 }
