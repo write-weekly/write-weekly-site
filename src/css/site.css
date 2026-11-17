@@ -96,6 +96,17 @@ section { position: relative; z-index: 2; }
 }
 .wk-nav-cta:hover { background: var(--copper-hover); }
 
+/* Funnel nav: secondary outline link (e.g. "Skip My Sample — Buy Now").
+   Outline on purpose — the filled copper style is for each page's main action. */
+.wk-nav .wk-nav-secondary {
+  padding: 8px 18px; border-radius: 100px;
+  border: 1.5px solid var(--copper); background: transparent;
+  color: var(--copper); font-size: 13px; font-weight: 600;
+  text-decoration: none; letter-spacing: 0.01em; white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.wk-nav .wk-nav-secondary:hover { background: var(--copper-pale); color: var(--copper-hover); }
+
 /* Hamburger — hidden on desktop */
 .wk-hamburger {
   display: none; flex-direction: column; gap: 5px;
@@ -195,6 +206,7 @@ section { position: relative; z-index: 2; }
   .wk-logo { font-size: 20px; }
   .wk-logo-sub, .wk-nav-links { display: none !important; }
   .wk-hamburger { display: flex !important; }
+  .wk-nav .wk-nav-secondary { padding: 6px 13px; font-size: 12.5px; }
 
   .wk-footer-inner { grid-template-columns: 1fr; gap: 0; padding: 32px 20px 8px; }
   .wk-footer-brand { padding-bottom: 24px; border-bottom: 1px solid rgba(250,243,234,0.08); }
@@ -206,4 +218,11 @@ section { position: relative; z-index: 2; }
   .wk-footer-col.open .wk-footer-col-links { max-height: 260px; }
   .wk-footer-col.open .wk-fc-arrow { transform: rotate(45deg); }
   .wk-footer-bottom { padding: 16px 20px; flex-direction: column; gap: 4px; text-align: center; }
+}
+
+/* Funnel header: compact on small phones so the form starts higher. */
+@media (max-width: 420px) {
+  .wk-nav--funnel { padding: 10px 16px; }
+  .wk-nav--funnel .wk-logo { font-size: 19px; }
+  .wk-nav .wk-nav-secondary { padding: 5px 11px; font-size: 12px; }
 }

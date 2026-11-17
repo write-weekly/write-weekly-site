@@ -1,0 +1,3 @@
+/* /free-trial/departing/ — Track A (leaving soon). All the form styling
+   is shared with Track B and lives in _includes/css/trial-form.css. */
+{% include "css/trial-form.css" %}
