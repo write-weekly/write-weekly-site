@@ -31,113 +31,67 @@ pageCss: index.css
   <!-- HOW IT WORKS -->
   <section id="how">
     <div class="how">
-      <div class="section-label">How it works</div>
-      <h2 class="section-title">Which situation <em>describes you?</em></h2>
-      <p class="section-sub">Select your missionary type and we'll show you exactly how simple it is.</p>
-
-      <div class="path-cards">
-        <div class="path-card path-card-departing" id="card-departing" onclick="selectPath('departing')">
-          <div class="path-card-content">
-            <div class="path-title">Departing Missionary</div>
-            <div class="path-cta">See how it works &rarr;</div>
+      <div class="aud-tabs reveal">
+        <h2 class="aud-title">Here&rsquo;s how it works</h2>
+        <div class="aud-tabs-nav" role="tablist" aria-label="Missionary type">
+          <button class="aud-tab-btn active" role="tab" aria-selected="true" onclick="audSetTab(this,0)">Currently serving or departing</button>
+          <button class="aud-tab-btn" role="tab" aria-selected="false" onclick="audSetTab(this,1)">Returned missionary</button>
+        </div>
+        <div class="aud-tab-panel active" data-tab-index="0">
+          <div class="hiw-steps">
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 1</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1788412623/elder_missionary_zq4rjs.jpg" alt="Reserve your book" /></div>
+              <h3 class="hiw-step-title">Reserve your book</h3>
+              <p class="hiw-step-desc">Lock in your book and secure your mission memories.</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 2</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1794982463/Gemini_Generated_Image_drpyk4drpyk4drpy_qonksh.jpg" alt="We collect every week" /></div>
+              <h3 class="hiw-step-title">We collect every week</h3>
+              <p class="hiw-step-desc">Each weekly email and letter home is gathered automatically, from now through their release.</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 3</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1794982905/Gemini_Generated_Image_roi0sproi0sproi0_ugxkyi.jpg" alt="We design, you review" /></div>
+              <h3 class="hiw-step-title">We design, you review</h3>
+              <p class="hiw-step-desc">We lay it all out into a professional book and send you a proof to approve.</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 4</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1794975038/Step_4_-_We_print_Ship_ahyt61.jpg" alt="We print &amp; ship" /></div>
+              <h3 class="hiw-step-title">We print &amp; ship</h3>
+              <p class="hiw-step-desc">Printed on 80lb gloss paper stock and delivered to your door.</p>
+            </div>
           </div>
         </div>
-        <div class="path-card path-card-serving" id="card-serving" onclick="selectPath('serving')">
-          <div class="path-card-content">
-            <div class="path-title">Currently Serving</div>
-            <div class="path-cta">See how it works &rarr;</div>
+        <div class="aud-tab-panel" data-tab-index="1">
+          <div class="hiw-steps">
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 1</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1788412623/elder_missionary_zq4rjs.jpg" alt="Reserve your book" /></div>
+              <h3 class="hiw-step-title">Reserve your book</h3>
+              <p class="hiw-step-desc">Lock in your book and secure your mission memories.</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 2</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1794975434/Send_us_what_you_have_kmffvp.jpg" alt="Send us what you have" /></div>
+              <h3 class="hiw-step-title">Send us what you have</h3>
+              <p class="hiw-step-desc">Forward the emails, letters, and photos you&rsquo;ve saved across their mission.</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 3</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1794982905/Gemini_Generated_Image_roi0sproi0sproi0_ugxkyi.jpg" alt="We design, you review" /></div>
+              <h3 class="hiw-step-title">We design, you review</h3>
+              <p class="hiw-step-desc">We organize every week into a professional book and send you a proof to approve.</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-label">Step 4</div>
+              <div class="hiw-step-photo"><img src="https://res.cloudinary.com/dchehgltv/image/upload/c_fill,ar_4:3,g_auto,f_auto,q_auto/v1794975038/Step_4_-_We_print_Ship_ahyt61.jpg" alt="We print &amp; ship" /></div>
+              <h3 class="hiw-step-title">We print &amp; ship</h3>
+              <p class="hiw-step-desc">Printed on 80lb gloss paper stock and delivered to your door.</p>
+            </div>
           </div>
-        </div>
-        <div class="path-card path-card-returned" id="card-returned" onclick="selectPath('returned')">
-          <div class="path-card-content">
-            <div class="path-title">Returned Missionary</div>
-            <div class="path-cta">See how it works &rarr;</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Departing Steps -->
-      <div class="steps-panel" id="steps-departing">
-        <div class="steps-intro">Here's how it works for a departing missionary</div>
-        <div class="steps steps-4">
-          <div class="step">
-            <div class="step-num">1</div>
-            <h3>Sign up before they leave</h3>
-            <p>Create your account and get your unique collection email. Takes two minutes.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <h3>CC us on every P-Day email</h3>
-            <p>Every story, photo, and memory comes to us automatically from day one.</p>
-          </div>
-          <div class="step step-exclusive">
-            <div class="step-num" style="color:rgba(176,112,64,0.18);">✦</div>
-            <h3>Receive mid-mission bonuses</h3>
-            <ul class="deliverables-list">
-              <li>PDF Transfer Recaps</li>
-              <li>Mission Countdown Calendar</li>
-              <li>Mini-Magazines</li>
-            </ul>
-            <a class="peek-btn" href="/sample/" target="_blank">What do these look like? &rarr;</a>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <h3>Receive your finished book</h3>
-            <p>A complete hardcover of the entire mission, delivered to your door.</p>
-          </div>
-        </div>
-        <div style="margin-top:24px;text-align:center;">
-          <a class="sample-link" href="/sample/" target="_blank">View a sample book &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Currently Serving Steps -->
-      <div class="steps-panel" id="steps-serving">
-        <div class="steps-intro">No worries — we can pick up right where you are</div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <h3>Sign up &amp; send what you have</h3>
-            <p>Forward us any emails you've already saved. We'll catch up to where you are now.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <h3>CC us going forward</h3>
-            <p>Every new email and photo is collected automatically from this point on.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <h3>Get the complete book</h3>
-            <p>Past and future emails combined into one beautiful hardcover book.</p>
-          </div>
-        </div>
-        <div style="margin-top:24px;text-align:center;">
-          <a class="sample-link" href="/sample/" target="_blank">View a sample book &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Returned Steps -->
-      <div class="steps-panel" id="steps-returned">
-        <div class="steps-intro">It's not too late — we can work with what you have</div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <h3>Send us what you have</h3>
-            <p>Email or upload saved P-Day emails and photos. Even a messy Gmail folder works fine.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <h3>We design the whole mission</h3>
-            <p>Our team organizes everything and lays out a complete, beautiful book start to finish.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <h3>Your keepsake arrives</h3>
-            <p>A stunning hardcover book — the perfect homecoming gift or family heirloom.</p>
-          </div>
-        </div>
-        <div style="margin-top:24px;text-align:center;">
-          <a class="sample-link" href="/sample/" target="_blank">View a sample book &rarr;</a>
         </div>
       </div>
     </div>
@@ -290,6 +244,36 @@ pageCss: index.css
 
 <!-- RECOVERED PAGE SCRIPT -->
 <script>
+    /* ── How it works: audience tabs ── */
+    function audSetTab(btn, index) {
+      var wrap = btn.closest('.aud-tabs');
+      if (!wrap) return;
+      wrap.querySelectorAll('.aud-tab-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      wrap.querySelectorAll('.aud-tab-panel').forEach(function(p) {
+        p.classList.toggle('active', Number(p.dataset.tabIndex) === index);
+      });
+    }
+
+    /* ── Scroll reveal: lower sections blur/fade until scrolled into view ── */
+    (function() {
+      if (!('IntersectionObserver' in window)) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+      document.body.classList.add('js-reveal');
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -38% 0px', threshold: 0 });
+      els.forEach(function(el) { io.observe(el); });
+    })();
+
 /* ── Path selector ── */
     function selectPath(path) {
       document.querySelectorAll('.path-card').forEach(function(c) { c.classList.remove('selected'); });
