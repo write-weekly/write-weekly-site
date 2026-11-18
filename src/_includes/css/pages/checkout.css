@@ -285,7 +285,7 @@
 .pdp-grid {display: grid; grid-template-columns: 42% 1fr; gap: 44px; margin-bottom: 40px; align-items: start;}
 .pdp-gallery {display: flex; gap: 12px; align-items: flex-start;}
 .pdp-gallery-main {flex: 1; min-width: 0; aspect-ratio: 4/5; border-radius: 16px;
-      background-size: contain; background-repeat: no-repeat; background-position: center;
+      background-size: cover; background-repeat: no-repeat; background-position: center;
       background-color: #ABA9AA;
       box-shadow: 0 12px 40px rgba(42,24,0,0.15); order: 1;}
 .pdp-gallery-thumbs {display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; order: 0;}
