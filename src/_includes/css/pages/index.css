@@ -160,3 +160,8 @@
   .comparison-table th:last-child,.comparison-table td:last-child {display:none;}
   .comparison-table th:nth-child(4),.comparison-table td:nth-child(4) {display:none;}
 }
+
+/* How it works: use the home page's standard left-aligned section header */
+.how .aud-tabs {margin-top:0;}
+.how .section-title {margin-bottom:28px;}
+.how .aud-tabs-nav {justify-content:flex-start;}
