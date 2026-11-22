@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lily Hooper – Missionary Journal Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Lora:ital@1&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FAF3EA;--dark:#1E1000;--copper:#B07040;--copper-l:#D4956A;}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--cream);color:var(--dark);font-family:Jost,system-ui,sans-serif}
+  body{display:flex;flex-direction:column;min-height:100vh}
+  header{text-align:center;padding:22px 16px 6px}
+  .brand{font-family:Jost;letter-spacing:.28em;text-transform:uppercase;font-size:11px;color:var(--copper)}
+  h1{font-family:"Playfair Display",serif;font-weight:400;font-size:clamp(22px,3.2vw,32px);margin:8px 0 4px}
+  .sub{font-family:Lora,serif;font-style:italic;font-size:15px;color:#6b5a48;margin:0}
+  main{flex:1 0 auto;display:flex;align-items:center;justify-content:center;padding:14px 12px}
+  #stage{width:100%;max-width:1240px;display:flex;justify-content:center}
+  #book{margin:0 auto}
+  .page{background:#fff;box-shadow:inset 0 0 0 1px rgba(30,16,0,.05)}
+  .page{position:relative}
+  .page.l::after,.page.r::after{content:"";position:absolute;top:0;bottom:0;width:7%;pointer-events:none}
+  .page.l::after{right:0;background:linear-gradient(to left,rgba(30,16,0,.13),rgba(30,16,0,0))}
+  .page.r::after{left:0;background:linear-gradient(to right,rgba(30,16,0,.13),rgba(30,16,0,0))}
+  .page img{width:100%;height:100%;display:block;object-fit:contain;background:#fff}
+  .page.back{background:var(--cream);display:flex}
+  .back-inner{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px}
+  .back-inner .mark{font-family:"Playfair Display",serif;font-size:26px}
+  .back-inner .line{width:40px;height:1px;background:var(--copper)}
+  .back-inner small{font-family:Jost;letter-spacing:.2em;text-transform:uppercase;font-size:10px;color:var(--copper)}
+  nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:6px 16px 10px}
+  button{font-family:Jost;font-size:14px;border:1px solid rgba(30,16,0,.25);background:#fff;color:var(--dark);border-radius:999px;padding:9px 18px;cursor:pointer;transition:background .15s,border-color .15s}
+  button:hover:not(:disabled){border-color:var(--copper);background:#fffaf4}
+  button:disabled{opacity:.35;cursor:default}
+  #count{min-width:120px;text-align:center;font-size:14px;color:#6b5a48;font-variant-numeric:tabular-nums}
+  select{font-family:Jost;font-size:14px;border:1px solid rgba(30,16,0,.25);border-radius:999px;padding:8px 14px;background:#fff;color:var(--dark);max-width:260px}
+  .hint{text-align:center;font-size:12px;color:#8a7864;padding:0 16px 20px}
+  #loading{font-family:Lora,serif;font-style:italic;color:#6b5a48}
+  @media (max-width:640px){header{padding-top:16px}nav{flex-wrap:wrap;gap:10px}select{order:3;width:100%;max-width:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Write Weekly · Book Preview</div>
+  <h1>Chile Antofagasta Mission</h1>
+  <p class="sub">Lily Hooper · Missionary Journal</p>
+</header>
+<main><div id="stage"><div id="loading">Opening your book…</div><div id="book"></div></div></main>
+<nav>
+  <button id="prev" aria-label="Previous page">‹ Back</button>
+  <div id="count"></div>
+  <button id="next" aria-label="Next page">Next ›</button>
+  <select id="jump" aria-label="Jump to a week"></select>
+</nav>
+<div class="hint">Click or swipe the page corners to turn pages · arrow keys work too</div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+const TOTAL = 121;            // book pages
+const SECTIONS = [["Table of Contents", 2], ["Farewell Talk", 4], ["Mission Blessing", 7], ["Week 1 · This Is the Mission for Which You Were C…", 9], ["Week 2 · 1 Week at the CCM, 2 Prophets of God, 3…", 11], ["Week 3 · Halfway through the CCM", 14], ["Week 4 · God So Loved YOU! And I Love You Too!", 17], ["Week 5 · Vamos a Chile Baby!", 19], ["Week 6 · Arrival Letter", 22], ["Week 7 · La Gran MCA", 24], ["Week 8 · Wait, You Are Chasing Us?", 27], ["Week 9 · He Is Not Here, for He Is Risen", 30], ["Week 10 · Sunshine on My Shoulders", 33], ["Week 11 · Rest Is with My Redeemer", 35], ["Week 12 · \"When Is It My Turn?\"", 38], ["Week 13 · Sermon on the Park", 41], ["Week 14 · We Are All Just Walking Each Other Home", 44], ["Week 15 · He Calls the Sheep of His Fold", 47], ["Week 16 · Teach Me to Walk in the Light", 49], ["Week 17 · He Loves Us with All of His Heart & Stre…", 51], ["Week 18 · Families Can Be Together Forever", 54], ["Week 19 · God Prepares the Hearts of His People", 57], ["Week 20 · Fear Not, Little Children, for You Are M…", 59], ["Week 21 · Full Sway in Your Hearts & Guess Who's T…", 61], ["Week 22 · It Is in Mine Hand", 64], ["Week 23 · The Gospel of Jesus Christ", 67], ["Week 24 · Triple Whammy", 70], ["Week 25 · Son of God", 73], ["Week 26 · 6 Months!!!", 76], ["Week 28 · Healing in His Wings", 78], ["Week 29 · Miracles All Around & Childhood Goodbyes", 81], ["Week 30 · Jesus Walks on Water & Fights All My Bat…", 84], ["Week 31 · Hi Daddy & Psalms for the Soul", 87], ["Week 32 · Through It All, You'll Breathe", 90], ["Week 33 · Let Us Be Faithful unto Him", 93], ["Week 34 · I Promised God I Would Come & Find You", 96], ["Week 35 · The Hands of My Savior", 100], ["Week 36 · The Lord and the Laborer", 103], ["Week 37 · He Loves to Hear Your Voice", 106], ["Week 38 · Let Us Return Home & Know What It Means…", 109], ["Week 39 · Halfway & Jesus Is My Finest Friend", 112], ["Week 40 · Banana Bread, Families Can Be Together F…", 115]]; // [label, bookPage]
+const pad = n => String(n).padStart(3, '0');
+const book = document.getElementById('book');
+
+// build pages (images load lazily around the current spread)
+for (let i = 1; i <= TOTAL; i++) {
+  const d = document.createElement('div');
+  d.className = 'page' + (i === 1 ? '' : (i % 2 === 0 ? ' l' : ' r'));
+  d.dataset.density = (i === 1) ? 'hard' : 'soft';
+  const img = document.createElement('img');
+  img.alt = 'Page ' + i;
+  img.dataset.src = 'pages/p-' + pad(i) + '.jpg';
+  d.appendChild(img);
+  book.appendChild(d);
+}
+const back = document.createElement('div');
+back.className = 'page back';
+back.dataset.density = 'hard';
+back.innerHTML = '<div class="back-inner"><div class="line"></div><div class="mark">Weekly</div><small>write-weekly.com</small></div>';
+book.appendChild(back);
+
+const imgs = [...book.querySelectorAll('img')];
+function loadAround(idx) {
+  for (let i = Math.max(0, idx - 4); i <= Math.min(imgs.length - 1, idx + 7); i++) {
+    const im = imgs[i];
+    if (!im.src && im.dataset.src) im.src = im.dataset.src;
+  }
+}
+loadAround(0);
+
+const stage = document.getElementById('stage');
+function fit() {
+  const single = window.innerWidth < 760;
+  // Height left for the book after the header, controls and hint (which wrap
+  // onto more lines on phones), minus main's 28px vertical padding and a
+  // little slack for the web fonts finishing loading after this runs.
+  const chrome = ['header', 'nav', '.hint'].reduce((s, q) => s + document.querySelector(q).offsetHeight, 0);
+  const h = Math.max(320, window.innerHeight - chrome - 28 - 24);
+  stage.style.maxWidth = Math.min(1240, Math.floor(h * 0.8 * (single ? 1 : 2))) + 'px';
+}
+fit();
+window.addEventListener('resize', fit);
+const pf = new St.PageFlip(book, {
+  width: 576, height: 720, size: 'stretch', minWidth: 260, maxWidth: 620, minHeight: 325, maxHeight: 775,
+  showCover: true, usePortrait: true, mobileScrollSupport: true,
+  maxShadowOpacity: 0.35, flippingTime: 700, drawShadow: true
+});
+pf.loadFromHTML(book.querySelectorAll('.page'));
+document.getElementById('loading').remove();
+
+const count = document.getElementById('count');
+const prev = document.getElementById('prev'), next = document.getElementById('next');
+const jump = document.getElementById('jump');
+jump.innerHTML = '<option value="">Jump to…</option>' +
+  SECTIONS.map(([l, p]) => `<option value="${p}">${l}</option>`).join('');
+
+function update() {
+  const i = pf.getCurrentPageIndex();
+  loadAround(i);
+  const n = i + 1;
+  const portrait = pf.getOrientation() === 'portrait';
+  let label;
+  if (n > TOTAL) label = 'Back cover';
+  else if (n === 1) label = 'Cover';
+  else if (portrait || n + 1 > TOTAL) label = 'Page ' + n;
+  else label = 'Pages ' + (n % 2 === 0 ? n : n - 1) + '–' + (n % 2 === 0 ? n + 1 : n);
+  count.textContent = label + ' of ' + TOTAL;
+  prev.disabled = i === 0;
+  next.disabled = i >= pf.getPageCount() - 1;
+}
+pf.on('flip', update);
+pf.on('changeOrientation', update);
+prev.onclick = () => pf.flipPrev();
+next.onclick = () => pf.flipNext();
+jump.onchange = () => { if (jump.value) { pf.turnToPage(+jump.value - 1); update(); } jump.value = ''; };
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') pf.flipNext();
+  if (e.key === 'ArrowLeft') pf.flipPrev();
+});
+update();
+</script>
+</body>
+</html>
