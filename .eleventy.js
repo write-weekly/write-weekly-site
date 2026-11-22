@@ -21,6 +21,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/img": "img" });
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
 
+  // Customer book previews (/preview/<name>-<random>/): self-contained
+  // flipbooks published byte-for-byte. Ignored as templates so Eleventy never
+  // wraps them in the site layout or lists them in the sitemap.
+  eleventyConfig.addPassthroughCopy({ "src/preview": "preview" });
+  eleventyConfig.ignores.add("src/preview/**");
+
   // Rebuild the browser preview when CSS or JS changes.
   eleventyConfig.addWatchTarget("src/css/");
   eleventyConfig.addWatchTarget("src/js/");
