@@ -242,11 +242,16 @@ pageCss: index.css
 .ww-compare .partlab{font-weight:700;color:#2B2620}
 .ww-compare .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:640px){
-  .ww-compare{padding:60px 18px !important}
+  .ww-compare{padding:60px 16px !important}
   .ww-compare h2{font-size:30px !important}
-  .ww-compare .cmp th,.ww-compare .cmp td{padding:14px 14px !important;font-size:14px}
-  .ww-compare .cmp thead th{font-size:17px !important}
-  .ww-compare .price{font-size:23px !important}
+  .ww-compare .cmp{min-width:0 !important}
+  .ww-compare .cmp th,.ww-compare .cmp td{box-sizing:border-box;padding:14px 12px !important;font-size:14px}
+  .ww-compare .cmp thead th{font-size:16px !important}
+  .ww-compare .price{font-size:22px !important}
+  /* Fit the feature + Weekly columns on screen; competitors scrolls into view */
+  .ww-compare .cmp tbody th,.ww-compare .cmp thead th:first-child{width:34vw !important;min-width:34vw !important}
+  .ww-compare .cmp .ww{width:48vw !important;min-width:48vw !important}
+  .ww-compare .cmp tbody td:not(.ww),.ww-compare .cmp thead th:nth-child(3){width:68vw !important;min-width:68vw !important}
 }
 </style>
 <section class="ww-compare" id="compare" style="background: #F5EFE3; font-family: 'Lora', Georgia, serif; color: #2B2620; padding: 96px 24px; box-sizing: border-box">
