@@ -1,0 +1,17 @@
+{#- Elder / Sister + first and last name.
+    Elder/Sister is always shown and always required (no default): it drives
+    the auto return date and the mission-email placeholder. The name inputs
+    hide when the visitor picks "I'm the Missionary" (their own name is used). -#}
+<div class="field field--tight" id="title-field">
+  <span class="field-label" id="title-label">Serving as</span>
+  <div class="seg" role="radiogroup" aria-labelledby="title-label">
+    <input type="radio" name="missionary_title" id="title-elder" value="Elder" /><label for="title-elder">Elder</label>
+    <input type="radio" name="missionary_title" id="title-sister" value="Sister" /><label for="title-sister">Sister</label>
+  </div>
+</div>
+<div class="field" id="names-field">
+  <div class="row-2">
+    <input type="text" id="missionary-first" placeholder="First name" autocomplete="off" aria-label="Missionary's first name" />
+    <input type="text" id="missionary-last" placeholder="Last name" autocomplete="off" aria-label="Missionary's last name" />
+  </div>
+</div>
