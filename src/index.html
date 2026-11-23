@@ -214,34 +214,123 @@ pageCss: index.css
   </section>
 
   <!-- COMPARISON -->
-  <section>
-    <div class="comparison">
-      <div class="section-label">Why Weekly</div>
-      <h2 class="section-title">How we <em>compare</em></h2>
-      <p class="section-sub">There are other ways to preserve a mission. Here's how they stack up.</p>
-      <div class="comparison-scroll"><table class="comparison-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="ours">Weekly</th>
-            <th class="other">Competitors</th>
-            <th class="other">DIY Scrapbook</th>
-            <th class="other">Google Drive</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Zero effort required</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="partial">Partial</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="check">✓</span></td></tr>
-          <tr><td>Professional design</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="partial">Partial</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td></tr>
-          <tr><td>Every email included</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="check">✓</span></td><td class="other"><span class="partial">Maybe</span></td><td class="other"><span class="partial">Stored only</span></td></tr>
-          <tr><td>Physical heirloom book</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="check">✓</span></td><td class="other"><span class="check">✓</span></td><td class="other"><span class="cross">✗</span></td></tr>
-          <tr><td>Time investment</td><td class="ours" style="color:var(--green);font-weight:600;">Minutes</td><td class="other">Depends</td><td class="other">100–300 hrs</td><td class="other">Ongoing</td></tr>
-          <tr><td>6-week transfer summaries</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td></tr>
-          <tr><td>Mission calendar</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td></tr>
-          <tr><td>Holiday &amp; milestone pamphlets</td><td class="ours"><span class="check">✓</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td><td class="other"><span class="cross">✗</span></td></tr>
-        </tbody>
-      </table></div>
-    </div>
-  </section>
+<style>
+.ww-compare a{color:#8A4A1F}
+.ww-compare a:hover{color:#5E3214}
+.ww-compare .cmp{width:100%;border-collapse:separate;border-spacing:0;min-width:620px}
+.ww-compare .cmp th,.ww-compare .cmp td{padding:20px 22px;text-align:left;vertical-align:top;border-bottom:1px solid #E3D8C4;font-size:16px;line-height:1.45}
+.ww-compare .cmp thead th{border-bottom:none;padding-top:22px;padding-bottom:22px;font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:#2B2620}
+.ww-compare .cmp tbody th{font-weight:600;color:#2B2620;width:26%}
+.ww-compare .cmp td{color:#5C5246;width:37%}
+.ww-compare .cmp .ww{background:#FFFDF8;color:#2B2620;border-left:2px solid #9A5424;border-right:2px solid #9A5424}
+.ww-compare .cmp thead .ww{background:#9A5424;color:#FFFFFF;border-radius:10px 10px 0 0}
+.ww-compare .cmp tbody tr:last-child .ww{border-bottom:2px solid #9A5424;border-radius:0 0 10px 10px}
+.ww-compare .cmp tbody tr:last-child th,.ww-compare .cmp tbody tr:last-child td{border-bottom:none}
+.ww-compare .yes{display:flex;gap:8px;align-items:flex-start}
+.ww-compare .yes svg{flex:none;margin-top:3px;color:#9A5424}
+.ww-compare .price{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:#2B2620;display:block}
+.ww-compare .sub{font-size:14px;color:#5C5246;display:block;margin-top:4px}
+.ww-compare .tag{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:999px;background:#9A5424;color:#FFFFFF;font-size:13px;font-weight:600;letter-spacing:0.02em}
+.ww-compare .starts{display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#5C5246;margin-bottom:2px}
+.ww-compare .more{display:block;margin-top:6px;font-size:14px;line-height:1.45;color:#2B2620}
+.ww-compare .more b{color:#8A2E1F}
+.ww-compare .unl{font-weight:700;color:#8A4A1F}
+.ww-compare .no,.ww-compare .part{display:flex;gap:8px;align-items:flex-start}
+.ww-compare .no svg{flex:none;margin-top:1px;color:#A23B2A}
+.ww-compare .part svg{flex:none;margin-top:1px;color:#8C7B66}
+.ww-compare .nolab{font-weight:700;color:#A23B2A}
+.ww-compare .partlab{font-weight:700;color:#2B2620}
+.ww-compare .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:640px){
+  .ww-compare{padding:60px 18px !important}
+  .ww-compare h2{font-size:30px !important}
+  .ww-compare .cmp th,.ww-compare .cmp td{padding:14px 14px !important;font-size:14px}
+  .ww-compare .cmp thead th{font-size:17px !important}
+  .ww-compare .price{font-size:23px !important}
+}
+</style>
+<section class="ww-compare" id="compare" style="background: #F5EFE3; font-family: 'Lora', Georgia, serif; color: #2B2620; padding: 96px 24px; box-sizing: border-box">
+<div style="max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; text-align: center; align-items: center">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A4A1F; font-weight: 600">Why families choose Weekly</p>
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 44px; line-height: 1.15; font-weight: 700; max-width: 760px">Other services hand you the tools. Weekly gives you a designer.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5C5246; max-width: 640px">A professional designer works with you and does all the work: gathering every letter and photo, laying out every page, and making changes until it's right. You just read the letters.</p>
+</div>
+<div style="overflow-x: auto">
+<table class="cmp">
+<thead>
+<tr>
+<th scope="col"><span class="vh">Feature</span></th>
+<th scope="col" class="ww">Weekly<span style="display: block; margin-top: 4px; font-family: 'Lora', Georgia, serif; font-size: 14px; font-weight: 600; color: #FFFFFF">Done for you</span></th>
+<th scope="col">Other mission book services<span style="display: block; margin-top: 4px; font-family: 'Lora', Georgia, serif; font-size: 14px; font-weight: 600; color: #5C5246">Do it yourself</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Who does the work</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span><span class="unl">We do.</span> Every letter, photo and page, start to finish</span></span></td>
+<td><span class="part"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Limited"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path></svg><span><span class="partlab">You do.</span> Pick the layouts, adjust the photos, edit and approve every page</span></span></td>
+</tr>
+<tr>
+<th scope="row">Your designer</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span><span class="unl">A real, professional designer</span> who does the work for you </span></span></td>
+<td><span class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Not included"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg><span><span class="nolab">No designer.</span> Self-serve tools, and you make the changes</span></span></td>
+</tr>
+<tr>
+<th scope="row">Design</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Professionally designed spreads, made for your missionary</span></span></td>
+<td><span class="part"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Limited"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path></svg><span>Emails printed in order, or templates you arrange yourself</span></span></td>
+</tr>
+<tr>
+<th scope="row">Where they served</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Every week marked with their area</span></span></td>
+<td><span class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Not included"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg><span><span class="nolab">Not included.</span> At most, manually added to every email</span></span></td>
+</tr>
+<tr>
+<th scope="row">Table of contents</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Organized by area and companion, so you can find any week in seconds</span></span></td>
+<td><span class="part"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Limited"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path></svg><span>Standard table of contents. <span class="partlab">No mission areas or companions</span></span></span></td>
+</tr>
+<tr>
+<th scope="row">Book cover</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Custom cover with their mission's outline, or personal photo</span></span></td>
+<td><span class="part"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Limited"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path></svg><span>Standard cover templates, or upload your own photo</span></span></td>
+</tr>
+<tr>
+<th scope="row">Google Photo extraction</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>We pull the photos from shared Google Photos links</span></span></td>
+<td><span class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Not included"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg><span><span class="nolab">Not offered</span></span></span></td>
+</tr>
+<tr>
+<th scope="row">Missionary reminder email</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Reminder emails so no week gets missed</span></span></td>
+<td><span class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Not included"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg><span><span class="nolab">Not offered</span></span></span></td>
+</tr>
+<tr>
+<th scope="row">Pages</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span><span class="unl">Unlimited pages.</span> Every letter fits, on heavy 80 lb paper</span></span></td>
+<td><span class="part"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Limited"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path></svg><span><span class="partlab">Capped at 300 pages &amp; not premium printing,</span> plus fees for extra pages (30+ cents per page). </span></span></td>
+</tr>
+<tr>
+<th scope="row">Free 6-week sample</th>
+<td class="ww"><span class="yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Yes, your first 6 weeks designed free</span></span></td>
+<td><span class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Not included"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg><span><span class="nolab">No free sample.</span> You pay before you see your book</span></span></td>
+</tr>
+<tr>
+<th scope="row">What you really pay</th>
+<td class="ww"><span class="starts">One price, all in</span><span class="price">$399</span><span class="sub">Less than $4 per letter they sent home on a 2-year mission</span><span class="more" style="font-weight: 700">Everything above is included. No add-ons.</span></td>
+<td><span class="no"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Not included"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg><span><span class="nolab">Extra fees add up.</span> A starting price, then all these fees:<span style="display: block; margin-top: 8px; line-height: 1.7; color: rgb(43, 38, 32)">+ Fees for every page past the cap<br>+ Paper upgrades for thicker pages<br>+ No unlimited pages </span></span></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; align-items: center">
+<a href="/free-trial/" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 32px; background: #9A5424; color: #FFFFFF; text-decoration: none; border-radius: 8px; font-size: 17px; font-weight: 600">Start your free 6-week sample</a>
+<p style="margin: 0; font-size: 14px; color: #5C5246">See your missionary's first six weeks designed before you pay anything.</p>
+</div>
+</div>
+</section>
+
 
 <!-- RECOVERED PAGE SCRIPT -->
 <script>

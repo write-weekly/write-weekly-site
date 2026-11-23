@@ -69,20 +69,6 @@
 .rv-dots {display:flex;gap:8px;justify-content:center;margin-top:24px;}
 .rv-dot {width:7px;height:7px;border-radius:50%;background:rgba(42,24,0,0.15);border:none;padding:0;cursor:pointer;transition:all 0.25s;}
 .rv-dot.on {background:var(--copper);width:22px;border-radius:4px;}
-.comparison {max-width:1000px;margin:0 auto;padding:96px 64px;}
-.comparison-scroll {overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.comparison-table {width:100%;border-collapse:collapse;margin-top:16px;border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(42,24,0,0.08);}
-.comparison-table th {padding:18px 16px;text-align:center;font-size:13px;font-weight:600;letter-spacing:0.03em;}
-.comparison-table th:first-child {text-align:left;background:white;}
-.comparison-table th.ours {background:var(--dark);color:var(--cream);font-family:"Playfair Display",serif;font-style:italic;font-size:16px;}
-.comparison-table th.other {background:#F5EBD8;color:var(--text-muted);}
-.comparison-table td {padding:14px 16px;text-align:center;border-top:1px solid var(--border);font-size:13px;}
-.comparison-table td:first-child {text-align:left;background:white;color:var(--dark);font-weight:500;}
-.comparison-table td.ours {background:rgba(30,16,0,0.03);}
-.comparison-table td.other {background:white;color:var(--text-muted);}
-.check {color:#4caf7d;font-size:17px;}
-.cross {color:rgba(42,24,0,0.2);font-size:17px;}
-.partial {color:var(--copper);font-size:13px;}
 .video-section {background:var(--green);padding:96px 64px;text-align:center;position:relative;overflow:hidden;}
 .video-inner {max-width:800px;margin:0 auto;position:relative;z-index:1;}
 .video-section .section-label {color:rgba(212,149,106,0.8);justify-content:center;}
@@ -123,7 +109,7 @@
   .hero-photo {background-position:30% 25%;}
   .hero-content {padding:0 20px 32px;}
   .hero h1 {font-size:26px;}
-  .how,.included,.comparison,.final-cta {padding:48px 20px;}
+  .how,.included,.final-cta {padding:48px 20px;}
   .product-section,.testimonials,.video-section {padding:48px 20px;}
   .section-title {font-size:26px;}
   .section-sub {font-size:14px;margin-bottom:24px;}
@@ -134,10 +120,6 @@
   .inc-card {padding:18px 14px;}
   .inc-card h4 {font-size:14px;}
   .inc-card p {font-size:12px;}
-  .comparison {padding:48px 16px;}
-  .comparison-scroll {overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .comparison-table {font-size:11px;min-width:520px;}
-  .comparison-table th,.comparison-table td {padding:10px 8px;}
   .video-frame {height:220px;}
   .book-cycler {height:320px;}
   .final-cta h2 {font-size:28px;}
@@ -157,8 +139,6 @@
   .hero h1 {font-size:24px;}
   .section-title {font-size:22px;}
   .included-grid {grid-template-columns:1fr;}
-  .comparison-table th:last-child,.comparison-table td:last-child {display:none;}
-  .comparison-table th:nth-child(4),.comparison-table td:nth-child(4) {display:none;}
 }
 
 /* How it works: use the home page's standard left-aligned section header */
